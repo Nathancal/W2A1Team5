@@ -1,9 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29509.3
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VapeShop", "VapeShop\VapeShop.csproj", "{6CDE9F4F-2578-4DC2-95AD-2B4D5CC4A92D}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ThreeTierSite", "D:\WP2\week_8\ThreeTierEcommerce\ThreeTierSite\", "{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60746"
+		Debug.AspNetCompiler.PhysicalPath = "ThreeTierSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60746\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60746"
+		Release.AspNetCompiler.PhysicalPath = "ThreeTierSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60746\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60746"
+		SlnRelativePath = "ThreeTierSite\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +36,15 @@ Global
 		{6CDE9F4F-2578-4DC2-95AD-2B4D5CC4A92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CDE9F4F-2578-4DC2-95AD-2B4D5CC4A92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CDE9F4F-2578-4DC2-95AD-2B4D5CC4A92D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FF0E625F-81A4-4970-AC43-A0AC33319C49}
+		SolutionGuid = {E34DC93F-66B5-446E-85E4-689464FF241D}
 	EndGlobalSection
 EndGlobal
