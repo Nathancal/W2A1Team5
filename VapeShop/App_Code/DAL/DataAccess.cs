@@ -114,11 +114,27 @@ namespace VapeShop.App_Code.DAL
             return tempProd;
         }//getProduct
 
-        //public static Product createNewProduct() { 
-                        
-        //}//TODO
+        public static void createNewProduct(string prodName, string prodType, double price, Boolean sale, double salePrice, string desc, int currentStock, int reOrderLevel, string imageFile) {
+            OleDbConnection conn = openConnection();
 
-         public static DataSet getUsers()
+            string strSQL = "INSERT INTO Product(ProductName, " +
+                           " ProductType, Price, Sale, SalePrice, Description, CurrentStock, ReOrderLevel, ImageFile)" +
+                           " VALUES('" + prodName + "', '" + prodType + "'," +
+                            price + ",'" + sale + "',"
+                            + salePrice + ", " + desc +
+                            ", "+ currentStock + ", " + reOrderLevel + ", " + imageFile + ")";
+
+            //create the command object using the SQL
+            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+            //change the SQL to return the new product rating
+            cmd.CommandText = "Select @@Identity";
+            //TODO
+        }//TODO
+
+        public static DataSet getUsers()
         {
             OleDbConnection conn = openConnection();
             //create dataset (virtual database)
