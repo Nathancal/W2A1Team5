@@ -14,7 +14,16 @@ namespace VapeShop.App_Code
         private Boolean sale;
 
 
-        public Product() { 
+        public Product(string productName, string productType, double price, Boolean sale, double salePrice, string prodDesc, int stock, int reOrderLevel, string imageFile) {
+            this.productName = productName;
+            this.productType = productType;
+            this.price = price;
+            this.sale = sale;
+            this.salePrice = salePrice;
+            this.productDesc = prodDesc;
+            this.stock = stock;
+            this.reOrderLevel = reOrderLevel;
+            this.imageFile = imageFile;
         }
 
         public void findProduct(int pProductId) {
@@ -31,6 +40,9 @@ namespace VapeShop.App_Code
 
         }//TODO
 
+        public void createNewProduct() {
+            DataAccess.createNewProduct(productName, productType, price, sale, salePrice, productDesc, stock, reOrderLevel, imageFile);
+        }
 
 
         public int getProductId() {
