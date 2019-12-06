@@ -114,6 +114,10 @@ namespace VapeShop.App_Code.DAL
             return tempProd;
         }//getProduct
 
+        //public static Product createNewProduct() { 
+                        
+        //}//TODO
+
          public static DataSet getUsers()
         {
             OleDbConnection conn = openConnection();
@@ -169,5 +173,33 @@ namespace VapeShop.App_Code.DAL
 
             return tempUser;
         }//get USER
+
+
+        public static int createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub){
+            OleDbConnection conn = openConnection();
+
+            string strSQL = "INSERT INTO Products_Ratings(ProductId, " +
+                           " UserId, Rating, DateSubmitted, UserIP, RatingDesc)" +
+                           " VALUES('" + productId + "', '" + userId + "'," +
+                            rating + ",'" + dateSub + "',"
+                            + userIp + ", " + ratingDesc + ")";
+
+            //create the command object using the SQL
+            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+            //change the SQL to return the new product rating
+            cmd.CommandText = "Select @@Identity";
+            //TODO
+
+            int ratingNum = Convert.ToInt32(cmd.ExecuteScalar());
+
+            closeConnection(conn); // close connection
+            return ratingNum; 
+        } //Add a product Rating
+
+
+
     }
 }
