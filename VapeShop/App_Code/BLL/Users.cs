@@ -11,9 +11,26 @@ namespace VapeShop.App_Code.BLL
 
         private int userId;
         private string userFirstName, userSurname, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel;
+        private string email, pWord;
         private DateTime UserDob;
         public Users() { 
         
+        }
+
+        public Users(int userId, string userFirstName,string userSurname,DateTime dob, string userAddress,string userCity,string userCounty,string userCountry,string userPostCode,string userAccessLevel, string email, string pWord)
+        {
+            this.userId = userId;
+            this.userFirstName = userFirstName;
+            this.userSurname = userSurname;
+            this.UserDob = dob;
+            this.userAddress = userAddress;
+            this.userCity = userCity;
+            this.userCounty = userCounty;
+            this.userCountry = userCountry;
+            this.userPostCode = userPostCode;
+            this.userAccessLevel = userAccessLevel;
+            this.email = email;
+            this.pWord = pWord;
         }
 
         public void findUser(int pUserId) {
@@ -105,6 +122,11 @@ namespace VapeShop.App_Code.BLL
         public void setUserAccessLevel(string accessLevel) {
             this.userAccessLevel = accessLevel;
      
+        }
+        
+        public static Users verifyLogin(string email, string pWord)
+        {
+            return DataAccess.verifyLogin(email, pWord);
         }
     }
 }
