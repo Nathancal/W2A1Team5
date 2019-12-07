@@ -169,7 +169,6 @@ namespace VapeShop.App_Code.DAL
 
             while (reader.Read())
             {
-
                 tempUser.setUserId(Convert.ToInt32(reader["UserId"]));
                 tempUser.setFirstName(reader["FirstName"].ToString());
                 tempUser.setSurname(reader["Surname"].ToString());
@@ -219,25 +218,50 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
-            string strSQL = "INSERT INTO DiscountCodes(Code, " +
+            string strNewCode = "INSERT INTO DiscountCodes(Code, " +
                            " DateFrom, DateTo, NumberUsed, DiscountPerc)" +
                            " VALUES('" + code + "', '" + dateActive + "'," +
                             dateEnd + ",'" + discountPerc + ")";
 
             //create the command object using the SQL
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+            OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         } //Create a new discount code
         
         
-        
-      
-        
-        //TODO rest of the discount code methods!!!!!!!!
+        public static DiscountCode redeemDiscountCode(string pCode) {
+            OleDbConnection conn = openConnection();
+            
+            string strRedeemCode = "SELECT * FROM DiscountCodes WHERE Code='" + pCode + "'" +
+                                   "' AND isActive='" + 1 + "'";
+
+            OleDbCommand cmdSelect = new OleDbCommand(strRedeemCode, conn);
+            OleDbDataReader codeReader = cmdSelect.ExecuteReader();
+
+            DiscountCode redeemCode = null;
+
+            while (codeReader.Read()){
+                string code = codeReader["Code"].ToString();
+                DateTime dateActive = Convert.ToDateTime(codeReader["DateFrom"]);
+                DateTime dateEnd = Convert.ToDateTime(codeReader["DateTo"]);
+                int discountPerc = Convert.ToInt32(codeReader["DiscountPerc"]);
+
+
+                redeemCode = new DiscountCode(code, dateActive, dateEnd, discountPerc);
+            }
+
+            return redeemCode;
+        }
+
+        public static void removeDiscountCode(string pCode) {
+            OleDbConnection conn = openConnection();
+
+            string strRedeemCode = "DELETE FROM DiscountCodes WHERE Code='" + pCode + "'" +
 
 
 
+        }
 
         public static void sendMessage(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
             OleDbConnection conn = openConnection();
@@ -293,7 +317,7 @@ namespace VapeShop.App_Code.DAL
             //with records from the database table
             daMessages.Fill(dsMessages, "Message");
 
-            conn.Close();
+            closeConnection(conn);
 
             return dsMessages;
         }
@@ -314,21 +338,47 @@ namespace VapeShop.App_Code.DAL
 
         }
 
-        public void setMessageViewed(int msgId){
+        public static Message ViewMessage(int msgId){
             OleDbConnection conn = openConnection();
-
-            string strMessageViewed = "UPDATE MessageRecipient SET isRead = 1 WHERE MessageId='" + msgId + "'";
-            
+            string strMessageViewedUpdate = "UPDATE MessageRecipient SET isRead= 1 WHERE MessageId='" + msgId + "'";
             //create the command object using the SQL
-            OleDbCommand cmd = new OleDbCommand(strMessageViewed, conn);
+            OleDbCommand cmdUpdate= new OleDbCommand(strMessageViewedUpdate, conn);
+            cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
-            cmd.ExecuteNonQuery(); // execute the insertion command
+            string strRetrieveMessage = "SELECT * FROM Message WHERE ID='" + msgId + "'";                       
+
+            OleDbCommand cmdSelect = new OleDbCommand(strRetrieveMessage, conn);
+            OleDbDataReader messageReader = cmdSelect.ExecuteReader();
+            Message msgObject = null;
+    
+            while (messageReader.Read()){
+                int messageId= Convert.ToInt32(messageReader["ID"]);
+                int creatorId = Convert.ToInt32(messageReader["CreatorId"]);
+                string subject = messageReader["Subject"].ToString();
+                string messageBody = messageReader["MessageBody"].ToString();
+                DateTime createDate = Convert.ToDateTime(messageReader["CreateDate"]);
+                int parentMsgId = Convert.ToInt32(messageReader["ParentMessageId"]);
+
+                cmdSelect.CommandText = "SELECT RecipientId FROM MessageRecipient WHERE MessageId='" + msgId + "'";
+                messageReader = cmdSelect.ExecuteReader();
+
+                while (messageReader.Read())
+                {
+                    int recepId = Convert.ToInt32(messageReader["RecipientId"]);
+                    msgObject = new Message(messageId, creatorId, subject, messageBody, createDate, parentMsgId, recepId);
+                }
+            }
+
+            messageReader.Close();
+            closeConnection(conn);
+
+            return msgObject;
         }
 
-        public static Users verifyLogin(string email, string pWord) {
+        public static Users verifyLogin(string username, string pWord) {
             OleDbConnection conn = openConnection();
             string strSQL = "select * FROM Users WHERE Username='" +
-                                         email + "' AND Password='" + pWord + "'";
+                                         username + "' AND Password='" + pWord + "'";
 
             OleDbCommand cmd = new OleDbCommand(strSQL, conn);
             OleDbDataReader reader = cmd.ExecuteReader();
@@ -356,8 +406,5 @@ namespace VapeShop.App_Code.DAL
             closeConnection(conn);
             return userObject;
         }
-
-
-
     }
 }
