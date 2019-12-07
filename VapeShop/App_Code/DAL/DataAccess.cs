@@ -194,7 +194,7 @@ namespace VapeShop.App_Code.DAL
         public static int createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub){
             OleDbConnection conn = openConnection();
 
-            string strSQL = "INSERT INTO Products_Ratings(ProductId, " +
+            string strSQL = "INSERT INTO ProductsRatings(ProductId, " +
                            " UserId, Rating, DateSubmitted, UserIP, RatingDesc)" +
                            " VALUES('" + productId + "', '" + userId + "'," +
                             rating + ",'" + dateSub + "',"
@@ -214,6 +214,99 @@ namespace VapeShop.App_Code.DAL
             closeConnection(conn); // close connection
             return ratingNum; 
         } //Add a product Rating
+
+        public static void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc)
+        {
+            OleDbConnection conn = openConnection();
+
+            string strSQL = "INSERT INTO DiscountCodes(Code, " +
+                           " DateFrom, DateTo, NumberUsed, DiscountPerc)" +
+                           " VALUES('" + code + "', '" + dateActive + "'," +
+                            dateEnd + ",'" + discountPerc + ")";
+
+            //create the command object using the SQL
+            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+        } //Create a new discount code
+        
+        
+        
+      
+        
+        //TODO rest of the discount code methods!!!!!!!!
+
+
+
+
+
+        public static void sendMessage(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
+            OleDbConnection conn = openConnection();
+
+            int recepId;
+
+            string strInsertMessage = "INSERT INTO Message(CreatorId, " +
+                           " , Subject, MessageBody, CreateDate, ParentMessageId)" +
+                           " VALUES('" + creatorId + "', '" + subject + "'," +
+                            messageBody + ",'" + createDate + ",'" + parentId + ")";
+
+            //create the command object using the SQL
+            OleDbCommand cmdInsert = new OleDbCommand(strInsertMessage, conn);
+
+            cmdInsert.ExecuteNonQuery(); // execute the insertion command
+
+            cmdInsert.CommandText = "Select @@Identity";
+
+            int msgId = Convert.ToInt32(cmdInsert.ExecuteScalar());
+
+            string strReadRecepId = "select ID FROM Users WHERE Username='" +
+                                         recepUsername + "'";
+
+            OleDbCommand cmd = new OleDbCommand(strReadRecepId, conn);
+            OleDbDataReader recepIdReader = cmd.ExecuteReader();
+
+            recepId = Convert.ToInt32(recepIdReader["UserId"]);
+                       
+            string strInsertRecep = "INSERT INTO MessageRecipient(RecipientId " +
+                                    "MessageId)" +
+                                    " VALUES('" + recepId + "', '" + msgId + ")";
+
+           
+            recepIdReader.Close();
+
+        }//TODO NEEDS FINISHED
+
+        public static Users verifyLogin(string email, string pWord) {
+            OleDbConnection conn = openConnection();
+            string strSQL = "select * FROM Users WHERE Username='" +
+                                         email + "' and Password='" + pWord + "'";
+
+            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+            OleDbDataReader reader = cmd.ExecuteReader();
+            Users userObject = null;
+
+            while (reader.Read()){
+                int userId = Convert.ToInt32(reader["UserId"]);
+                string firstName = reader["First Name"].ToString();
+                string surname = reader["Surname"].ToString();
+                DateTime dob = Convert.ToDateTime(reader["Date Of Birth"]);
+                string address = reader["Address"].ToString();
+                string city = reader["City"].ToString();
+                string county = reader["County"].ToString();
+                string country = reader["Country"].ToString();
+                string postCode = reader["PostCode"].ToString();
+                string accessLevel = reader["AccessLevel"].ToString();
+                string userName = reader["Username"].ToString();
+                string passWord = reader["Password"].ToString();
+
+                userObject = new Users(userId, firstName, surname, dob, address,
+                                                    city, county, country, postCode, accessLevel, userName, passWord);
+            }
+
+            reader.Close();
+            closeConnection(conn);
+            return userObject;
+        }
 
 
 
