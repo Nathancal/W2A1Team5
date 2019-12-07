@@ -26,6 +26,10 @@ namespace VapeShop.App_Code
             this.imageFile = imageFile;
         }
 
+        public Product()
+        {
+        }
+
         public void findProduct(int pProductId) {
             Product loadProduct = DataAccess.getProduct(pProductId);
 
