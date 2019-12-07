@@ -167,8 +167,7 @@ namespace VapeShop.App_Code.DAL
 
             OleDbDataReader reader = cmd.ExecuteReader();
 
-            while (reader.Read())
-            {
+            while (reader.Read()){
                 tempUser.setUserId(Convert.ToInt32(reader["UserId"]));
                 tempUser.setFirstName(reader["FirstName"].ToString());
                 tempUser.setSurname(reader["Surname"].ToString());
@@ -181,8 +180,6 @@ namespace VapeShop.App_Code.DAL
                 tempUser.setUserAccessLevel(reader["AccessLevel"].ToString());               
             }
 
-
-
             reader.Close();
             closeConnection(conn);
 
@@ -193,14 +190,14 @@ namespace VapeShop.App_Code.DAL
         public static int createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub){
             OleDbConnection conn = openConnection();
 
-            string strSQL = "INSERT INTO ProductsRatings(ProductId, " +
+            string strNewRating = "INSERT INTO ProductsRatings(ProductId, " +
                            " UserId, Rating, DateSubmitted, UserIP, RatingDesc)" +
                            " VALUES('" + productId + "', '" + userId + "'," +
                             rating + ",'" + dateSub + "',"
                             + userIp + ", " + ratingDesc + ")";
 
             //create the command object using the SQL
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+            OleDbCommand cmd = new OleDbCommand(strNewRating, conn);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
 
@@ -212,7 +209,41 @@ namespace VapeShop.App_Code.DAL
 
             closeConnection(conn); // close connection
             return ratingNum; 
-        } //Add a product Rating
+        } 
+
+        public static ProductRating updateRating(int ratingId, int rating, string ratingDesc){
+            OleDbConnection conn = openConnection();
+
+            string strUpdateRating = "UPDATE ProductRatings SET Rating='" + rating + "',"+ "RatingDesc='" + ratingDesc +"' WHERE ID='" + ratingId +"'";
+
+            OleDbCommand cmdUpdate = new OleDbCommand(strUpdateRating, conn);
+            cmdUpdate.ExecuteNonQuery(); // execute the insertion command
+
+            string strRetrieveUpdate = "SELECT * FROM ProductsRating WHERE ID='" + ratingId + "'";
+
+            OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
+            OleDbDataReader ratingReader = cmdSelect.ExecuteReader();
+            ProductRating ratingObject = null;
+
+            while (ratingReader.Read())
+            {
+                int rId = Convert.ToInt32(ratingReader["ID"]);
+                int productId = Convert.ToInt32(ratingReader["ProductId"]);
+                int rate = Convert.ToInt32(ratingReader["Rating"]);
+                int userId = Convert.ToInt32(ratingReader["UserId"]);
+                DateTime dateSub = Convert.ToDateTime(ratingReader["DateSubmitted"]);
+                string userIp = ratingReader["UserIP"].ToString();
+                string rDesc = ratingReader["RatingDesc"].ToString();
+
+                ratingObject = new ProductRating(productId, userId, rating, userIp, rDesc, dateSub);
+            }
+
+            return ratingObject;
+
+
+
+
+        }
 
         public static void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc)
         {
@@ -227,8 +258,7 @@ namespace VapeShop.App_Code.DAL
             OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
-        } //Create a new discount code
-        
+        } 
         
         public static DiscountCode redeemDiscountCode(string pCode) {
             OleDbConnection conn = openConnection();
@@ -257,10 +287,11 @@ namespace VapeShop.App_Code.DAL
         public static void removeDiscountCode(string pCode) {
             OleDbConnection conn = openConnection();
 
-            string strRedeemCode = "DELETE FROM DiscountCodes WHERE Code='" + pCode + "'" +
+            string strRemoveCode = "DELETE FROM DiscountCodes WHERE Code='" + pCode + "'";
 
+            OleDbCommand cmd = new OleDbCommand(strRemoveCode, conn);
 
-
+            cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
         public static void sendMessage(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
@@ -298,7 +329,7 @@ namespace VapeShop.App_Code.DAL
             recepIdReader.Close();
             closeConnection(conn);
 
-        }//TODO NEEDS FINISHED
+        }
 
         public static DataSet getMessages() {
             OleDbConnection conn = openConnection();
@@ -373,6 +404,18 @@ namespace VapeShop.App_Code.DAL
             closeConnection(conn);
 
             return msgObject;
+        }
+
+        public static void removeMessage(int msgId){
+            OleDbConnection conn = openConnection();
+
+            string strRemoveMessage = "DELETE FROM Message WHERE ID='" + msgId + "'";
+
+            OleDbCommand cmd = new OleDbCommand(strRemoveMessage, conn);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+
         }
 
         public static Users verifyLogin(string username, string pWord) {
