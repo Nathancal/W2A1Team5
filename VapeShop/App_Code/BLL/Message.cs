@@ -9,7 +9,7 @@ namespace VapeShop.App_Code.BLL
 {
     public class Message
     {
-        private int msgId, creatorId, parentMessageId;
+        private int msgId, creatorId, parentMessageId, recepId;
         private string subject, messageBody, recepUsername;
         private DateTime createDate;
 
@@ -19,6 +19,15 @@ namespace VapeShop.App_Code.BLL
             this.subject = subject;
             this.messageBody = messageBody;
             this.createDate = createDate;
+        }
+
+        public Message(int msgId, int creatorId, string subject, string messageBody, DateTime createDate, int parentId, int recepId){
+            this.creatorId = creatorId;
+            this.parentMessageId = parentId;
+            this.subject = subject;
+            this.messageBody = messageBody;
+            this.createDate = createDate;
+            this.recepId = recepId;
         }
 
         public Message() { }
@@ -32,9 +41,17 @@ namespace VapeShop.App_Code.BLL
             return msgCount;
         }
 
-        public void setMessageViewed(int msgId){
-            DataAccess.
+        public Message ViewMessage(int msgId) {
+            Message viewMessage = DataAccess.ViewMessage(msgId);
 
+            this.msgId = viewMessage.getMessageId();
+            this.creatorId = viewMessage.getCreatorId();
+            this.subject = viewMessage.getSubject();
+            this.messageBody = viewMessage.getMessageBody();
+            this.createDate = viewMessage.getCreateDate();
+            this.parentMessageId = viewMessage.getParentMsgId();
+
+            return viewMessage;
         }
 
         public int getMessageId(){
