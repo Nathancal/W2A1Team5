@@ -32,7 +32,7 @@ namespace VapeShop.App_Code.BLL
 
         public Message() { }
 
-        public void sendMessage(){
+        public void sendMessage(int creatorId, string subject, string messageBody, DateTime createDate, int parentMessageId, string recepUsername){
             DataAccess.sendMessage(creatorId, subject, messageBody, createDate, parentMessageId, recepUsername);
         }
 
