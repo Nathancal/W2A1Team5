@@ -239,7 +239,6 @@ namespace VapeShop.App_Code.DAL
 
 
 
-
         public static void sendMessage(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
             OleDbConnection conn = openConnection();
 
@@ -273,13 +272,63 @@ namespace VapeShop.App_Code.DAL
 
            
             recepIdReader.Close();
+            closeConnection(conn);
 
         }//TODO NEEDS FINISHED
+
+        public static DataSet getMessages() {
+            OleDbConnection conn = openConnection();
+            //create dataset (virtual database)
+            DataSet dsMessages = new DataSet();
+
+            string strGetMessages = "SELECT Message.ID, Message.CreatorId, Message.MessageBody, Message.CreateDate, " +
+                                    "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message" +
+                                    "FROM Message" +
+                                    "INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId";
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daMessages = new OleDbDataAdapter(strGetMessages, conn);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daMessages.Fill(dsMessages, "Message");
+
+            conn.Close();
+
+            return dsMessages;
+        }
+
+        public static int getUnreadMessageCount(int pUserId) {
+
+            OleDbConnection conn = openConnection();
+
+            string strGetMessageCount = "select COUNT(isRead) FROM MessageRecipient WHERE RecipientId='"
+                            + pUserId + "' AND isRead='" + 0 + "'";
+
+            OleDbCommand cmd = new OleDbCommand(strGetMessageCount, conn);
+
+            int countMessages = Convert.ToInt32(cmd.ExecuteScalar());
+            closeConnection(conn);
+
+            return countMessages;
+
+        }
+
+        public void setMessageViewed(int msgId){
+            OleDbConnection conn = openConnection();
+
+            string strMessageViewed = "UPDATE MessageRecipient SET isRead = 1 WHERE MessageId='" + msgId + "'";
+            
+            //create the command object using the SQL
+            OleDbCommand cmd = new OleDbCommand(strMessageViewed, conn);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+        }
 
         public static Users verifyLogin(string email, string pWord) {
             OleDbConnection conn = openConnection();
             string strSQL = "select * FROM Users WHERE Username='" +
-                                         email + "' and Password='" + pWord + "'";
+                                         email + "' AND Password='" + pWord + "'";
 
             OleDbCommand cmd = new OleDbCommand(strSQL, conn);
             OleDbDataReader reader = cmd.ExecuteReader();
