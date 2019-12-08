@@ -294,6 +294,36 @@ namespace VapeShop.App_Code.DAL
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
+        public static DiscountCode updateDiscountCode(string pCode, DateTime pDateEnd, int pDiscountPerc){
+            OleDbConnection conn = openConnection();
+
+
+            string strUpdateDiscount = "UPDATE DisocuntCodes SET DateTo='" + pDateEnd + "'," + "DiscountPerc='" + pDiscountPerc + "' WHERE Code='" + pCode + "'";
+            OleDbCommand cmdUpdate = new OleDbCommand(strUpdateDiscount, conn);
+            cmdUpdate.ExecuteNonQuery(); // execute the insertion command
+
+            string strRetrieveUpdate = "SELECT * FROM DiscountCodes WHERE ID='" + pCode + "'";
+
+            OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
+            OleDbDataReader disocuntReader = cmdSelect.ExecuteReader();
+            DiscountCode disCodeObject = null;
+
+            while (disocuntReader.Read())
+            {
+                string code = disocuntReader["Code"].ToString();
+                DateTime dateActive = Convert.ToDateTime(disocuntReader["DateFrom"]);
+                DateTime dateEnd = Convert.ToDateTime(disocuntReader["DateTo"]);
+                int userId = Convert.ToInt32(disocuntReader["UserId"]);
+        
+
+                disCodeObject = new DiscountCode();
+            }
+
+            return disCodeObject;
+
+
+        }
+
         public static void sendMessage(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
             OleDbConnection conn = openConnection();
 
@@ -414,6 +444,90 @@ namespace VapeShop.App_Code.DAL
             OleDbCommand cmd = new OleDbCommand(strRemoveMessage, conn);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
+
+
+        }
+
+        public static int createNewInvoice(string pEmail, string pShipMethod, DateTime pOrderDate, double pSubTotal, double pShipping, double pTotalCost){
+            OleDbConnection conn = openConnection();
+
+            string strCreateInvoice = "INSERT INTO Invoices(Email, OrderDate, SubTotal, ShipMethod, Shipping, Total Cost)" +
+                              " VALUES('" + pEmail + "', '" + pOrderDate + "', '" + pSubTotal + "', '" + pShipMethod + "', '" + pShipping + "', '" + pTotalCost + ")";
+
+            OleDbCommand cmdInsert = new OleDbCommand(strCreateInvoice, conn);
+
+            cmdInsert.ExecuteNonQuery(); // execute the insertion command
+
+            cmdInsert.CommandText = "SELECT @@Identity";
+
+            int retInvNum = Convert.ToInt32(cmdInsert.ExecuteScalar());
+            closeConnection(conn);
+
+
+            return retInvNum;         
+        }
+
+
+        public static Invoice returnNewInvoice(int retInvNum){
+            OleDbConnection conn = openConnection();
+
+            string strSelectInvoice = "SELECT * FROM Invoices WHERE InvoiceNum='" + retInvNum + "'";
+
+            OleDbCommand cmdSelect = new OleDbCommand(strSelectInvoice, conn);
+            OleDbDataReader invReader = cmdSelect.ExecuteReader();
+            Invoice invObject = null;
+
+            while (invReader.Read())
+            {
+                int invoiceNum = Convert.ToInt32(invReader["InvoiceNum"]);
+                string email = invReader["Email"].ToString();
+                DateTime orderDate = Convert.ToDateTime(invReader["OrderDate"]);
+                double subTotal = Convert.ToDouble(invReader["SubTotal"]);
+                string shipMethod = invReader["ShipMethod"].ToString();
+                double shipping = Convert.ToDouble(invReader["ParentMessageId"]);
+                double totalCost = Convert.ToDouble(invReader["Total Cost"]);
+
+                invObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, orderDate, totalCost);
+            }
+
+            invReader.Close();
+
+            return invObject;
+        }//TODO finish to allow for the product information to be brought into the invoice also
+
+        public static Invoice findInvoice(string checkCriteria){    
+           
+            OleDbConnection conn = openConnection();
+
+            int retInvNum;
+
+            Int32.TryParse(checkCriteria, out retInvNum); 
+
+            string strFindInvoice = "SELECT * FROM Invoices WHERE InvoiceNum='" + retInvNum + "' OR Email='" + checkCriteria + "'";
+
+            OleDbCommand cmdSelect = new OleDbCommand(strFindInvoice, conn);
+            OleDbDataReader FindInvReader = cmdSelect.ExecuteReader();
+            Invoice findInvObject = null;
+
+            while (FindInvReader.Read())
+            {
+                int invoiceNum = Convert.ToInt32(FindInvReader["InvoiceNum"]);
+                string email = FindInvReader["Email"].ToString();
+                DateTime orderDate = Convert.ToDateTime(FindInvReader["OrderDate"]);
+                double subTotal = Convert.ToDouble(FindInvReader["SubTotal"]);
+                string shipMethod = FindInvReader["ShipMethod"].ToString();
+                double shipping = Convert.ToDouble(FindInvReader["ParentMessageId"]);
+                double totalCost = Convert.ToDouble(FindInvReader["Total Cost"]);
+
+                findInvObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, orderDate, totalCost);
+
+            }
+
+            FindInvReader.Close();
+            closeConnection(conn);
+
+            return findInvObject;
+
 
 
         }
