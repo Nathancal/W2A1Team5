@@ -46,7 +46,9 @@ namespace VapeShop.App_Code.BLL
         }
 
         public Invoice returnNewInvoice(){
-            daInvoice.returnNewInvoice(invoiceNum);
+            Invoice returnInvoice = daInvoice.returnNewInvoice(invoiceNum);
+
+            return returnInvoice;
         }
 
 

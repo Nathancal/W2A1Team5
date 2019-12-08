@@ -5,6 +5,8 @@ using System.Web;
 using System.Data;
 using System.Data.OleDb;
 using VapeShop.App_Code.BLL;
+using VapeShop.App_Code.DAL;
+
 
 
 namespace VapeShop.App_Code.DAL
@@ -81,14 +83,18 @@ namespace VapeShop.App_Code.DAL
             return dsUsers;
         }//get Users
 
-        public static Users getUser(int pUserId)
+        public static Users getUser(string search)
         {
             Users tempUser = new Users();
 
             OleDbConnection conn = openConnection();
 
+            int getUserById;
+            
+            Int32.TryParse(search, out getUserById);
+
             string strSQL = "select * FROM Users WHERE UserId='"
-                            + pUserId + "'";
+                            + getUserById + "' OR Email='" + search + "'";
 
             OleDbCommand cmd = new OleDbCommand(strSQL, conn);
 
@@ -99,7 +105,7 @@ namespace VapeShop.App_Code.DAL
                 tempUser.setUserId(Convert.ToInt32(reader["UserId"]));
                 tempUser.setFirstName(reader["FirstName"].ToString());
                 tempUser.setSurname(reader["Surname"].ToString());
-                tempUser.setDob(Convert.ToDateTime(reader["DateOfBirth"]));
+                tempUser.setDob(Convert.ToString(reader["DateOfBirth"]));
                 tempUser.setAddress(reader["Address"].ToString());
                 tempUser.setCity(reader["City"].ToString());
                 tempUser.setCounty(reader["County"].ToString());
@@ -133,18 +139,16 @@ namespace VapeShop.App_Code.DAL
             return context.Request.ServerVariables["REMOTE_ADDR"];
         }
 
-        public static void createNewUser(string username, string userFirstName, string userSurname, DateTime dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userEmail, string userPword)
+        public static void createNewUser(string username, string userFirstName, string userSurname, string dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userAccessLevel, string userEmail, string userPword)
         {
             OleDbConnection conn = openConnection();
 
             string userIp = getUserIp();
 
-            string strNewUser = "INSERT INTO Users(Username, Email, FirstName, " +
-                           " Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, Password, UserIp)" +
-                           " VALUES('" + username + "', '" + userEmail + "', '" + userFirstName + "', '" + userSurname + "'," +
-                            dob + ",'" + userAddress + "',"
-                            + userCity + ", " + userCounty +
-                            ",'" + userCountry + "'," + userPostCode + "'," + 0 + "'," + userPword + "'," + userIp + ")";
+            string strNewUser = "INSERT INTO Users(Username, Email, FirstName, Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, PWord, UserIp)" +
+                            "VALUES('" + username + "', '" + userEmail + "', '" + userFirstName + "', '" + userSurname + "', '" +
+                            dob + "' ,'" + userAddress + "', '" + userCity + "' , '" + userCounty +
+                            ",'" + userCountry + "', '" + userPostCode + "', '" + userAccessLevel + "', '" + userPword + ")";
 
 
             OleDbCommand cmd = new OleDbCommand(strNewUser, conn);
@@ -159,11 +163,11 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
             string strSQL = "select * FROM Users WHERE Username='" +
-                                         username + "' AND Password='" + pWord + "'";
+                                         username + "' AND PWord='" + pWord + "'";
 
             OleDbCommand cmd = new OleDbCommand(strSQL, conn);
             OleDbDataReader reader = cmd.ExecuteReader();
-            Users userObject = null;
+            Users userObject = new Users();
 
             while (reader.Read())
             {
@@ -171,7 +175,7 @@ namespace VapeShop.App_Code.DAL
                 int userId = Convert.ToInt32(reader["UserId"]);
                 string firstName = reader["First Name"].ToString();
                 string surname = reader["Surname"].ToString();
-                DateTime dob = Convert.ToDateTime(reader["Date Of Birth"]);
+                string dob = Convert.ToString(reader["Date Of Birth"]);
                 string address = reader["Address"].ToString();
                 string city = reader["City"].ToString();
                 string county = reader["County"].ToString();
@@ -179,7 +183,8 @@ namespace VapeShop.App_Code.DAL
                 string postCode = reader["PostCode"].ToString();
                 string accessLevel = reader["AccessLevel"].ToString();
                 string userName = reader["Username"].ToString();
-                string passWord = reader["Password"].ToString();
+                string email = reader["Email"].ToString();
+                string passWord = reader["PWord"].ToString();
                 string userIp = reader["UserIp"].ToString();
 
 

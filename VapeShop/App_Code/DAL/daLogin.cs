@@ -58,41 +58,6 @@ namespace VapeShop.App_Code.DAL
             cn.Close();
         } //closeConnection
 
-        public static Users verifyLogin(string username, string pWord)
-        {
-            OleDbConnection conn = openConnection();
-            string strSQL = "select * FROM Users WHERE Username='" +
-                                         username + "' AND Password='" + pWord + "'";
-
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
-            OleDbDataReader reader = cmd.ExecuteReader();
-            Users userObject = null;
-
-            while (reader.Read())
-            {
-
-                int userId = Convert.ToInt32(reader["UserId"]);
-                string firstName = reader["First Name"].ToString();
-                string surname = reader["Surname"].ToString();
-                DateTime dob = Convert.ToDateTime(reader["Date Of Birth"]);
-                string address = reader["Address"].ToString();
-                string city = reader["City"].ToString();
-                string county = reader["County"].ToString();
-                string country = reader["Country"].ToString();
-                string postCode = reader["PostCode"].ToString();
-                string accessLevel = reader["AccessLevel"].ToString();
-                string userName = reader["Username"].ToString();
-                string passWord = reader["Password"].ToString();
-                string userIp = reader["UserIp"].ToString();
-
-
-                userObject = new Users(userId, firstName, surname, dob, address,
-                                                    city, county, country, postCode, accessLevel, userName, passWord, userIp);
-            }
-
-            reader.Close();
-            closeConnection(conn);
-            return userObject;
-        }
+       
     }
 }

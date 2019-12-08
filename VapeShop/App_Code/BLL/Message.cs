@@ -58,10 +58,10 @@ namespace VapeShop.App_Code.BLL
             return daMessage.getMessages(userId);
         }
 
-        public DataSet getConversation(int userId, int recepId)
-        {
-        }
-        //TODO
+        //public DataSet getConversation(int userId, int recepId)
+        //{
+        //}
+        ////TODO
 
         public int getMessageId(){
             return msgId;

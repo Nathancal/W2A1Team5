@@ -33,9 +33,6 @@ namespace VapeShop.App_Code.BLL
         public ProductRating updateRating(int ratingId, int rating, string ratingDesc) {
             ProductRating updateRating = daProductRating.updateRating(ratingId, rating, ratingDesc);
 
-            this.rating = rating;
-            this.ratingDesc = ratingDesc;
-
             return updateRating;
         }
 

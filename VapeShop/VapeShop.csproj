@@ -67,17 +67,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestClasses.aspx" />
+    <Content Include="testForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\BLL\Product.cs" />
-    <Content Include="App_Code\DAL\DataAccess.cs" />
-    <Content Include="App_Code\BLL\Users.cs" />
-    <Content Include="App_Code\BLL\ProductRating.cs" />
-    <Content Include="App_Code\BLL\DiscountCode.cs" />
-    <Content Include="App_Code\BLL\Message.cs" />
-    <Content Include="App_Code\BLL\CartItem.cs" />
-    <Content Include="App_Code\BLL\Invoice.cs" />
+    <Compile Include="TestClasses.aspx.cs">
+      <DependentUpon>TestClasses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestClasses.aspx.designer.cs">
+      <DependentUpon>TestClasses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BLL\Product.cs" />
+    <Compile Include="App_Code\BLL\Users.cs" />
+    <Compile Include="App_Code\BLL\ProductRating.cs" />
+    <Compile Include="App_Code\BLL\DiscountCode.cs" />
+    <Compile Include="App_Code\BLL\Message.cs" />
+    <Compile Include="App_Code\BLL\CartItem.cs" />
+    <Compile Include="App_Code\BLL\Invoice.cs" />
+    <Compile Include="testForm.aspx.cs">
+      <DependentUpon>testForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testForm.aspx.designer.cs">
+      <DependentUpon>testForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\DAL\daDiscountCode.cs" />
+    <Compile Include="App_Code\DAL\daInvoice.cs" />
+    <Compile Include="App_Code\DAL\daMessage.cs" />
+    <Compile Include="App_Code\DAL\daProduct.cs" />
+    <Compile Include="App_Code\DAL\daProductRating.cs" />
+    <Compile Include="App_Code\DAL\daUsers.cs" />
+    <Compile Include="App_Code\DAL\daCartItem.cs" />
+    <Compile Include="App_Code\DAL\daLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +111,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\Test\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

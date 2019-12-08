@@ -12,12 +12,12 @@ namespace VapeShop.App_Code.BLL
         private int userId;
         private string userFirstName, userSurname, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userIp, username;
         private string userEmail, pWord;
-        private DateTime UserDob;
+        private string UserDob;
         public Users() { 
         
         }
 
-        public Users(string username, int userId, string userFirstName,string userSurname,DateTime dob, string userAddress,string userCity,string userCounty,string userCountry,string userPostCode,string userAccessLevel, string email, string pWord, string userIp)
+        public Users(string username, int userId, string userFirstName,string userSurname, String dob, string userAddress,string userCity,string userCounty,string userCountry,string userPostCode,string userAccessLevel, string email, string pWord, string userIp)
         {
             this.userId = userId;
             this.userFirstName = userFirstName;
@@ -35,9 +35,8 @@ namespace VapeShop.App_Code.BLL
 
         }//Return
 
-        public Users(string username, int userId, string userFirstName, string userSurname, DateTime dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userAccessLevel, string email, string pWord)
+        public Users(string username, string userFirstName, string userSurname, string dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userAccessLevel, string email, string pWord)
         {
-            this.userId = userId;
             this.userFirstName = userFirstName;
             this.userSurname = userSurname;
             this.UserDob = dob;
@@ -50,23 +49,22 @@ namespace VapeShop.App_Code.BLL
             this.username = username;
             this.userEmail = email;
             this.pWord = pWord;
+            daUsers.createNewUser(username, userFirstName, userSurname, UserDob, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userEmail, pWord);
+
 
         }//SEND
 
 
 
-        public void findUser(int pUserId) {
-            Users loadUser = daUsers.getUser(pUserId);
+        public void findUser(string search) {
+            Users loadUser = daUsers.getUser(search);
 
             userId = loadUser.getUserId();
             userFirstName = loadUser.getFirstName();
             userSurname = loadUser.getSurname();
-            UserDob = loadUser.getDob();
+            UserDob = Convert.ToString(loadUser.getDob());
         }
 
-        public void createUser(){
-            daUsers.createNewUser(username, userFirstName, userSurname, UserDob, userAddress, userCity, userCounty, userCountry, userPostCode, userEmail, pWord);
-        }
 
         public int getUserId() {
             return userId;
@@ -93,10 +91,10 @@ namespace VapeShop.App_Code.BLL
         }
 
         public DateTime getDob(){
-            return UserDob;
+            return Convert.ToDateTime(UserDob);
         }
 
-        public void setDob(DateTime dob) {
+        public void setDob(string dob) {
             this.UserDob = dob;
         }
 
