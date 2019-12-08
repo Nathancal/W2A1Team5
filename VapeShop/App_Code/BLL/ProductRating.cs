@@ -26,12 +26,12 @@ namespace VapeShop.App_Code.BLL
         public ProductRating() { }
 
         public void createRating() {
-            int retRatingNum = DataAccess.createNewRating(productId, rating, userId, userIp, ratingDesc, dateSubmitted);
+            int retRatingNum = daProductRating.createNewRating(productId, rating, userId, userIp, ratingDesc, dateSubmitted);
             ratingNum = retRatingNum;          
         }
 
         public ProductRating updateRating(int ratingId, int rating, string ratingDesc) {
-            ProductRating updateRating = DataAccess.updateRating(ratingId, rating, ratingDesc);
+            ProductRating updateRating = daProductRating.updateRating(ratingId, rating, ratingDesc);
 
             this.rating = rating;
             this.ratingDesc = ratingDesc;

@@ -10,14 +10,14 @@ namespace VapeShop.App_Code.BLL
     {
 
         private int userId;
-        private string userFirstName, userSurname, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel;
-        private string email, pWord;
+        private string userFirstName, userSurname, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userIp, username;
+        private string userEmail, pWord;
         private DateTime UserDob;
         public Users() { 
         
         }
 
-        public Users(int userId, string userFirstName,string userSurname,DateTime dob, string userAddress,string userCity,string userCounty,string userCountry,string userPostCode,string userAccessLevel, string email, string pWord)
+        public Users(string username, int userId, string userFirstName,string userSurname,DateTime dob, string userAddress,string userCity,string userCounty,string userCountry,string userPostCode,string userAccessLevel, string email, string pWord, string userIp)
         {
             this.userId = userId;
             this.userFirstName = userFirstName;
@@ -29,17 +29,43 @@ namespace VapeShop.App_Code.BLL
             this.userCountry = userCountry;
             this.userPostCode = userPostCode;
             this.userAccessLevel = userAccessLevel;
-            this.email = email;
+            this.username = username;
+            this.userEmail = email;
             this.pWord = pWord;
-        }
+
+        }//Return
+
+        public Users(string username, int userId, string userFirstName, string userSurname, DateTime dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userAccessLevel, string email, string pWord)
+        {
+            this.userId = userId;
+            this.userFirstName = userFirstName;
+            this.userSurname = userSurname;
+            this.UserDob = dob;
+            this.userAddress = userAddress;
+            this.userCity = userCity;
+            this.userCounty = userCounty;
+            this.userCountry = userCountry;
+            this.userPostCode = userPostCode;
+            this.userAccessLevel = userAccessLevel;
+            this.username = username;
+            this.userEmail = email;
+            this.pWord = pWord;
+
+        }//SEND
+
+
 
         public void findUser(int pUserId) {
-            Users loadUser = DataAccess.getUser(pUserId);
+            Users loadUser = daUsers.getUser(pUserId);
 
             userId = loadUser.getUserId();
             userFirstName = loadUser.getFirstName();
             userSurname = loadUser.getSurname();
             UserDob = loadUser.getDob();
+        }
+
+        public void createUser(){
+            daUsers.createNewUser(username, userFirstName, userSurname, UserDob, userAddress, userCity, userCounty, userCountry, userPostCode, userEmail, pWord);
         }
 
         public int getUserId() {
@@ -123,10 +149,14 @@ namespace VapeShop.App_Code.BLL
             this.userAccessLevel = accessLevel;
      
         }
+
+        public void setUserIp(string userIp) {
+            this.userIp = userIp;
+        }
         
         public static Users verifyLogin(string email, string pWord)
         {
-            return DataAccess.verifyLogin(email, pWord);
+            return daUsers.verifyLogin(email, pWord);
         }
     }
 }

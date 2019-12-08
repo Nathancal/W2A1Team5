@@ -61,12 +61,12 @@ namespace VapeShop.App_Code.BLL
         }
 
         public void createNewDiscountCode(){
-            DataAccess.createNewDiscountCode(code, dateActive, dateEnd, discountPerc);
+            daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discountPerc);
         }
 
         public DiscountCode redeemDiscountCode(string pCode){
 
-            DiscountCode dc1 = DataAccess.redeemDiscountCode(pCode);
+            DiscountCode dc1 = daDiscountCode.redeemDiscountCode(pCode);
             this.code = dc1.getCode();
             this.dateActive = dc1.getDateActive();
             this.dateEnd = dc1.getDateEnd();
@@ -78,7 +78,7 @@ namespace VapeShop.App_Code.BLL
         }
 
         public DiscountCode updateDiscountCode(string pCode, DateTime pDateEnd, int pDiscountPerc){
-            DiscountCode dc1 = DataAccess.updateDiscountCode(pCode, pDateEnd, pDiscountPerc);
+            DiscountCode dc1 = daDiscountCode.updateDiscountCode(pCode, pDateEnd, pDiscountPerc);
             this.code = dc1.getCode();
             this.dateActive = dc1.getDateActive();
             this.dateEnd = dc1.getDateEnd();

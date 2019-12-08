@@ -33,16 +33,16 @@ namespace VapeShop.App_Code.BLL
         public Message() { }
 
         public void sendMessage(int creatorId, string subject, string messageBody, DateTime createDate, int parentMessageId, string recepUsername){
-            DataAccess.sendMessage(creatorId, subject, messageBody, createDate, parentMessageId, recepUsername);
+            daMessage.sendMessage(creatorId, subject, messageBody, createDate, parentMessageId, recepUsername);
         }
 
         public static int getUnreadMessageCount(int userId){
-            int msgCount = DataAccess.getUnreadMessageCount(userId);
+            int msgCount = daMessage.getUnreadMessageCount(userId);
             return msgCount;
         }
 
         public Message ViewMessage(int msgId) {
-            Message viewMessage = DataAccess.ViewMessage(msgId);
+            Message viewMessage = daMessage.ViewMessage(msgId);
 
             this.msgId = viewMessage.getMessageId();
             this.creatorId = viewMessage.getCreatorId();
@@ -53,6 +53,15 @@ namespace VapeShop.App_Code.BLL
 
             return viewMessage;
         }
+
+        public DataSet getMessages(int userId){
+            return daMessage.getMessages(userId);
+        }
+
+        public DataSet getConversation(int userId, int recepId)
+        {
+        }
+        //TODO
 
         public int getMessageId(){
             return msgId;

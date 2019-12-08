@@ -9,7 +9,7 @@ namespace VapeShop.App_Code.BLL
     public class Invoice
     {
 
-        private int invoiceNum;
+        private int invoiceNum, productId, quantity;
         private string email, shipMethod;
         private DateTime orderDate;
         private double subTotal, shipping, totalCost;
@@ -28,7 +28,7 @@ namespace VapeShop.App_Code.BLL
 
         }
 
-        public Invoice(int invoiceNum, string invEmail, string invShipMethod, double invSubTotal, double invShipping, DateTime invOrderDate, double invTotalCost)
+        public Invoice(int invoiceNum, string invEmail, string invShipMethod, double invSubTotal, double invShipping, DateTime invOrderDate, double invTotalCost, int productId, int quantity)
         {
 
             email = invEmail;
@@ -41,12 +41,12 @@ namespace VapeShop.App_Code.BLL
         }
 
         public void createInvoice(){
-            int invNum = DataAccess.createNewInvoice(email, shipMethod, orderDate, subTotal, shipping, totalCost);
+            int invNum = daInvoice.createNewInvoice(email, shipMethod, orderDate, subTotal, shipping, totalCost);
             invoiceNum = invNum;
         }
 
         public Invoice returnNewInvoice(){
-            DataAccess.returnNewInvoice(invoiceNum);
+            daInvoice.returnNewInvoice(invoiceNum);
         }
 
 

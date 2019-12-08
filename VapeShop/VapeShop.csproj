@@ -76,7 +76,6 @@
     <Content Include="App_Code\BLL\ProductRating.cs" />
     <Content Include="App_Code\BLL\DiscountCode.cs" />
     <Content Include="App_Code\BLL\Message.cs" />
-    <Content Include="App_Code\BLL\Conversation.cs" />
     <Content Include="App_Code\BLL\CartItem.cs" />
     <Content Include="App_Code\BLL\Invoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

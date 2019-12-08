@@ -31,7 +31,7 @@ namespace VapeShop.App_Code
         }
 
         public void findProduct(int pProductId) {
-            Product loadProduct = DataAccess.getProduct(pProductId);
+            Product loadProduct = daProduct.getProduct(pProductId);
 
             productId = loadProduct.getProductId();
             productName = loadProduct.getProductName();
@@ -45,7 +45,10 @@ namespace VapeShop.App_Code
         }//TODO
 
         public void createNewProduct() {
-            DataAccess.createNewProduct(productName, productType, price, sale, salePrice, productDesc, stock, reOrderLevel, imageFile);
+            daProduct.createNewProduct(productName, productType, price, sale, salePrice, productDesc, stock, reOrderLevel, imageFile);
+        }
+
+        public void removeProduct(){
         }
 
 
