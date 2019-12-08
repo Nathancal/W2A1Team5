@@ -39,6 +39,11 @@ namespace VapeShop.App_Code.BLL
             return discountPerc;
         }
 
+        public int checkIsActive() {
+            return isActive;
+            
+        }
+
         public DateTime getDateActive() {
             return dateActive;
         }
@@ -61,11 +66,25 @@ namespace VapeShop.App_Code.BLL
 
         public DiscountCode redeemDiscountCode(string pCode){
 
-            DiscountCode dc1 = new DiscountCode();
-            DataAccess.redeemDiscountCode(pCode);
+            DiscountCode dc1 = DataAccess.redeemDiscountCode(pCode);
+            this.code = dc1.getCode();
+            this.dateActive = dc1.getDateActive();
+            this.dateEnd = dc1.getDateEnd();
+            this.discountPerc = dc1.getDiscountPerc();
+            this.isActive = dc1.checkIsActive();
 
-            this.code =
+            return dc1;
 
+        }
+
+        public DiscountCode updateDiscountCode(string pCode, DateTime pDateEnd, int pDiscountPerc){
+            DiscountCode dc1 = DataAccess.updateDiscountCode(pCode, pDateEnd, pDiscountPerc);
+            this.code = dc1.getCode();
+            this.dateActive = dc1.getDateActive();
+            this.dateEnd = dc1.getDateEnd();
+            this.discountPerc = dc1.getDiscountPerc();
+            this.isActive = dc1.checkIsActive();
+            return dc1;
         }
 
 
