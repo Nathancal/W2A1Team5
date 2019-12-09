@@ -62,7 +62,7 @@ namespace VapeShop.App_Code.DAL
         public static DataSet getProducts()
         {
             OleDbConnection conn = openConnection();
-            //create dataset (virtual database)
+
             DataSet dsProds = new DataSet();
 
             string strSQL = "SELECT * FROM Products";
@@ -72,7 +72,7 @@ namespace VapeShop.App_Code.DAL
 
             //populate the data table in the dataset 
             //with records from the database table
-            daProds.Fill(dsProds, "dtProducts");
+            daProds.Fill(dsProds, "Products");
 
             conn.Close();
 
@@ -155,19 +155,41 @@ namespace VapeShop.App_Code.DAL
             //TODO
         }//TODO
 
-        public static void removeProduct(int productId)
+        public static void removeProduct(Product removeProduct)
         {
             OleDbConnection conn = openConnection();
 
-            string strRemoveProduct = "DELETE FROM Products WHERE ProductId='" + productId + "'";
+            string strRemoveProduct = "DELETE FROM Products WHERE ProductId=@ProductId";
 
             OleDbCommand cmd = new OleDbCommand(strRemoveProduct, conn);
+            cmd.Parameters.AddWithValue("@ProductId", removeProduct.getProductId());
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
-        public static void updateProduct(){ 
-        
+        public static Product updateProduct(Product updateProduct) {  
+            OleDbConnection conn = openConnection();
+
+            
+            string strUpdateProduct = "UPDATE Products SET ProductName, ProductType, Price, Sale, SalePrice, Description  WHERE ProductId=@ProductId";
+
+            OleDbCommand cmd = new OleDbCommand(strUpdateProduct, conn);
+            cmd.Parameters.AddWithValue("@ProductName", updateProduct.getProductName());
+            cmd.Parameters.AddWithValue("@ProductType", updateProduct.getProductType());
+            cmd.Parameters.AddWithValue("@Price", updateProduct.getPrice());
+            cmd.Parameters.AddWithValue("@Sale", updateProduct.isSale());
+            cmd.Parameters.AddWithValue("@SalePrice", updateProduct.getSalePrice());
+            cmd.Parameters.AddWithValue("@Description", updateProduct.getProductDesc());
+            cmd.Parameters.AddWithValue("@CurrentStock", updateProduct.getStock());
+            cmd.Parameters.AddWithValue("@ReOrderLevel", updateProduct.getReOrderLevel());
+            cmd.Parameters.AddWithValue("@ImageFile", updateProduct.getImageFile());
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+            return updateProduct;
         }
+
+
+
     }
 }

@@ -25,9 +25,9 @@ namespace VapeShop.App_Code.BLL
 
         public ProductRating() { }
 
-        public void createRating() {
-            int retRatingNum = daProductRating.createNewRating(productId, rating, userId, userIp, ratingDesc, dateSubmitted);
-            ratingNum = retRatingNum;          
+        public ProductRating createRating() {
+            ProductRating returnRating = daProductRating.createNewRating(productId, rating, userId, userIp, ratingDesc, dateSubmitted);
+            return returnRating;
         }
 
         public ProductRating updateRating(int ratingId, int rating, string ratingDesc) {
@@ -36,6 +36,34 @@ namespace VapeShop.App_Code.BLL
             return updateRating;
         }
 
+        public int getRating()
+        {
+            return rating;
+        }
 
+        public int getProductId()
+        {
+            return productId;
+        }
+
+        public string getRatingDesc()
+        {
+            return ratingDesc;
+        }
+
+        public DateTime getDateSubmitted()
+        {
+            return dateSubmitted;
+        }
+
+        public string getUserIp()
+        {
+            return userIp;
+        }
+
+        public int getUserId()
+        {
+            return userId;
+        }
     }
 }

@@ -15,6 +15,29 @@ namespace VapeShop
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //Use the dataset returned from the code to be the
+            //data source of the grid view
+            System.Data.DataSet ds = Product.getProducts();
+            dgvProducts.DataSource = ds.Tables["Products"];//Links datasource of gridview to dataset with the appropriate table.
+
+
+            dgvProducts.AllowPaging = true;
+            dgvProducts.PageSize = 4;
+
+            dgvProducts.DataBind();//Links dataset to the control
+
+        }
+
+        private void clearTextBoxes(){
+            tbProductName.Text = "";
+            cbOnSale.Checked = false;
+            tbProductPrice.Text = "";
+            tbSalePrice.Text = "";
+            tbDescription.Text = "";
+            tbCurrentStock.Text = "";
+            tbReOrderLevel.Text = "";
+
+
         }
 
         protected void btnImage_Click(object sender, EventArgs e)
@@ -61,24 +84,56 @@ namespace VapeShop
             {
                 lblOutput.Text = "Upload status: please select a file to upload";
             }
-
-
- 
-
+            clearTextBoxes();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            clearTextBoxes();
+
             Product searchProduct = new Product();
 
             searchProduct.findProduct(tbSearch.Text);
 
-            lblProductName1.Text = searchProduct.getProductName();
-            lblProductType1.Text = searchProduct.getProductType();
-            lblProductPrice1.Text = searchProduct.getPrice().ToString();
+            tbProductName.Text = searchProduct.getProductName();
+            ddlType.SelectedValue = searchProduct.getProductType();
+            tbProductPrice.Text = searchProduct.getPrice().ToString();
+            cbOnSale.Checked = searchProduct.isSale();
+            tbSalePrice.Text = searchProduct.getSalePrice().ToString();
+            tbDescription.Text = searchProduct.getProductDesc();
+            tbCurrentStock.Text = searchProduct.getStock().ToString();
+            tbReOrderLevel.Text = searchProduct.getReOrderLevel().ToString();
+        }
+
+        protected void dgvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvProducts.PageIndex = e.NewPageIndex;//Checks to see which page your on
+            dgvProducts.DataBind();//Binds that page to the control
+        }
+
+        protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["SelectedProductID"] = dgvProducts.Rows[dgvProducts.SelectedIndex].Cells[1].Text;
+            lblProductId.Text = Session["SelectedProductID"].ToString();
+        }
+
+        protected void btnLoadProducts_Click(object sender, EventArgs e)
+        {
+            //Use the dataset returned from the code to be the
+            //data source of the grid view
+            System.Data.DataSet ds = Product.getProducts();
+            dgvProducts.DataSource = ds.Tables["Products"];//Links datasource of gridview to dataset with the appropriate table.
 
 
+            dgvProducts.AllowPaging = true;
+            dgvProducts.PageSize = 4;
 
+            dgvProducts.DataBind();//Links dataset to the control
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            clearTextBoxes();
         }
     }
 }

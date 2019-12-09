@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="testFormMessages.aspx" />
     <Content Include="TestFormProducts.aspx" />
     <Content Include="testFormUsers.aspx" />
     <Content Include="Web.config" />
@@ -79,6 +80,13 @@
     <Compile Include="App_Code\BLL\Message.cs" />
     <Compile Include="App_Code\BLL\CartItem.cs" />
     <Compile Include="App_Code\BLL\Invoice.cs" />
+    <Compile Include="testFormMessages.aspx.cs">
+      <DependentUpon>testFormMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testFormMessages.aspx.designer.cs">
+      <DependentUpon>testFormMessages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestFormProducts.aspx.cs">
       <DependentUpon>TestFormProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -29,8 +29,9 @@
 
             <asp:FileUpload ID="FulImgUploadTxt" runat="server" />
 
-            <asp:Button ID="btnImage" runat="server" Text="Button" OnClick="btnImage_Click" /><br />
-
+            <asp:Button ID="btnImage" runat="server" Text="Create" OnClick="btnImage_Click" />
+            <asp:Button ID="btnClear" runat="server" Text="clear" OnClick="btnClear_Click" />
+            <br />
             <asp:Label ID="lblOutput" runat="server" Text="Label"></asp:Label>
 
 
@@ -48,11 +49,34 @@
 
 
 
-        </div>
-        <asp:Label ID="lblProductName1" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="lblProductType1" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="lblProductPrice1" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="lblProductIsSale" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblProductName1" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblProductType1" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblProductPrice1" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblProductIsSale" runat="server" Text="Label"></asp:Label>
+
+            <br />
+            <br />
+            <asp:Button ID="btnLoadProducts" runat="server" Text="Load Products" OnClick="btnLoadProducts_Click" />
+
+            <br />
+            <br />
+
+            <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="ProductID" HeaderText="ProductId" />
+                <asp:BoundField DataField="ProductName" HeaderText="ProductName" />
+                <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price" />
+                <asp:BoundField DataField="ImageFile" HeaderText="ImageFile" Visible="False" />
+                <asp:ImageField DataImageUrlField="ImageFile" HeaderText="Product Image">
+                    <ControlStyle Height="50px" Width="50px" />
+                </asp:ImageField>
+            </Columns>
+            </asp:GridView>
+
+            <asp:Label ID="lblProductId" runat="server" Text="Label"></asp:Label>
+    </div>
+
     </form>
 </body>
 </html>

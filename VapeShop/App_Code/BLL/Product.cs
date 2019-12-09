@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using VapeShop.App_Code.DAL;
+using System.Data;
+using System.Data.OleDb;
 
 namespace VapeShop.App_Code.BLL
 {
@@ -28,9 +30,15 @@ namespace VapeShop.App_Code.BLL
             this.imageFile = imageFile;
         }
 
+
+
+        public static DataSet getProducts(){
+            return daProduct.getProducts();
+        }
+
       
 
-        public void findProduct(string searchProduct) {
+        public Product findProduct(string searchProduct) {
             Product loadProduct = daProduct.getProduct(searchProduct);
 
             productId = loadProduct.getProductId();
@@ -38,17 +46,27 @@ namespace VapeShop.App_Code.BLL
             productDesc = loadProduct.getProductDesc();
             productType = loadProduct.getProductType();
             price = loadProduct.getPrice();
+            sale = loadProduct.isSale();
             salePrice = loadProduct.getSalePrice();
+            stock = loadProduct.getStock();
+            imageFile = loadProduct.getImageFile();
             reOrderLevel = loadProduct.getReOrderLevel();
 
-
+            return loadProduct;
         }//TODO
 
         public void createNewProduct() {
             daProduct.createNewProduct(productName, productType, price, sale, salePrice, productDesc, stock, reOrderLevel, imageFile);
         }
 
-        public void removeProduct(){
+        public void removeProduct(Product removeProduct){
+            daProduct.removeProduct(removeProduct);
+
+        }
+
+        public void updateProduct(Product updateProduct){
+            daProduct.updateProduct(updateProduct);
+        
         }
 
 

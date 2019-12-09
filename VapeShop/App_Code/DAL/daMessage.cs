@@ -63,49 +63,73 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
+            Message sendMessage = new Message(creatorId, subject, messageBody ,createDate ,parentId ,recepUsername);
+
             int recepId;
 
-            string strReadRecepId = "select ID FROM Users WHERE Username='" +
-                                         recepUsername + "'";
+            string strReadRecepId = "select ID FROM Users WHERE Username=@Username";
 
             OleDbCommand cmdSelectId = new OleDbCommand(strReadRecepId, conn);
+            cmdSelectId.Parameters.AddWithValue("@Username", recepUsername);
+
             OleDbDataReader recepIdReader = cmdSelectId.ExecuteReader();
 
             recepId = Convert.ToInt32(recepIdReader["UserId"]);
 
             string checkNewConversation = "SELECT ChatId" +
                                           "FROM Chats" +
-                                          "WHERE CreatorId='" + creatorId + "' AND RecipientId='" + recepId + "'";
+                                          "WHERE CreatorId= @CreatorId AND RecipientId= @RecepId";
             OleDbCommand cmdCheckNewConvo = new OleDbCommand(checkNewConversation, conn);
+
+            cmdCheckNewConvo.Parameters.AddWithValue("@CreatorId", sendMessage.getCreatorId());
+            cmdCheckNewConvo.Parameters.AddWithValue("@RecepId", recepId);
+
+
             OleDbDataReader checkConvoReader = cmdCheckNewConvo.ExecuteReader();
 
             string conversation = checkConvoReader["ChatId"].ToString();
 
             string strInsertMessage;
+            OleDbCommand cmdInsert;
 
             if (conversation == null)
             {
                 string strInsertNewConvo = "INSERT INTO Chats(CreatorId, RecipientId)" +
-                                           "VALUES('" + creatorId + "','" + recepId + ")";
+                                           "VALUES(@CreatorId. @RecipientId)";
 
                 OleDbCommand cmdInsertNewConvo = new OleDbCommand(strInsertNewConvo, conn);
+                cmdInsertNewConvo.Parameters.AddWithValue("@CreatorId", sendMessage.getCreatorId());
+                cmdInsertNewConvo.Parameters.AddWithValue("@RecipientId", recepId);
+
                 cmdInsertNewConvo.ExecuteNonQuery();
 
                 strInsertMessage = "INSERT INTO Message(CreatorId, " +
                 "Subject, MessageBody, CreateDate, ParentMessageId)" +
-                " VALUES('" + creatorId + "', '" + subject + "'," +
-                messageBody + ",'" + createDate + ",'" + parentId + ")";
+                " VALUES(@CreatorId, @Subject, @MessageBody, @CreateDate, @ParentMessageId)";
+
+                cmdInsert = new OleDbCommand(strInsertMessage, conn);
+                cmdInsert.Parameters.AddWithValue("@ParentMessageId", null);
+
             }
             else
             {
                 strInsertMessage = "INSERT INTO Message(CreatorId, " +
                 "Subject, MessageBody, CreateDate, ParentMessageId)" +
-                " VALUES('" + creatorId + "', '" + subject + "'," +
-                messageBody + ",'" + createDate + ",'" + parentId + ")";
+                " VALUES(@CreatorId, @Subject, @MessageBody, @CreateDate, @ParentMessageId)";
+
+                cmdInsert = new OleDbCommand(strInsertMessage, conn);
+                            cmdInsert.Parameters.AddWithValue("@ParentMessageId", sendMessage.getParentMsgId());
+
+
             }
 
 
-            OleDbCommand cmdInsert = new OleDbCommand(strInsertMessage, conn);
+            cmdInsert.Parameters.AddWithValue("@CreatorId", sendMessage.getCreatorId());
+            cmdInsert.Parameters.AddWithValue("@Subject", sendMessage.getSubject());
+            cmdInsert.Parameters.AddWithValue("@MessageBody", sendMessage.getMessageBody());
+            cmdInsert.Parameters.AddWithValue("@CreateDate", sendMessage.getCreateDate());
+
+
             cmdInsert.ExecuteNonQuery(); // execute the insertion command
 
             //create the command object using the SQL
@@ -117,7 +141,14 @@ namespace VapeShop.App_Code.DAL
 
             string strInsertRecep = "INSERT INTO MessageRecipient(RecipientId, " +
                                     "MessageId)" +
-                                    " VALUES('" + recepId + "', '" + msgId + ")";
+                                    " VALUES(@RecepId, @MessageId)";
+
+            OleDbCommand cmdInsertRecep = new OleDbCommand(strInsertRecep, conn);
+            cmdInsertRecep.Parameters.AddWithValue("@RecepId", recepId);
+            cmdInsertRecep.Parameters.AddWithValue("@MessageId", msgId);
+            
+            cmdInsertRecep.ExecuteNonQuery();
+
             recepIdReader.Close();
             closeConnection(conn);
         }
@@ -132,10 +163,12 @@ namespace VapeShop.App_Code.DAL
                                     "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message" +
                                     "FROM Message" +
                                     "INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId" +
-                                    "WHERE userId='" + userId + "'";
+                                    "WHERE Message.CreatorId=@UserId";
 
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daMessages = new OleDbDataAdapter(strGetMessages, conn);
+
+            daMessages.UpdateCommand.Parameters.AddWithValue("@UserId", userId);
 
             //populate the data table in the dataset 
             //with records from the database table
@@ -157,10 +190,11 @@ namespace VapeShop.App_Code.DAL
             string strGetChats = "SELECT Chats.ChatId, Chats.RecipientId, Users.FirstName, Users.Surname" +
                                   "FROM Chats" +
                                   "INNER JOIN Users ON Users.UserId = Chats.RecipientId" +
-                                  "WHERE Chats.CreatorId='" + userId + "'";
+                                  "WHERE Chats.CreatorId=@UserId";
 
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daConversation = new OleDbDataAdapter(strGetChats, conn);
+            daConversation.UpdateCommand.Parameters.AddWithValue("@UserId", userId);
 
             //populate the data table in the dataset 
             //with records from the database table
@@ -175,9 +209,17 @@ namespace VapeShop.App_Code.DAL
 
         }
 
-        public static DataSet getConversation(int userId, int recepId)
+        public static DataSet getConversation(int userId, string searchRecep)
         {
             OleDbConnection conn = openConnection();
+
+            string strGetUserId = "SELECT ID FROM Users WHERE Username=@SearchRecep";
+            OleDbCommand cmdFetchUSerId = new OleDbCommand(strGetUserId, conn);
+
+            cmdFetchUSerId.Parameters.AddWithValue("@SearchRecep", searchRecep);
+
+            int id = cmdFetchUSerId.ExecuteNonQuery();
+
 
             DataSet dsConversation = new DataSet();
 
@@ -185,11 +227,15 @@ namespace VapeShop.App_Code.DAL
                                     "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message" +
                                     "FROM Message" +
                                     "INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId" +
-                                    "WHERE (Message.CreatorId='" + userId + "' AND MessageRecipient.RecipientId='" + recepId + "') OR (Message.CreatorId='" + recepId + "' AND MessageRecipient.RecipientId='" + userId + "'" +
+                                    "WHERE (Message.CreatorId=@UserId AND MessageRecipient.RecipientId=@RecepId) OR (Message.CreatorId=@RecepId AND MessageRecipient.RecipientId=@UserId" +
                                     "ORDER BY Message.ID DESC";
 
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daConversation = new OleDbDataAdapter(strGetConversation, conn);
+
+            daConversation.UpdateCommand.Parameters.AddWithValue("@UserId", userId);
+            daConversation.UpdateCommand.Parameters.AddWithValue("@RecepId", id);
+
 
             //populate the data table in the dataset 
             //with records from the database table
@@ -207,10 +253,11 @@ namespace VapeShop.App_Code.DAL
 
             OleDbConnection conn = openConnection();
 
-            string strGetMessageCount = "SELECT COUNT(isRead) FROM MessageRecipient WHERE RecipientId='"
-                            + pUserId + "' AND isRead='" + 0 + "'";
+            string strGetMessageCount = "SELECT COUNT(ID) FROM MessageRecipient WHERE RecipientId=@RecepientId AND isRead=@isRead";
 
             OleDbCommand cmd = new OleDbCommand(strGetMessageCount, conn);
+            cmd.Parameters.AddWithValue("@RecepientId", pUserId);
+            cmd.Parameters.AddWithValue("@isRead", 0);
 
             int countMessages = Convert.ToInt32(cmd.ExecuteScalar());
             closeConnection(conn);
@@ -221,9 +268,11 @@ namespace VapeShop.App_Code.DAL
         public static Message ViewMessage(int msgId)
         {
             OleDbConnection conn = openConnection();
-            string strMessageViewedUpdate = "UPDATE MessageRecipient SET isRead= 1 WHERE MessageId='" + msgId + "'";
+            string strMessageViewedUpdate = "UPDATE MessageRecipient SET isRead= 1 WHERE MessageId=@MessageId";
             //create the command object using the SQL
             OleDbCommand cmdUpdate = new OleDbCommand(strMessageViewedUpdate, conn);
+            cmdUpdate.Parameters.AddWithValue("@MessageId", msgId);
+
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
             string strRetrieveMessage = "SELECT * FROM Message WHERE ID='" + msgId + "'";
@@ -241,8 +290,12 @@ namespace VapeShop.App_Code.DAL
                 DateTime createDate = Convert.ToDateTime(messageReader["CreateDate"]);
                 int parentMsgId = Convert.ToInt32(messageReader["ParentMessageId"]);
 
-                cmdSelect.CommandText = "SELECT RecipientId FROM MessageRecipient WHERE MessageId='" + msgId + "'";
+                cmdSelect.CommandText = "SELECT RecipientId FROM MessageRecipient WHERE MessageId=@msgId";
+
+                cmdSelect.Parameters.AddWithValue("@msgId", messageId);
                 messageReader = cmdSelect.ExecuteReader();
+                
+
 
                 while (messageReader.Read())
                 {

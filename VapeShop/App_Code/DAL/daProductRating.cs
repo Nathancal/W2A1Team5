@@ -58,18 +58,26 @@ namespace VapeShop.App_Code.DAL
             cn.Close();
         } //closeConnection
 
-        public static int createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub)
+        public static ProductRating createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub)
         {
             OleDbConnection conn = openConnection();
 
+            ProductRating newRating = new ProductRating(productId, rating, userId, userIp, ratingDesc, dateSub); 
+
             string strNewRating = "INSERT INTO ProductsRatings(ProductId, " +
                            " UserId, Rating, DateSubmitted, UserIP, RatingDesc)" +
-                           " VALUES('" + productId + "', '" + userId + "'," +
-                            rating + ",'" + dateSub + "',"
-                            + userIp + ", " + ratingDesc + ")";
+                           " VALUES(@ProductId,@Rating,@UserId,@UserIp,@RatingDesc,@DateSub)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewRating, conn);
+
+            cmd.Parameters.AddWithValue("@ProductId", newRating.getProductId());
+            cmd.Parameters.AddWithValue("@Rating", newRating.getRating());
+            cmd.Parameters.AddWithValue("@UserId", newRating.getUserId());
+            cmd.Parameters.AddWithValue("@UserIp", newRating.getUserIp());
+            cmd.Parameters.AddWithValue("@RatingDesc", newRating.getRatingDesc());
+            cmd.Parameters.AddWithValue("@DateSub", newRating.getDateSubmitted());
+
 
             cmd.ExecuteNonQuery(); // execute the insertion command
 
@@ -79,17 +87,23 @@ namespace VapeShop.App_Code.DAL
 
             int ratingNum = Convert.ToInt32(cmd.ExecuteScalar());
 
+
             closeConnection(conn); // close connection
-            return ratingNum;
+
+            return newRating;
         }
 
         public static ProductRating updateRating(int ratingId, int rating, string ratingDesc)
         {
             OleDbConnection conn = openConnection();
 
-            string strUpdateRating = "UPDATE ProductRatings SET Rating='" + rating + "'," + "RatingDesc='" + ratingDesc + "' WHERE ID='" + ratingId + "'";
+            string strUpdateRating = "UPDATE ProductRatings SET Rating=@Rating RatingDesc=@RatingDesc WHERE ID=@RatingId";
 
             OleDbCommand cmdUpdate = new OleDbCommand(strUpdateRating, conn);
+
+            cmdUpdate.Parameters.AddWithValue("@Rating", rating);
+            cmdUpdate.Parameters.AddWithValue("@RatingDesc", ratingDesc);
+            cmdUpdate.Parameters.AddWithValue("@RatingId", ratingId);
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
             string strRetrieveUpdate = "SELECT * FROM ProductsRating WHERE ID='" + ratingId + "'";
