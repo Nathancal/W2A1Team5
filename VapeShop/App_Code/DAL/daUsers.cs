@@ -90,19 +90,30 @@ namespace VapeShop.App_Code.DAL
             OleDbConnection conn = openConnection();
 
             int getUserById;
-            
-            Int32.TryParse(search, out getUserById);
+            string strGetUser;
+            Int32.TryParse(search, out getUserById );
+            OleDbCommand cmd;
 
-            string strSQL = "select * FROM Users WHERE UserId='"
-                            + getUserById + "' OR Email='" + search + "'";
+            if (getUserById > 0){
+                 strGetUser = "select * FROM Users WHERE UserId= @UserId";
+                 cmd = new OleDbCommand(strGetUser, conn);
 
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+                cmd.Parameters.AddWithValue("@UserId", getUserById);
+            }
+            else
+            {
+                 strGetUser = "select * FROM Users WHERE Email= ?";
+                 cmd = new OleDbCommand(strGetUser, conn);
+
+                cmd.Parameters.AddWithValue("@Email", search);
+            }
 
             OleDbDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                 tempUser.setUserId(Convert.ToInt32(reader["UserId"]));
+                tempUser.setUsername(reader["Username"].ToString());
                 tempUser.setFirstName(reader["FirstName"].ToString());
                 tempUser.setSurname(reader["Surname"].ToString());
                 tempUser.setDob(Convert.ToString(reader["DateOfBirth"]));
@@ -113,6 +124,8 @@ namespace VapeShop.App_Code.DAL
                 tempUser.setPostCode(reader["PostCode"].ToString());
                 tempUser.setUserAccessLevel(reader["AccessLevel"].ToString());
                 tempUser.setUserIp(reader["UserIp"].ToString());
+
+
             }
 
             reader.Close();
@@ -143,15 +156,30 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
+            Users newUser = new Users(username, userFirstName, userSurname, dob, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userEmail, userPword);
+
             string userIp = getUserIp();
 
             string strNewUser = "INSERT INTO Users(Username, Email, FirstName, Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, PWord, UserIp)" +
-                            "VALUES('" + username + "', '" + userEmail + "', '" + userFirstName + "', '" + userSurname + "', '" +
-                            dob + "' ,'" + userAddress + "', '" + userCity + "' , '" + userCounty +
-                            ",'" + userCountry + "', '" + userPostCode + "', '" + userAccessLevel + "', '" + userPword + ")";
+                            "VALUES(@Username,@Email,@FirstName,@Surname,@DateOfBirth,@Address,@City,@County,@Country,@PostCode,@AccessLevel,@PWord,@UserIp)";
 
 
             OleDbCommand cmd = new OleDbCommand(strNewUser, conn);
+
+            cmd.Parameters.AddWithValue("@Username",newUser.getUsername());
+            cmd.Parameters.AddWithValue("@Email",newUser.getEmail());
+            cmd.Parameters.AddWithValue("@FirstName",newUser.getFirstName());
+            cmd.Parameters.AddWithValue("@Surname", newUser.getSurname());
+            cmd.Parameters.AddWithValue("@DateOfBirth",newUser.getDob());
+            cmd.Parameters.AddWithValue("@Address", newUser.getAddress());
+            cmd.Parameters.AddWithValue("@City", newUser.getCity());
+            cmd.Parameters.AddWithValue("@County",newUser.getCounty());
+            cmd.Parameters.AddWithValue("@Country", newUser.getCountry());
+            cmd.Parameters.AddWithValue("@PostCode", newUser.getPostCode());
+            cmd.Parameters.AddWithValue("@AccessLevel", newUser.getUserAccessLevel());
+            cmd.Parameters.AddWithValue("@Pword", newUser.getPassword());
+            cmd.Parameters.AddWithValue("@UserIp", userIp);
+
 
             cmd.ExecuteNonQuery(); // execute the insertion command
 

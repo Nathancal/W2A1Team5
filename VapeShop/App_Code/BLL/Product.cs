@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using VapeShop.App_Code.DAL;
 
-namespace VapeShop.App_Code
+namespace VapeShop.App_Code.BLL
 {
     public class Product
     {
@@ -13,8 +13,10 @@ namespace VapeShop.App_Code
         private double price, salePrice;
         private Boolean sale;
 
+        public Product(){
+        }
 
-        public Product(string productName, string productType, double price, Boolean sale, double salePrice, string prodDesc, int stock, int reOrderLevel, string imageFile) {
+        public Product(string productName, string productType, double price, Boolean sale, double salePrice, string prodDesc, int stock, int reOrderLevel, string imageFile){
             this.productName = productName;
             this.productType = productType;
             this.price = price;
@@ -26,12 +28,10 @@ namespace VapeShop.App_Code
             this.imageFile = imageFile;
         }
 
-        public Product()
-        {
-        }
+      
 
-        public void findProduct(int pProductId) {
-            Product loadProduct = daProduct.getProduct(pProductId);
+        public void findProduct(string searchProduct) {
+            Product loadProduct = daProduct.getProduct(searchProduct);
 
             productId = loadProduct.getProductId();
             productName = loadProduct.getProductName();

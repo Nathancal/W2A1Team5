@@ -67,18 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestClasses.aspx" />
-    <Content Include="testForm.aspx" />
+    <Content Include="TestFormProducts.aspx" />
+    <Content Include="testFormUsers.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestClasses.aspx.cs">
-      <DependentUpon>TestClasses.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestClasses.aspx.designer.cs">
-      <DependentUpon>TestClasses.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Code\BLL\Product.cs" />
     <Compile Include="App_Code\BLL\Users.cs" />
     <Compile Include="App_Code\BLL\ProductRating.cs" />
@@ -86,12 +79,19 @@
     <Compile Include="App_Code\BLL\Message.cs" />
     <Compile Include="App_Code\BLL\CartItem.cs" />
     <Compile Include="App_Code\BLL\Invoice.cs" />
-    <Compile Include="testForm.aspx.cs">
-      <DependentUpon>testForm.aspx</DependentUpon>
+    <Compile Include="TestFormProducts.aspx.cs">
+      <DependentUpon>TestFormProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="testForm.aspx.designer.cs">
-      <DependentUpon>testForm.aspx</DependentUpon>
+    <Compile Include="TestFormProducts.aspx.designer.cs">
+      <DependentUpon>TestFormProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testFormUsers.aspx.cs">
+      <DependentUpon>testFormUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testFormUsers.aspx.designer.cs">
+      <DependentUpon>testFormUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\DAL\daDiscountCode.cs" />
     <Compile Include="App_Code\DAL\daInvoice.cs" />
@@ -100,7 +100,6 @@
     <Compile Include="App_Code\DAL\daProductRating.cs" />
     <Compile Include="App_Code\DAL\daUsers.cs" />
     <Compile Include="App_Code\DAL\daCartItem.cs" />
-    <Compile Include="App_Code\DAL\daLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,7 +112,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\Test\" />
+    <Folder Include="Images\ProductImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

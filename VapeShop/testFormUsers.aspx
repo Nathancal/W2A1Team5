@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TestClasses.aspx.cs" Inherits="VapeShop.TestClasses" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="testFormUsers.aspx.cs" Inherits="VapeShop.testForm" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +9,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-
-            <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
+            <h1>Test new user</h1>
+             <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
             <asp:TextBox ID="tbFirstName" runat="server"></asp:TextBox>
             <asp:TextBox ID="tbSurname" runat="server"></asp:TextBox>
 
@@ -34,6 +34,21 @@
             <br />
             <br />
             <asp:Label ID="lblOutput" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblOutput2" runat="server" Text="Label"></asp:Label>
+
+            <h1>Test Find User</h1>
+            <h2>Enter either an ID or an Email</h2>
+
+            <asp:TextBox ID="tbSearch" runat="server"></asp:TextBox>
+            <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
+
+            <asp:Label ID="lblFirstName" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblSurname" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lblUsername" runat="server" Text="Label"></asp:Label>
+
+
+
+
 
         </div>
     </form>

@@ -49,7 +49,7 @@ C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\bin\roslyn\VBCSCompil
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\obj\Debug\VapeShop.csprojAssemblyReference.cache
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\obj\Debug\VapeShop.csproj.CopyComplete
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\obj\Debug\VapeShop.dll
 C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\obj\Debug\VapeShop.pdb
+C:\Users\natha\OneDrive\Documents\GitHub\VapeShop\VapeShop\obj\Debug\VapeShop.csprojAssemblyReference.cache

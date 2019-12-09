@@ -15,7 +15,7 @@ namespace VapeShop.App_Code.BLL
         public ProductRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub)
         {
             this.productId = productId;
-            this.ratingNum = rating;
+            this.rating = rating;
             this.userId = userId;
             this.userIp = userIp;
             this.ratingDesc = ratingDesc;

@@ -79,17 +79,32 @@ namespace VapeShop.App_Code.DAL
             return dsProds;
         }//getProducts
 
-        public static Product getProduct(int pProductID)
+        public static Product getProduct(string searchProduct)
         {
             Product tempProd = new Product();
 
             OleDbConnection conn = openConnection();
 
-            string strSQL = "select * FROM Products WHERE ProductId='"
-                            + pProductID + "'";
+            int getProductById;
+            string strSearchProduct;
+            Int32.TryParse(searchProduct, out getProductById);
+            OleDbCommand cmd;
 
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+            if(getProductById > 0)
+            {
+                strSearchProduct = "select * FROM Products WHERE ProductId= @ProductId";
+                cmd = new OleDbCommand(strSearchProduct, conn);
 
+                cmd.Parameters.AddWithValue("@ProductId", getProductById);
+            }
+            else
+            {
+                strSearchProduct = "select * FROM Products WHERE ProductName= @ProductName";
+                cmd = new OleDbCommand(strSearchProduct, conn);
+
+                cmd.Parameters.AddWithValue("@ProductName", searchProduct);
+            }
+           
             OleDbDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -98,10 +113,10 @@ namespace VapeShop.App_Code.DAL
                 tempProd.setProductName(reader["ProductName"].ToString());
                 tempProd.setProductType(reader["ProductType"].ToString());
                 tempProd.setProductDesc(reader["Description"].ToString());
-                tempProd.setPrice(Convert.ToInt32(reader["Price"]));
+                tempProd.setPrice(Convert.ToDouble(reader["Price"]));
                 tempProd.setIsSale(reader["Sale"].Equals("Sale"));
                 tempProd.setSalePrice(Convert.ToDouble(reader["SalePrice"]));
-                tempProd.setStock(Convert.ToInt32(reader["Stock"]));
+                tempProd.setStock(Convert.ToInt32(reader["CurrentStock"]));
                 tempProd.setReOrdeLevel(Convert.ToInt32(reader["ReOrderLevel"]));
                 tempProd.setImageFile(reader["ImageFile"].ToString());
 
@@ -117,20 +132,26 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
-            string strSQL = "INSERT INTO Product(ProductName, " +
+            Product newProduct = new Product(prodName, prodType, price, sale, salePrice, desc, currentStock, reOrderLevel, imageFile);
+
+            string strCreateNewProduct = "INSERT INTO Products(ProductName, " +
                            " ProductType, Price, Sale, SalePrice, Description, CurrentStock, ReOrderLevel, ImageFile)" +
-                           " VALUES('" + prodName + "', '" + prodType + "'," +
-                            price + ",'" + sale + "',"
-                            + salePrice + ", " + desc +
-                            ", " + currentStock + ", " + reOrderLevel + ", " + imageFile + ")";
+                           " VALUES(@ProductName, @ProductType, @Price, @Sale, @SalePrice, @Description, @CurrentStock, @ReOrderLevel, @ImageFile)";
 
             //create the command object using the SQL
-            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+            OleDbCommand cmd = new OleDbCommand(strCreateNewProduct, conn);
+            cmd.Parameters.AddWithValue("@ProductName", newProduct.getProductName());
+            cmd.Parameters.AddWithValue("@ProductType", newProduct.getProductType());
+            cmd.Parameters.AddWithValue("@Price", newProduct.getPrice());
+            cmd.Parameters.AddWithValue("@Sale", newProduct.isSale());
+            cmd.Parameters.AddWithValue("@SalePrice", newProduct.getSalePrice());
+            cmd.Parameters.AddWithValue("@Description", newProduct.getProductDesc());
+            cmd.Parameters.AddWithValue("@CurrentStock", newProduct.getStock());
+            cmd.Parameters.AddWithValue("@ReOrderLevel", newProduct.getReOrderLevel());
+            cmd.Parameters.AddWithValue("@ImageFile", newProduct.getImageFile());
+
 
             cmd.ExecuteNonQuery(); // execute the insertion command
-
-            //change the SQL to return the new product rating
-            cmd.CommandText = "Select @@Identity";
             //TODO
         }//TODO
 
@@ -143,6 +164,10 @@ namespace VapeShop.App_Code.DAL
             OleDbCommand cmd = new OleDbCommand(strRemoveProduct, conn);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
+        }
+
+        public static void updateProduct(){ 
+        
         }
     }
 }
