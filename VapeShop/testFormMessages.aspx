@@ -15,14 +15,15 @@
             <h3>Subject</h3>
             <asp:TextBox ID="tbSubject" runat="server"></asp:TextBox>
             <h3>Message Body:</h3>
-            <asp:TextBox ID="tbMessageBody" runat="server"></asp:TextBox>
+            <asp:TextBox ID="tbMessageBody" runat="server" Height="115px" Width="231px"></asp:TextBox>
+            <asp:Button ID="btnSendMessage" runat="server" OnClick="btnSendMessage_Click" Text="Send" />
             <br />
             <br />
             <br />
 
 
 
-            <asp:ListView ID="lvMessages" runat="server">
+            <%--<asp:ListView ID="lvMessages" runat="server">
                 <ItemTemplate>
                     <div class="listConvoMessages">
                         <table>
@@ -30,7 +31,20 @@
                         </table>
                     </div>
                 </ItemTemplate>
-            </asp:ListView>
+            </asp:ListView>--%>
+
+                  <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="UserId" HeaderText="ProductId" />
+                <asp:BoundField DataField="ProductName" HeaderText="ProductName" />
+                <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price" />
+                <asp:BoundField DataField="ImageFile" HeaderText="ImageFile" Visible="False" />
+                <asp:ImageField DataImageUrlField="ImageFile" HeaderText="Product Image">
+                    <ControlStyle Height="50px" Width="50px" />
+                </asp:ImageField>
+            </Columns>
+            </asp:GridView>
 
 
         </div>

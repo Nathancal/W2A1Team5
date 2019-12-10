@@ -13,17 +13,25 @@ namespace VapeShop.App_Code.BLL
         private string subject, messageBody, recepUsername;
         private DateTime createDate;
 
-        public Message(int creatorId,  string subject, string messageBody, DateTime createDate, int parentId, string recepUsername) {
+        public Message(int creatorId,  string subject, string messageBody, DateTime createDate, int parentMessageId, string recepUsername) {
             this.creatorId = creatorId;
-            this.parentMessageId = parentId;
+            this.parentMessageId = parentMessageId;
             this.subject = subject;
             this.messageBody = messageBody;
             this.createDate = createDate;
         }
 
-        public Message(int msgId, int creatorId, string subject, string messageBody, DateTime createDate, int parentId, int recepId){
+        public Message(int creatorId, string subject, string messageBody, DateTime createDate,  string recepUsername)
+        {
             this.creatorId = creatorId;
-            this.parentMessageId = parentId;
+            this.subject = subject;
+            this.messageBody = messageBody;
+            this.createDate = createDate;
+        }
+
+        public Message(int msgId, int creatorId, string subject, string messageBody, DateTime createDate, int parentMessageId, int recepId){
+            this.creatorId = creatorId;
+            this.parentMessageId = parentMessageId;
             this.subject = subject;
             this.messageBody = messageBody;
             this.createDate = createDate;
@@ -58,10 +66,7 @@ namespace VapeShop.App_Code.BLL
             return daMessage.getMessages(userId);
         }
 
-        public static DataSet getConversation(int userId, string searchRecep)
-        {
-            return daMessage.getConversation(userId, searchRecep);
-        }
+
         //TODO
 
         public int getMessageId(){

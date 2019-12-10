@@ -66,7 +66,7 @@ namespace VapeShop.App_Code.DAL
             DataSet dsProds = new DataSet();
 
             string strSQL = "SELECT * FROM Products";
-
+            
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daProds = new OleDbDataAdapter(strSQL, conn);
 

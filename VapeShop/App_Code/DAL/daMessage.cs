@@ -63,7 +63,7 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
-            Message sendMessage = new Message(creatorId, subject, messageBody ,createDate ,parentId ,recepUsername);
+            Message sendMessage = new Message(creatorId, subject, messageBody, createDate, parentId, recepUsername);
 
             int recepId;
 
@@ -118,7 +118,7 @@ namespace VapeShop.App_Code.DAL
                 " VALUES(@CreatorId, @Subject, @MessageBody, @CreateDate, @ParentMessageId)";
 
                 cmdInsert = new OleDbCommand(strInsertMessage, conn);
-                            cmdInsert.Parameters.AddWithValue("@ParentMessageId", sendMessage.getParentMsgId());
+                cmdInsert.Parameters.AddWithValue("@ParentMessageId", sendMessage.getParentMsgId());
 
 
             }
@@ -139,6 +139,8 @@ namespace VapeShop.App_Code.DAL
 
             int msgId = Convert.ToInt32(cmdInsert.ExecuteScalar());
 
+            cmdInsert.CommandText = "SELECT "
+
             string strInsertRecep = "INSERT INTO MessageRecipient(RecipientId, " +
                                     "MessageId)" +
                                     " VALUES(@RecepId, @MessageId)";
@@ -146,7 +148,7 @@ namespace VapeShop.App_Code.DAL
             OleDbCommand cmdInsertRecep = new OleDbCommand(strInsertRecep, conn);
             cmdInsertRecep.Parameters.AddWithValue("@RecepId", recepId);
             cmdInsertRecep.Parameters.AddWithValue("@MessageId", msgId);
-            
+
             cmdInsertRecep.ExecuteNonQuery();
 
             recepIdReader.Close();
@@ -213,28 +215,39 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
-            string strGetUserId = "SELECT ID FROM Users WHERE Username=@Username";
+            Conversation getConvo = new Conversation(userId, username);
+
+            string strGetUserId = "SELECT * FROM Users WHERE Username= @Username";
             OleDbCommand cmdFetchUSerId = new OleDbCommand(strGetUserId, conn);
 
-            cmdFetchUSerId.Parameters.AddWithValue("@Username", username);
+            cmdFetchUSerId.Parameters.AddWithValue("@Username", getConvo.getUsername());
 
-            int id = Convert.ToInt32(cmdFetchUSerId.ExecuteReader());
+            OleDbDataReader reader = cmdFetchUSerId.ExecuteReader();
+            
+
+            Users newUser = new Users();
+            while (reader.Read())
+            {
+                newUser.setUserId(Convert.ToInt32(reader["UserId"]));
+
+            }
+
+            int findId = newUser.getUserId();
 
 
             DataSet dsConversation = new DataSet();
 
             string strGetConversation = "SELECT Message.ID, Message.CreatorId, Message.MessageBody, Message.CreateDate, " +
-                                    "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message" +
-                                    "FROM Message" +
-                                    "INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId" +
-                                    "WHERE (Message.CreatorId=@UserId AND MessageRecipient.RecipientId=@RecepId) OR (Message.CreatorId=@RecepId AND MessageRecipient.RecipientId=@UserId" +
-                                    "ORDER BY Message.ID DESC";
+                                    "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message " +
+                                    " INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId " +
+                                    " WHERE Message.CreatorId=@UserId AND MessageRecipient.RecipientId=@RecepId OR Message.CreatorId=@RecepId AND MessageRecipient.RecipientId=@UserId " +
+                                    " ORDER BY Message.ID DESC ";
 
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daConversation = new OleDbDataAdapter(strGetConversation, conn);
 
-            daConversation.UpdateCommand.Parameters.AddWithValue("@UserId", userId);
-            daConversation.UpdateCommand.Parameters.AddWithValue("@RecepId", id);
+            daConversation.SelectCommand.Parameters.AddWithValue("@UserId", getConvo.getUserId());
+            daConversation.SelectCommand.Parameters.AddWithValue("@RecepId", findId);
 
 
             //populate the data table in the dataset 
@@ -246,10 +259,12 @@ namespace VapeShop.App_Code.DAL
             closeConnection(conn);
 
             return dsConversation;
+
         }
 
         public static int getUnreadMessageCount(int pUserId)
         {
+            
 
             OleDbConnection conn = openConnection();
 
@@ -272,7 +287,7 @@ namespace VapeShop.App_Code.DAL
             //create the command object using the SQL
             OleDbCommand cmdUpdate = new OleDbCommand(strMessageViewedUpdate, conn);
             cmdUpdate.Parameters.AddWithValue("@MessageId", msgId);
-
+            
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
             string strRetrieveMessage = "SELECT * FROM Message WHERE ID='" + msgId + "'";
