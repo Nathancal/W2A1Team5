@@ -16,7 +16,7 @@ namespace VapeShop
 
             //Use the dataset returned from the code to be the
             //data source of the grid view
-            System.Data.DataSet ds = Message.getConversation(005, 008);
+            System.Data.DataSet ds = Message.getConversation(005, "joe123");
             lvMessages.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
 
 

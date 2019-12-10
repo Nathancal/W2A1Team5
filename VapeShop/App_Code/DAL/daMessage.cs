@@ -209,16 +209,16 @@ namespace VapeShop.App_Code.DAL
 
         }
 
-        public static DataSet getConversation(int userId, string searchRecep)
+        public static DataSet getConversation(int userId, string username)
         {
             OleDbConnection conn = openConnection();
 
-            string strGetUserId = "SELECT ID FROM Users WHERE Username=@SearchRecep";
+            string strGetUserId = "SELECT ID FROM Users WHERE Username=@Username";
             OleDbCommand cmdFetchUSerId = new OleDbCommand(strGetUserId, conn);
 
-            cmdFetchUSerId.Parameters.AddWithValue("@SearchRecep", searchRecep);
+            cmdFetchUSerId.Parameters.AddWithValue("@Username", username);
 
-            int id = cmdFetchUSerId.ExecuteNonQuery();
+            int id = Convert.ToInt32(cmdFetchUSerId.ExecuteReader());
 
 
             DataSet dsConversation = new DataSet();
