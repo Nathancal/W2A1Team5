@@ -58,6 +58,12 @@ namespace VapeShop.App_Code.BLL
 
         }
 
+        public static Users verifyLogin(string emailUname, string pWord){
+             
+            Users userInfo = daUsers.verifyLogin(emailUname, pWord);
+
+            return userInfo;
+        }
 
 
 
@@ -186,9 +192,5 @@ namespace VapeShop.App_Code.BLL
             this.userIp = userIp;
         }
         
-        public static Users verifyLogin(string email, string pWord)
-        {
-            return daUsers.verifyLogin(email, pWord);
-        }
     }
 }

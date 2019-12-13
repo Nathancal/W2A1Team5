@@ -190,10 +190,12 @@ namespace VapeShop.App_Code.DAL
         public static Users verifyLogin(string username, string pWord)
         {
             OleDbConnection conn = openConnection();
-            string strSQL = "select * FROM Users WHERE Username='" +
-                                         username + "' AND PWord='" + pWord + "'";
+            string strSQL = "select * FROM Users WHERE (Username=@Username OR Email=@Username) AND PWord=@pWord";
 
             OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@pWord", pWord);
             OleDbDataReader reader = cmd.ExecuteReader();
             Users userObject = new Users();
 
@@ -201,9 +203,9 @@ namespace VapeShop.App_Code.DAL
             {
 
                 int userId = Convert.ToInt32(reader["UserId"]);
-                string firstName = reader["First Name"].ToString();
+                string firstName = reader["FirstName"].ToString();
                 string surname = reader["Surname"].ToString();
-                string dob = Convert.ToString(reader["Date Of Birth"]);
+                string dob = reader["DateOfBirth"].ToString();
                 string address = reader["Address"].ToString();
                 string city = reader["City"].ToString();
                 string county = reader["County"].ToString();

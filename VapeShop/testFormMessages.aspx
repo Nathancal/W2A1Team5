@@ -12,8 +12,6 @@
          <h1>Start new Conversation</h1>
             <h3>Recipient Username:</h3>
             <asp:TextBox ID="tbUsername" runat="server"></asp:TextBox>
-            <h3>Subject</h3>
-            <asp:TextBox ID="tbSubject" runat="server"></asp:TextBox>
             <h3>Message Body:</h3>
             <asp:TextBox ID="tbMessageBody" runat="server" Height="115px" Width="231px"></asp:TextBox>
             <asp:Button ID="btnSendMessage" runat="server" OnClick="btnSendMessage_Click" Text="Send" />
@@ -23,7 +21,7 @@
 
 
 
-            <%--<asp:ListView ID="lvMessages" runat="server">
+            <asp:ListView ID="lvMessages" runat="server">
                 <ItemTemplate>
                     <div class="listConvoMessages">
                         <table>
@@ -31,20 +29,30 @@
                         </table>
                     </div>
                 </ItemTemplate>
-            </asp:ListView>--%>
+            </asp:ListView>
 
-                  <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
+            <asp:GridView ID="dgvMessages" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="UserId" HeaderText="ProductId" />
-                <asp:BoundField DataField="ProductName" HeaderText="ProductName" />
-                <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price" />
-                <asp:BoundField DataField="ImageFile" HeaderText="ImageFile" Visible="False" />
-                <asp:ImageField DataImageUrlField="ImageFile" HeaderText="Product Image">
-                    <ControlStyle Height="50px" Width="50px" />
-                </asp:ImageField>
+                <asp:BoundField DataField="ID" HeaderText="MessageNum" />
+                <asp:BoundField DataField="CreatorId" HeaderText="CreatorId" />
+                <asp:BoundField DataField="MessageBody" HeaderText="MessageBody"/>
+                <asp:BoundField DataField="CreateDate" HeaderText="CreateDate" />
+                <asp:BoundField DataField="RecepientId" HeaderText="RecepientId" />
             </Columns>
             </asp:GridView>
+
+
+            <asp:Button ID="btnLoadConvos" runat="server" Text="Load Conversation" OnClick="btnLoadConvos_Click" />
+
+
+            <br />
+            <br />
+            <asp:Label ID="lblTestUnreadCount" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
 
 
         </div>

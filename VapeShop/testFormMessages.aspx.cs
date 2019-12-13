@@ -11,42 +11,80 @@ namespace VapeShop
 {
     public partial class testFormMessages : System.Web.UI.Page
     {
-        Conversation getConvo; 
-
+        int userId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            getConvo = new Conversation(005, tbUsername.Text);
+            userId = Convert.ToInt32(Session["userID"]);
 
-            System.Data.DataSet ds = Conversation.getConversation(getConvo.getUserId(), getConvo.getUsername());
-            dgvProducts.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
-
-
-            dgvProducts.DataBind();//Links dataset to the control
-
+            Label3.Text = userId.ToString();
+            
         }
 
         protected void dgvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvProducts.PageIndex = e.NewPageIndex;//Checks to see which page your on
-            dgvProducts.DataBind();//Binds that page to the control
+            dgvMessages.PageIndex = e.NewPageIndex;//Checks to see which page your on
+            dgvMessages.DataBind();//Binds that page to the control
         }
 
         protected void btnSendMessage_Click(object sender, EventArgs e)
         {
-            getConvo = new Conversation(005, tbUsername.Text);
+
+            Chat getChat = new Chat();
+            string recepientUsername = tbUsername.Text.ToString();
+            DateTime date = DateTime.Now;
+
+            int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
+            Chat checkForChat = getChat.checkForExistingChat(userId, recepientUsername);
+            int chatId = checkForChat.getChatId();
 
 
-            if (Conversation.getConversation(getConvo.getUserId(), getConvo.getUsername()) == null)
-            {
-                Message newMessage = new Message(getConvo.getUserId(), tbSubject.Text, tbMessageBody.Text, DateTime.Now, tbUsername.Text);
+            Message newMessage = new Message();
+
+            if (chatId > 0){
+
+                newMessage.sendMessage(userId, tbMessageBody.Text, date, recepientId, chatId);
+            }else{
+                Chat createChat = new Chat();
+                createChat.createNewChat(userId, recepientId);
+                int newChatId = createChat.getChatId();
+                newMessage.sendMessage(userId, tbMessageBody.Text, date, recepientId, newChatId);
+                Label3.Text = newChatId.ToString();
             }
-            else
-            {
 
-            }
 
-            System.Data.DataSet ds = Conversation.getConversation(getConvo.getUserId(), getConvo.getUsername());
-            dgvProducts.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
+            lblTestUnreadCount.Text = newMessage.getUnreadMessageCount(userId).ToString();
+
+
+
+
+        }
+
+        protected void btnLoadConvos_Click(object sender, EventArgs e)
+        {
+            Chat getChat = new Chat();
+
+            string recepientUsername = tbUsername.Text.ToString();
+            int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
+
+
+            System.Data.DataSet ds1 = Chat.getConversation(userId, recepientId);
+            lvMessages.DataSource = ds1.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
+            lvMessages.DataSource = ds1.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
+
+            lvMessages.DataBind();
+
+            //Use the dataset returned from the code to be the
+            //data source of the grid view
+            System.Data.DataSet ds = Chat.getConversation(userId, recepientId);
+            dgvMessages.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
+            dgvMessages.DataSource = ds.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
+
+
+
+            dgvMessages.AllowPaging = true;
+            dgvMessages.PageSize = 4;
+
+            dgvMessages.DataBind();//Links dataset to the control
         }
     }
 }

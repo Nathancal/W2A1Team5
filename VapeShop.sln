@@ -26,6 +26,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ThreeTierSite", "D:\WP2\wee
 		SlnRelativePath = "ThreeTierSite\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week2WP2", "D:\WP2\Week_2\Week2WP2\Week2WP2\Week2WP2.csproj", "{52210D61-75E5-4F85-9F03-162FF5CD1E22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week5", "D:\WP2\Week_5\Week5\Week5\Week5.csproj", "{DA4093C5-6C61-4493-B587-220EC413EFA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,11 +44,19 @@ Global
 		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{8944A9E7-7B1E-47A3-858E-3ED5C9AEDDE7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{52210D61-75E5-4F85-9F03-162FF5CD1E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52210D61-75E5-4F85-9F03-162FF5CD1E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52210D61-75E5-4F85-9F03-162FF5CD1E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52210D61-75E5-4F85-9F03-162FF5CD1E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E34DC93F-66B5-446E-85E4-689464FF241D}
+		SolutionGuid = {10C23F7C-9DE4-4089-AD17-14219D83982F}
 	EndGlobalSection
 EndGlobal
