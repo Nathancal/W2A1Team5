@@ -40,6 +40,11 @@ namespace VapeShop.App_Code.BLL
             return daMessage.getConversation(userId, recepientId);
         }
 
+        public void viewMessages(int chatId, int userId)
+        {
+            daMessage.ViewMessages(chatId, userId);
+        }
+
         public Chat checkForExistingChat(int creatorId, string recepientUsername)
         {
             int recepId = getRecepientIdFromUsername(recepientUsername);

@@ -12,9 +12,14 @@ namespace VapeShop
     public partial class testFormMessages : System.Web.UI.Page
     {
         int userId;
+        int chatId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            userId = Convert.ToInt32(Session["userID"]);
+            //userId = Convert.ToInt32(Session["userID"]);
+
+            Users userInfo = (Users)Session["userInfo"];
+
+            userId = userInfo.getUserId();
 
             Label3.Text = userId.ToString();
             
@@ -35,7 +40,7 @@ namespace VapeShop
 
             int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
             Chat checkForChat = getChat.checkForExistingChat(userId, recepientUsername);
-            int chatId = checkForChat.getChatId();
+            chatId = checkForChat.getChatId();
 
 
             Message newMessage = new Message();
@@ -66,6 +71,7 @@ namespace VapeShop
             string recepientUsername = tbUsername.Text.ToString();
             int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
 
+            getChat.viewMessages(chatId, userId);
 
             System.Data.DataSet ds1 = Chat.getConversation(userId, recepientId);
             lvMessages.DataSource = ds1.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
@@ -86,5 +92,7 @@ namespace VapeShop
 
             dgvMessages.DataBind();//Links dataset to the control
         }
+
+
     }
 }

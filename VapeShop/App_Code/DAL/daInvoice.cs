@@ -61,14 +61,20 @@ namespace VapeShop.App_Code.DAL
         } //closeConnection
 
 
-        public static int createNewInvoice(string pEmail, string pShipMethod, DateTime pOrderDate, double pSubTotal, double pShipping, double pTotalCost)
+        public static int createNewInvoice(string email, string shipMethod, DateTime orderDate, double subTotal, double shipping, double totalCost)
         {
             OleDbConnection conn = openConnection();
 
             string strCreateInvoice = "INSERT INTO Invoices(Email, OrderDate, SubTotal, ShipMethod, Shipping, Total Cost)" +
-                              " VALUES('" + pEmail + "', '" + pOrderDate + "', '" + pSubTotal + "', '" + pShipMethod + "', '" + pShipping + "', '" + pTotalCost + ")";
+                              " VALUES(@Email, @OrderDate, @SubTotal, @Shipping, @TotalCost)";
 
             OleDbCommand cmdInsert = new OleDbCommand(strCreateInvoice, conn);
+
+            cmdInsert.Parameters.AddWithValue("@Email", email);
+            cmdInsert.Parameters.AddWithValue("@OrderDate", orderDate);
+            cmdInsert.Parameters.AddWithValue("@SubTotal", subTotal);
+            cmdInsert.Parameters.AddWithValue("@Shipping", shipping);
+            cmdInsert.Parameters.AddWithValue("@TotalCost", totalCost);
 
             cmdInsert.ExecuteNonQuery(); // execute the insertion command
 
@@ -82,13 +88,17 @@ namespace VapeShop.App_Code.DAL
         }
 
 
-        public static Invoice returnNewInvoice(int retInvNum)
+        public static Invoice returnNewInvoice(int invNum)
         {
             OleDbConnection conn = openConnection();
 
-            string strSelectInvoice = "SELECT * FROM Invoices WHERE InvoiceNum='" + retInvNum + "'";
+            string strSelectInvoice = "SELECT * FROM Invoices WHERE InvoiceNum=@InvoiceNum";
 
             OleDbCommand cmdSelect = new OleDbCommand(strSelectInvoice, conn);
+
+            cmdSelect.Parameters.AddWithValue("@InvoiceNum", invNum);
+
+
             OleDbDataReader invReader = cmdSelect.ExecuteReader();
             Invoice invObject = null;
 
@@ -102,7 +112,7 @@ namespace VapeShop.App_Code.DAL
                 double shipping = Convert.ToDouble(invReader["ParentMessageId"]);
                 double totalCost = Convert.ToDouble(invReader["Total Cost"]);
 
-                cmdSelect.CommandText = "SELECT ProductId, Quantity FROM Orders WHERE InvoiceNum='" + invoiceNum + "'";
+                cmdSelect.CommandText = "SELECT ProductId, Quantity FROM Orders WHERE InvoiceNum=@InvoiceNum";
                 invReader = cmdSelect.ExecuteReader();
 
                 while (invReader.Read())
@@ -128,9 +138,25 @@ namespace VapeShop.App_Code.DAL
 
             Int32.TryParse(search, out retInvNum);
 
-            string strFindInvoice = "SELECT * FROM Invoices WHERE InvoiceNum='" + retInvNum + "' OR Email='" + search + "'";
+            string strFindInvoice;
+            OleDbCommand cmdSelect;
 
-            OleDbCommand cmdSelect = new OleDbCommand(strFindInvoice, conn);
+
+            if (retInvNum > 0)
+            {
+                strFindInvoice = "SELECT * FROM Invoices WHERE InvoiceNum= @InvoiceNum";
+                cmdSelect = new OleDbCommand(strFindInvoice, conn);
+
+                cmdSelect.Parameters.AddWithValue("@InvoiceNum", retInvNum);
+            }
+            else
+            {
+                strFindInvoice = "SELECT * FROM Invoices WHERE Email= @Email";
+                cmdSelect = new OleDbCommand(strFindInvoice, conn);
+
+                cmdSelect.Parameters.AddWithValue("@Email", search);
+            }
+
             OleDbDataReader FindInvReader = cmdSelect.ExecuteReader();
             Invoice findInvObject = null;
 

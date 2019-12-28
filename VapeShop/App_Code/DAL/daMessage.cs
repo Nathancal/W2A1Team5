@@ -274,59 +274,30 @@ namespace VapeShop.App_Code.DAL
             return countMessages;
         }
 
-        public static Message ViewMessage(int msgId)
+        public static void ViewMessages(int chatId, int userId)
         {
             OleDbConnection conn = openConnection();
-            string strMessageViewedUpdate = "UPDATE MessageRecipient SET isRead= 1 WHERE MessageId=@MessageId";
-            //create the command object using the SQL
+            int isRead = 1;
+
+            string strMessageViewedUpdate = "UPDATE MessageRecipient SET MessageRecipient.isRead=@isRead INNER JOIN Message ON MessageRecipient.MessageId = Message.ID WHERE Message.ChatId=@chatId AND MessageRecipient.RecepientId=@userId";
+
             OleDbCommand cmdUpdate = new OleDbCommand(strMessageViewedUpdate, conn);
-            cmdUpdate.Parameters.AddWithValue("@MessageId", msgId);
+            cmdUpdate.Parameters.AddWithValue("@chatId", chatId);
+            cmdUpdate.Parameters.AddWithValue("@isRead", isRead);
+            cmdUpdate.Parameters.AddWithValue("@userId", userId);
             
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
-
-            string strRetrieveMessage = "SELECT * FROM Message WHERE ID='" + msgId + "'";
-
-            OleDbCommand cmdSelect = new OleDbCommand(strRetrieveMessage, conn);
-            OleDbDataReader messageReader = cmdSelect.ExecuteReader();
-            Message msgObject = null;
-
-            while (messageReader.Read())
-            {
-                int messageId = Convert.ToInt32(messageReader["ID"]);
-                int creatorId = Convert.ToInt32(messageReader["CreatorId"]);
-                string messageBody = messageReader["MessageBody"].ToString();
-                DateTime createDate = Convert.ToDateTime(messageReader["CreateDate"]);
-
-                cmdSelect.CommandText = "SELECT RecipientId FROM MessageRecipient WHERE MessageId=@msgId";
-
-                cmdSelect.Parameters.AddWithValue("@msgId", messageId);
-                messageReader = cmdSelect.ExecuteReader();
-                
-
-
-                while (messageReader.Read())
-                {
-                    int recepId = Convert.ToInt32(messageReader["RecipientId"]);
-                    msgObject = new Message(messageId, creatorId, messageBody, createDate, recepId);
-                }
-            }
-
-            messageReader.Close();
             closeConnection(conn);
-            return msgObject;
         }
 
         public static void removeMessage(int msgId)
         {
             OleDbConnection conn = openConnection();
-            Message msgRemove = new Message();
-
-            msgRemove.setMesageId(msgId);
 
             string strRemoveMessage = "DELETE FROM Message WHERE ID= @msgId";
 
             OleDbCommand cmd = new OleDbCommand(strRemoveMessage, conn);
-            cmd.Parameters.AddWithValue("@msgId", msgRemove.getMessageId());
+            cmd.Parameters.AddWithValue("@msgId", msgId);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         }

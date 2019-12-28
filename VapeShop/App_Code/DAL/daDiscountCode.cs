@@ -64,13 +64,16 @@ namespace VapeShop.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
-            string strNewCode = "INSERT INTO DiscountCodes(Code, " +
-                           " DateFrom, DateTo, NumberUsed, DiscountPerc)" +
-                           " VALUES('" + code + "', '" + dateActive + "'," +
-                            dateEnd + ",'" + discountPerc + ")";
+            string strNewCode = "INSERT INTO DiscountCodes(Code, DateFrom, DateTo, DiscountPerc)" +
+                           " VALUES(@Code, @DateFrom, @DateTo, @DiscountPerc)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
+
+            cmd.Parameters.AddWithValue("@Code", code);
+            cmd.Parameters.AddWithValue("@DateFrom", dateActive);
+            cmd.Parameters.AddWithValue("@DateTo", dateEnd);
+            cmd.Parameters.AddWithValue("@DiscountPerc", discountPerc);
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         }

@@ -24,25 +24,25 @@ namespace VapeShop
 
                 if (UserInfo != null)
                 {
-                    Session["userID"] = Convert.ToInt32(UserInfo.getUserId());
-                    Session["userEmail"] = UserInfo.getEmail();
-                    Session["username"] = UserInfo.getUsername();
 
+                    Session["userInfo"] = UserInfo;
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(UserInfo.getUsername(),
                                                             chkPersist.Checked);
 
                 }
-                else if(UserInfo.getUserId() < 1)
+                else if(UserInfo.getFirstName() == "")
                 {
                     lblRefuse.Text = "Invalid credentials. Please try again.";
-                }
+
+
+                }//TODO needs fixed not reaching else statement if login details incorrect. the page refreshes and nothing happens
             }
             catch
             {
 
 
             }
-            
+
 
 
 

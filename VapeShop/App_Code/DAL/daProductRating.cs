@@ -77,8 +77,6 @@ namespace VapeShop.App_Code.DAL
             cmd.Parameters.AddWithValue("@UserIp", newRating.getUserIp());
             cmd.Parameters.AddWithValue("@RatingDesc", newRating.getRatingDesc());
             cmd.Parameters.AddWithValue("@DateSub", newRating.getDateSubmitted());
-
-
             cmd.ExecuteNonQuery(); // execute the insertion command
 
             //change the SQL to return the new product rating
@@ -106,9 +104,11 @@ namespace VapeShop.App_Code.DAL
             cmdUpdate.Parameters.AddWithValue("@RatingId", ratingId);
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
-            string strRetrieveUpdate = "SELECT * FROM ProductsRating WHERE ID='" + ratingId + "'";
+            string strRetrieveUpdate = "SELECT * FROM ProductsRating WHERE ID=@RatingId";
 
             OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
+            cmdSelect.Parameters.AddWithValue("@RatingId", ratingId);
+
             OleDbDataReader ratingReader = cmdSelect.ExecuteReader();
             ProductRating ratingObject = null;
 

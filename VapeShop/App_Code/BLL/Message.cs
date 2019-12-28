@@ -67,17 +67,7 @@ namespace VapeShop.App_Code.BLL
             return chatId;
         }
 
-        public Message ViewMessage(int msgId) {
-            Message viewMessage = daMessage.ViewMessage(msgId);
 
-            this.msgId = viewMessage.getMessageId();
-            this.creatorId = viewMessage.getCreatorId();
-            this.messageBody = viewMessage.getMessageBody();
-            this.createDate = viewMessage.getCreateDate();
-            this.parentMessageId = viewMessage.getParentMsgId();
-
-            return viewMessage;
-        }
 
         public DataSet getMessages(int userId){
             return daMessage.getMessages(userId);
