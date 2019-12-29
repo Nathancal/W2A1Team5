@@ -51,6 +51,12 @@ namespace VapeShop.App_Code.BLL
             return returnInvoice;
         }
 
+        public void findInvoice() { 
+        
+        }
+
+
+
 
     }
 }

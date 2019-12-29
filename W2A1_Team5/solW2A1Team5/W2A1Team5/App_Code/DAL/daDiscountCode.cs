@@ -60,70 +60,134 @@ namespace VapeShop.App_Code.DAL
             cn.Close();
         } //closeConnection
 
+        public static DataSet getDiscountCodes()
+        {
+            OleDbConnection conn = openConnection();
+
+            DataSet dsProds = new DataSet();
+
+            string strSQL = "SELECT * FROM DiscountCodes";
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daProds = new OleDbDataAdapter(strSQL, conn);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daProds.Fill(dsProds, "DiscountCodes");
+
+            conn.Close();
+
+            return dsProds;
+        }//getProducts
+
+
+        public static DiscountCode checkCodeExists(string code)
+        {
+
+            OleDbConnection conn = openConnection();
+
+            int isActive = 1;
+            string strCheckCodeExists = "SELECT * FROM DiscountCodes WHERE Code=@Code AND isActive=@isActive";
+            OleDbCommand cmdCheckCode = new OleDbCommand(strCheckCodeExists, conn);
+
+            cmdCheckCode.Parameters.AddWithValue("@Code", code);
+            cmdCheckCode.Parameters.AddWithValue("@isActive", isActive);
+
+            OleDbDataReader checkExistsReader = cmdCheckCode.ExecuteReader();
+
+            DiscountCode discCode = new DiscountCode();
+
+            if (checkExistsReader.Read())
+            {
+                discCode.setCode(Convert.ToString(checkExistsReader["Code"]));
+
+            }
+
+
+            return discCode;
+        }
+
         public static void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc)
         {
             OleDbConnection conn = openConnection();
 
-            string strNewCode = "INSERT INTO DiscountCodes(Code, " +
-                           " DateFrom, DateTo, NumberUsed, DiscountPerc)" +
-                           " VALUES('" + code + "', '" + dateActive + "'," +
-                            dateEnd + ",'" + discountPerc + ")";
+            string strNewCode = "INSERT INTO DiscountCodes(Code, DateFrom, DateTo, DiscountPerc)" +
+                           " VALUES(@Code, @DateFrom, @DateTo, @DiscountPerc)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
 
+            cmd.Parameters.AddWithValue("@Code", code);
+            cmd.Parameters.AddWithValue("@DateFrom", dateActive);
+            cmd.Parameters.AddWithValue("@DateTo", dateEnd);
+            cmd.Parameters.AddWithValue("@DiscountPerc", discountPerc);
+
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
-        public static DiscountCode redeemDiscountCode(string pCode)
-        {
-            OleDbConnection conn = openConnection();
 
-            string strRedeemCode = "SELECT * FROM DiscountCodes WHERE Code='" + pCode + "'" +
-                                   "' AND isActive='" + 1 + "'";
+        public static int redeemDiscountCode(string code, int userId, DateTime usedOn){
+                OleDbConnection conn = openConnection();
 
-            OleDbCommand cmdSelect = new OleDbCommand(strRedeemCode, conn);
-            OleDbDataReader codeReader = cmdSelect.ExecuteReader();
+                string strCheckForRedeemedCode = "SELECT * FROM RedeemCode WHERE UserId=@UserId AND DiscountCode=@DiscountCode";
 
-            DiscountCode redeemCode = null;
+                OleDbCommand cmdSelect = new OleDbCommand(strCheckForRedeemedCode, conn);
 
-            while (codeReader.Read())
-            {
-                string code = codeReader["Code"].ToString();
-                DateTime dateActive = Convert.ToDateTime(codeReader["DateFrom"]);
-                DateTime dateEnd = Convert.ToDateTime(codeReader["DateTo"]);
-                int discountPerc = Convert.ToInt32(codeReader["DiscountPerc"]);
+                cmdSelect.Parameters.AddWithValue("@UserId", userId);
+                cmdSelect.Parameters.AddWithValue("@DiscountCode", code);
+                OleDbDataReader codeReader = cmdSelect.ExecuteReader();
 
+                if (codeReader.Read())
+                {
+                    DateTime dateUsed = Convert.ToDateTime(codeReader["UsedOn"]);
+                    return 0;
+                }
+                else
+                {
+                    string strRedeemCode = "INSERT INTO RedeemCode(UserId, DiscountCode, UsedOn) VALUES(@UserId, @DiscountCode, @UsedOn)";
+                    OleDbCommand cmdRedeemCode = new OleDbCommand(strRedeemCode, conn);
 
-                redeemCode = new DiscountCode(code, dateActive, dateEnd, discountPerc);
-            }
+                    cmdRedeemCode.Parameters.AddWithValue("@UserId", userId);
+                    cmdRedeemCode.Parameters.AddWithValue("@DiscountCode", code);
+                    cmdRedeemCode.Parameters.AddWithValue("@UsedOn", usedOn);
 
-            return redeemCode;
+                    return 1;
+                }
         }
 
-        public static void removeDiscountCode(string pCode)
+        public static void deactivateDiscountCode(string code)
         {
             OleDbConnection conn = openConnection();
 
-            string strRemoveCode = "DELETE FROM DiscountCodes WHERE Code='" + pCode + "'";
+            int isActive = 0;
+
+            string strRemoveCode = "UPDATE DiscountCodes SET isActive= @isActive WHERE Code=@Code";
 
             OleDbCommand cmd = new OleDbCommand(strRemoveCode, conn);
 
+            cmd.Parameters.AddWithValue("@Code", code);
+            cmd.Parameters.AddWithValue("@isActive", isActive);
+
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
-        public static DiscountCode updateDiscountCode(string pCode, DateTime pDateEnd, int pDiscountPerc)
+        public static DiscountCode updateDiscountCode(string discCode, DateTime dateEnd, int discountPerc)
         {
             OleDbConnection conn = openConnection();
 
 
-            string strUpdateDiscount = "UPDATE DisocuntCodes SET DateTo='" + pDateEnd + "'," + "DiscountPerc='" + pDiscountPerc + "' WHERE Code='" + pCode + "'";
+            string strUpdateDiscount = "UPDATE DisocuntCodes SET DateTo= @DateTo, DiscountPerc= @DiscountPerc WHERE Code=@Code";
             OleDbCommand cmdUpdate = new OleDbCommand(strUpdateDiscount, conn);
+            cmdUpdate.Parameters.AddWithValue("@DateTo", dateEnd);
+            cmdUpdate.Parameters.AddWithValue("@DiscountPerc", discountPerc);
+            cmdUpdate.Parameters.AddWithValue("@Code", discCode);
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
-            string strRetrieveUpdate = "SELECT * FROM DiscountCodes WHERE ID='" + pCode + "'";
+            string strRetrieveUpdate = "SELECT * FROM DiscountCodes WHERE Code=@Code";
 
             OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
+            cmdSelect.Parameters.AddWithValue("@Code", discCode);
+
             OleDbDataReader disocuntReader = cmdSelect.ExecuteReader();
             DiscountCode disCodeObject = null;
 
@@ -131,11 +195,11 @@ namespace VapeShop.App_Code.DAL
             {
                 string code = disocuntReader["Code"].ToString();
                 DateTime dateActive = Convert.ToDateTime(disocuntReader["DateFrom"]);
-                DateTime dateEnd = Convert.ToDateTime(disocuntReader["DateTo"]);
-                int userId = Convert.ToInt32(disocuntReader["UserId"]);
+                DateTime dateTo = Convert.ToDateTime(disocuntReader["DateTo"]);
+                int discPerc = Convert.ToInt32(disocuntReader["UserId"]);
 
 
-                disCodeObject = new DiscountCode();
+                disCodeObject = new DiscountCode(code, dateActive, dateTo,);
             }
 
             return disCodeObject;
