@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestDiscountCodes.aspx" />
     <Content Include="testFormMessages.aspx" />
     <Content Include="TestFormProducts.aspx" />
     <Content Include="testFormUsers.aspx" />
@@ -84,6 +85,13 @@
     <Compile Include="App_Code\BLL\CartItem.cs" />
     <Compile Include="App_Code\BLL\Invoice.cs" />
     <Compile Include="App_Code\BLL\Chat.cs" />
+    <Compile Include="TestDiscountCodes.aspx.cs">
+      <DependentUpon>TestDiscountCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestDiscountCodes.aspx.designer.cs">
+      <DependentUpon>TestDiscountCodes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="testFormMessages.aspx.cs">
       <DependentUpon>testFormMessages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

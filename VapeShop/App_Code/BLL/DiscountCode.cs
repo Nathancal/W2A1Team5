@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using VapeShop.App_Code.DAL;
@@ -35,6 +36,11 @@ namespace VapeShop.App_Code.BLL
             return code;
         }
 
+        public static DataSet getDiscountCodes()
+        {
+            return daDiscountCode.getDiscountCodes();
+        }
+
         public int getDiscountPerc() {
             return discountPerc;
         }
@@ -60,20 +66,33 @@ namespace VapeShop.App_Code.BLL
             this.dateEnd = dateEnd;
         }
 
+        public void setCode(string code) {
+            this.code = code;
+        }
+
+
+
         public void createNewDiscountCode(){
             daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discountPerc);
         }
 
-        public DiscountCode redeemDiscountCode(string pCode){
+        public String redeemDiscountCode(string code, int userId, DateTime current){
 
-            DiscountCode dc1 = daDiscountCode.redeemDiscountCode(pCode);
-            this.code = dc1.getCode();
-            this.dateActive = dc1.getDateActive();
-            this.dateEnd = dc1.getDateEnd();
-            this.discountPerc = dc1.getDiscountPerc();
-            this.isActive = dc1.checkIsActive();
+            int redeemCodeStatus = daDiscountCode.redeemDiscountCode(code, userId, current);
+            string statusInfo;
 
-            return dc1;
+            if (redeemCodeStatus == 0) {
+                statusInfo = "Im sorry but you have already used this discount code.";
+            }else if(redeemCodeStatus == 1) {
+                statusInfo = "discount applied";
+            }else if(redeemCodeStatus == 2) {
+                statusInfo = "Im sorry but this discount code does not exist, or is no longer active";
+            }else
+            {
+                statusInfo = "Error";
+            }
+
+            return statusInfo;
 
         }
 
