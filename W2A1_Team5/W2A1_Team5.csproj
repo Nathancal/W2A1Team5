@@ -70,17 +70,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\DiscountCodes.aspx" />
+    <Content Include="admin\ErrorManager.aspx" />
     <Content Include="admin\ManageContent.aspx" />
     <Content Include="admin\ProductRatings.aspx" />
     <Content Include="admin\Products.aspx" />
     <Content Include="admin\Users.aspx" />
     <Content Include="ELiquids.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="EVapes.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Kit.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Product.aspx" />
     <Content Include="ProductDetails.aspx" />
+    <Content Include="RateProduct.aspx" />
     <Content Include="RegisterAccount.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="secure\Checkout.aspx" />
@@ -92,6 +96,7 @@
     <Content Include="test_forms\TestFormProducts.aspx" />
     <Content Include="test_forms\testFormUsers.aspx" />
     <Content Include="test_forms\TestLogin.aspx" />
+    <Content Include="ViewRatings.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +106,13 @@
     </Compile>
     <Compile Include="admin\DiscountCodes.aspx.designer.cs">
       <DependentUpon>DiscountCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ErrorManager.aspx.cs">
+      <DependentUpon>ErrorManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ErrorManager.aspx.designer.cs">
+      <DependentUpon>ErrorManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\ManageContent.aspx.cs">
       <DependentUpon>ManageContent.aspx</DependentUpon>
@@ -145,6 +157,13 @@
     <Compile Include="ELiquids.aspx.designer.cs">
       <DependentUpon>ELiquids.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EVapes.aspx.cs">
       <DependentUpon>EVapes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,12 +196,26 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProductDetails.aspx.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ProductDetails.aspx.designer.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RateProduct.aspx.cs">
+      <DependentUpon>RateProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RateProduct.aspx.designer.cs">
+      <DependentUpon>RateProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegisterAccount.aspx.cs">
       <DependentUpon>RegisterAccount.aspx</DependentUpon>
@@ -275,6 +308,13 @@
     </Compile>
     <Compile Include="VapeMaster.Master.designer.cs">
       <DependentUpon>VapeMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRatings.aspx.cs">
+      <DependentUpon>ViewRatings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRatings.aspx.designer.cs">
+      <DependentUpon>ViewRatings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
