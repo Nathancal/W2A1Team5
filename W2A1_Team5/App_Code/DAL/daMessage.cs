@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using VapeShop.App_Code.BLL;
 
-namespace VapeShop.App_Code.DAL
+namespace W2A1Team5.App_Code.DAL
 {
     public class daMessage
     {
@@ -148,7 +148,6 @@ namespace VapeShop.App_Code.DAL
             OleDbConnection conn = openConnection();
             
             Message getMessage = new Message();
-
 
             getMessage.setCreatorId(creatorId);
             getMessage.setCreateDate(createDate);

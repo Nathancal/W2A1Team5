@@ -1,10 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/VapeMaster.Master" AutoEventWireup="true" CodeBehind="Message.aspx.cs" Inherits="VapeShop.Message" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/VapeMaster.Master" AutoEventWireup="true" CodeBehind="RegisterAccount.aspx.cs" Inherits="VapeShop.RegisterAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class=""></div>
-
-
-
-
 </asp:Content>

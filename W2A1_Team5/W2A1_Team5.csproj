@@ -69,20 +69,64 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\DiscountCodes.aspx" />
+    <Content Include="admin\ManageContent.aspx" />
+    <Content Include="admin\ProductRatings.aspx" />
+    <Content Include="admin\Products.aspx" />
+    <Content Include="admin\Users.aspx" />
     <Content Include="ELiquids.aspx" />
     <Content Include="EVapes.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Kit.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="TestDiscountCodes.aspx" />
-    <Content Include="testFormMessages.aspx" />
-    <Content Include="TestFormProducts.aspx" />
-    <Content Include="testFormUsers.aspx" />
-    <Content Include="TestLogin.aspx" />
+    <Content Include="secure\Checkout.aspx" />
+    <Content Include="secure\Invoices.aspx" />
+    <Content Include="secure\Message.aspx" />
+    <Content Include="secure\Profile.aspx" />
+    <Content Include="test_forms\TestDiscountCodes.aspx" />
+    <Content Include="test_forms\testFormMessages.aspx" />
+    <Content Include="test_forms\TestFormProducts.aspx" />
+    <Content Include="test_forms\testFormUsers.aspx" />
+    <Content Include="test_forms\TestLogin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\DiscountCodes.aspx.cs">
+      <DependentUpon>DiscountCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DiscountCodes.aspx.designer.cs">
+      <DependentUpon>DiscountCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageContent.aspx.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageContent.aspx.designer.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ProductRatings.aspx.cs">
+      <DependentUpon>ProductRatings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ProductRatings.aspx.designer.cs">
+      <DependentUpon>ProductRatings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\BLL\Product.cs" />
     <Compile Include="App_Code\BLL\Users.cs" />
     <Compile Include="App_Code\BLL\ProductRating.cs" />
@@ -130,32 +174,60 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestDiscountCodes.aspx.cs">
+    <Compile Include="secure\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="secure\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="secure\Invoices.aspx.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="secure\Invoices.aspx.designer.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="secure\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="secure\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="secure\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="secure\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test_forms\TestDiscountCodes.aspx.cs">
       <DependentUpon>TestDiscountCodes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestDiscountCodes.aspx.designer.cs">
+    <Compile Include="test_forms\TestDiscountCodes.aspx.designer.cs">
       <DependentUpon>TestDiscountCodes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="testFormMessages.aspx.cs">
+    <Compile Include="test_forms\testFormMessages.aspx.cs">
       <DependentUpon>testFormMessages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="testFormMessages.aspx.designer.cs">
+    <Compile Include="test_forms\testFormMessages.aspx.designer.cs">
       <DependentUpon>testFormMessages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TestFormProducts.aspx.cs">
+    <Compile Include="test_forms\TestFormProducts.aspx.cs">
       <DependentUpon>TestFormProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestFormProducts.aspx.designer.cs">
+    <Compile Include="test_forms\TestFormProducts.aspx.designer.cs">
       <DependentUpon>TestFormProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="testFormUsers.aspx.cs">
+    <Compile Include="test_forms\testFormUsers.aspx.cs">
       <DependentUpon>testFormUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="testFormUsers.aspx.designer.cs">
+    <Compile Include="test_forms\testFormUsers.aspx.designer.cs">
       <DependentUpon>testFormUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\DAL\daDiscountCode.cs" />
@@ -166,16 +238,24 @@
     <Compile Include="App_Code\DAL\daUsers.cs" />
     <Compile Include="App_Code\DAL\daCartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestLogin.aspx.cs">
+    <Compile Include="test_forms\TestLogin.aspx.cs">
       <DependentUpon>TestLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestLogin.aspx.designer.cs">
+    <Compile Include="test_forms\TestLogin.aspx.designer.cs">
       <DependentUpon>TestLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VapeMaster.Master.cs">
+      <DependentUpon>VapeMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VapeMaster.Master.designer.cs">
+      <DependentUpon>VapeMaster.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="VapeMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
