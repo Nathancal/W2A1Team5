@@ -80,6 +80,9 @@
     <Content Include="Home.aspx" />
     <Content Include="Kit.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ProductDetails.aspx" />
+    <Content Include="RegisterAccount.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="secure\Checkout.aspx" />
     <Content Include="secure\Invoices.aspx" />
     <Content Include="secure\Message.aspx" />
@@ -173,6 +176,27 @@
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterAccount.aspx.cs">
+      <DependentUpon>RegisterAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterAccount.aspx.designer.cs">
+      <DependentUpon>RegisterAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="secure\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
