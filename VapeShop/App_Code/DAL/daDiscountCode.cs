@@ -196,10 +196,10 @@ namespace VapeShop.App_Code.DAL
                 string code = disocuntReader["Code"].ToString();
                 DateTime dateActive = Convert.ToDateTime(disocuntReader["DateFrom"]);
                 DateTime dateTo = Convert.ToDateTime(disocuntReader["DateTo"]);
-                int discPerc = Convert.ToInt32(disocuntReader["UserId"]);
+                int discPerc = Convert.ToInt32(disocuntReader["DiscountPerc"]);
 
 
-                disCodeObject = new DiscountCode(code, dateActive, dateTo,);
+                disCodeObject = new DiscountCode(code, dateActive, dateTo, discPerc);
             }
 
             return disCodeObject;
