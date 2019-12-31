@@ -4,12 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.OleDb;
-using VapeShop.App_Code.BLL;
-using VapeShop.App_Code.DAL;
+using W2A1Team5.App_Code.BLL;
 
-
-
-namespace VapeShop.App_Code.DAL
+namespace W2A1Team5.App_Code.DAL
 {
     public class daUsers
     {

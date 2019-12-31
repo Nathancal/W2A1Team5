@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestFormProducts.aspx.cs" Inherits="VapeShop.TestFormProducts" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestFormProducts.aspx.cs" Inherits="W2A1Team5.TestFormProducts" %>
 
 <!DOCTYPE html>
 

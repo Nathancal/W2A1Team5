@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using VapeShop.App_Code.BLL;
+using W2A1Team5.App_Code.BLL;
 using System.IO;
 
-namespace VapeShop
+namespace W2A1Team5
 {
     public partial class testFormMessages : System.Web.UI.Page
     {
