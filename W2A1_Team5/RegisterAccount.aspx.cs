@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace VapeShop
+namespace W2A1Team5
 {
     public partial class RegisterAccount : System.Web.UI.Page
     {

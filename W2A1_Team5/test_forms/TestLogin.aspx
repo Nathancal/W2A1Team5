@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestLogin.aspx.cs" Inherits="VapeShop.TestLogin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestLogin.aspx.cs" Inherits="W2A1Team5.TestLogin" %>
 
 <!DOCTYPE html>
 
