@@ -75,6 +75,10 @@
     <Content Include="Admin\ProductRatings.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Users.aspx" />
+    <Content Include="ELiquids.aspx" />
+    <Content Include="EVapes.aspx" />
+    <Content Include="Help.aspx" />
+    <Content Include="Home.aspx" />
     <Content Include="Images\Cloud9Logo.png" />
     <Content Include="Images\coils.jpg" />
     <Content Include="Images\liquids1.jpg" />
@@ -82,6 +86,12 @@
     <Content Include="Images\loginuser.png" />
     <Content Include="Images\Nasty-Banner-Yummy.png" />
     <Content Include="Images\vapekits.jfif" />
+    <Content Include="Kits.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="ProductsDetails.aspx" />
+    <Content Include="RateProducts.aspx" />
+    <Content Include="RegisteredAccount.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="Secure\Checkout.aspx" />
     <Content Include="Secure\Invoices.aspx" />
     <Content Include="Secure\Message.aspx" />
@@ -91,9 +101,80 @@
     <Content Include="Test_Forms\TestFormProducts.aspx" />
     <Content Include="Test_Forms\testFormUsers.aspx" />
     <Content Include="Test_Forms\TestLogin.aspx" />
+    <Content Include="ViewRatings.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ELiquids.aspx.cs">
+      <DependentUpon>ELiquids.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ELiquids.aspx.designer.cs">
+      <DependentUpon>ELiquids.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EVapes.aspx.cs">
+      <DependentUpon>EVapes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EVapes.aspx.designer.cs">
+      <DependentUpon>EVapes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kits.aspx.cs">
+      <DependentUpon>Kits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kits.aspx.designer.cs">
+      <DependentUpon>Kits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsDetails.aspx.cs">
+      <DependentUpon>ProductsDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductsDetails.aspx.designer.cs">
+      <DependentUpon>ProductsDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RateProducts.aspx.cs">
+      <DependentUpon>RateProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RateProducts.aspx.designer.cs">
+      <DependentUpon>RateProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisteredAccount.aspx.cs">
+      <DependentUpon>RegisteredAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisteredAccount.aspx.designer.cs">
+      <DependentUpon>RegisteredAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secure\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,21 +238,35 @@
     <Compile Include="Test_Forms\TestLogin.aspx.designer.cs">
       <DependentUpon>TestLogin.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\BLL\CartItem.cs" />
-    <Content Include="App_Code\BLL\Product.cs" />
-    <Content Include="App_Code\DAL\daProduct.cs" />
-    <Content Include="App_Code\BLL\Chat.cs" />
-    <Content Include="App_Code\BLL\DiscountCode.cs" />
-    <Content Include="App_Code\BLL\Invoice.cs" />
-    <Content Include="App_Code\BLL\Message.cs" />
-    <Content Include="App_Code\BLL\ProductRating.cs" />
-    <Content Include="App_Code\BLL\Users.cs" />
-    <Content Include="App_Code\DAL\daCartItem.cs" />
-    <Content Include="App_Code\DAL\daDiscountCode.cs" />
-    <Content Include="App_Code\DAL\daInvoice.cs" />
-    <Content Include="App_Code\DAL\daMessage.cs" />
-    <Content Include="App_Code\DAL\daProductRating.cs" />
-    <Content Include="App_Code\DAL\daUsers.cs" />
+    <Compile Include="VapeShop.Master.cs">
+      <DependentUpon>VapeShop.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VapeShop.Master.designer.cs">
+      <DependentUpon>VapeShop.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRatings.aspx.cs">
+      <DependentUpon>ViewRatings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRatings.aspx.designer.cs">
+      <DependentUpon>ViewRatings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\BLL\CartItem.cs" />
+    <Compile Include="App_Code\BLL\Product.cs" />
+    <Compile Include="App_Code\DAL\daProduct.cs" />
+    <Compile Include="App_Code\BLL\Chat.cs" />
+    <Compile Include="App_Code\BLL\DiscountCode.cs" />
+    <Compile Include="App_Code\BLL\Invoice.cs" />
+    <Compile Include="App_Code\BLL\Message.cs" />
+    <Compile Include="App_Code\BLL\ProductRating.cs" />
+    <Compile Include="App_Code\BLL\Users.cs" />
+    <Compile Include="App_Code\DAL\daCartItem.cs" />
+    <Compile Include="App_Code\DAL\daDiscountCode.cs" />
+    <Compile Include="App_Code\DAL\daInvoice.cs" />
+    <Compile Include="App_Code\DAL\daMessage.cs" />
+    <Compile Include="App_Code\DAL\daProductRating.cs" />
+    <Compile Include="App_Code\DAL\daUsers.cs" />
     <Compile Include="Admin\DiscountCodes.aspx.cs">
       <DependentUpon>DiscountCodes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,6 +312,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="VapeShop.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

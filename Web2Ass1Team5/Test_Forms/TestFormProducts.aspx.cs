@@ -8,7 +8,7 @@ using Web2Ass1Team5.App_Code.BLL;
 using System.IO;
 
 
-namespace W2A1Team5
+namespace Web2Ass1Team5
 {
     public partial class TestFormProducts : System.Web.UI.Page
     {

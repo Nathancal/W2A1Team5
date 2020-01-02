@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace W2A1Team5
+namespace Web2Ass1Team5
 {
 
 
