@@ -238,6 +238,13 @@
     <Compile Include="Test_Forms\TestLogin.aspx.designer.cs">
       <DependentUpon>TestLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VapeMaster.Master.cs">
+      <DependentUpon>VapeMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VapeMaster.Master.designer.cs">
+      <DependentUpon>VapeMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="VapeShop.Master.cs">
       <DependentUpon>VapeShop.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -314,6 +321,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="VapeShop.Master" />
+    <Content Include="VapeMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
