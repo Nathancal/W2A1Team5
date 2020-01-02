@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Web2Ass1_Team5.admin
+namespace Web2Ass1Team5.Admin
 {
-    public partial class DiscountCodes : System.Web.UI.Page
+    public partial class ManageDiscountCodes : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -69,12 +69,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\DiscountCodes.aspx" />
     <Content Include="Admin\ErrorManager.aspx" />
-    <Content Include="Admin\ManagaeContent.aspx" />
+    <Content Include="Admin\ManageContent.aspx" />
+    <Content Include="Admin\ManageDiscountCodes.aspx" />
     <Content Include="Admin\ProductRatings.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Users.aspx" />
+    <Content Include="BootStrap4\css\bootstrap-grid.css" />
+    <Content Include="BootStrap4\css\bootstrap-grid.min.css" />
+    <Content Include="BootStrap4\css\bootstrap-reboot.css" />
+    <Content Include="BootStrap4\css\bootstrap-reboot.min.css" />
+    <Content Include="BootStrap4\css\bootstrap.css" />
+    <Content Include="BootStrap4\css\bootstrap.min.css" />
+    <Content Include="BootStrap4\js\bootstrap.bundle.js" />
+    <Content Include="BootStrap4\js\bootstrap.bundle.min.js" />
+    <Content Include="BootStrap4\js\bootstrap.js" />
+    <Content Include="BootStrap4\js\bootstrap.min.js" />
     <Content Include="ELiquids.aspx" />
     <Content Include="EVapes.aspx" />
     <Content Include="Help.aspx" />
@@ -96,6 +106,8 @@
     <Content Include="Secure\Invoices.aspx" />
     <Content Include="Secure\Message.aspx" />
     <Content Include="Secure\Profile.aspx" />
+    <Content Include="styles\AdminStyle.css" />
+    <Content Include="styles\styles.css" />
     <Content Include="Test_Forms\TestDiscountCodes.aspx" />
     <Content Include="Test_Forms\testFormMessages.aspx" />
     <Content Include="Test_Forms\TestFormProducts.aspx" />
@@ -105,6 +117,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\ManageDiscountCodes.aspx.cs">
+      <DependentUpon>ManageDiscountCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageDiscountCodes.aspx.designer.cs">
+      <DependentUpon>ManageDiscountCodes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ELiquids.aspx.cs">
       <DependentUpon>ELiquids.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,13 +293,6 @@
     <Compile Include="App_Code\DAL\daMessage.cs" />
     <Compile Include="App_Code\DAL\daProductRating.cs" />
     <Compile Include="App_Code\DAL\daUsers.cs" />
-    <Compile Include="Admin\DiscountCodes.aspx.cs">
-      <DependentUpon>DiscountCodes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\DiscountCodes.aspx.designer.cs">
-      <DependentUpon>DiscountCodes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ErrorManager.aspx.cs">
       <DependentUpon>ErrorManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,12 +300,12 @@
     <Compile Include="Admin\ErrorManager.aspx.designer.cs">
       <DependentUpon>ErrorManager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ManagaeContent.aspx.cs">
-      <DependentUpon>ManagaeContent.aspx</DependentUpon>
+    <Compile Include="Admin\ManageContent.aspx.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ManagaeContent.aspx.designer.cs">
-      <DependentUpon>ManagaeContent.aspx</DependentUpon>
+    <Compile Include="Admin\ManageContent.aspx.designer.cs">
+      <DependentUpon>ManageContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductRatings.aspx.cs">
       <DependentUpon>ProductRatings.aspx</DependentUpon>
@@ -319,6 +331,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BootStrap4\css\bootstrap-grid.css.map" />
+    <Content Include="BootStrap4\css\bootstrap-grid.min.css.map" />
+    <Content Include="BootStrap4\css\bootstrap-reboot.css.map" />
+    <Content Include="BootStrap4\css\bootstrap-reboot.min.css.map" />
+    <Content Include="BootStrap4\css\bootstrap.css.map" />
+    <Content Include="BootStrap4\css\bootstrap.min.css.map" />
+    <Content Include="BootStrap4\js\bootstrap.bundle.js.map" />
+    <Content Include="BootStrap4\js\bootstrap.bundle.min.js.map" />
+    <Content Include="BootStrap4\js\bootstrap.js.map" />
+    <Content Include="BootStrap4\js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <Content Include="VapeShop.Master" />
     <Content Include="VapeMaster.Master" />

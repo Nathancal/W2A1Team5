@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web2Ass1_Team5.admin
+namespace Web2Ass1Team5.Admin
 {
 
 
-    public partial class DiscountCodes
+    public partial class ManageDiscountCodes
     {
     }
 }
