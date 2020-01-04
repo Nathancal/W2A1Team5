@@ -4,12 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Web2Ass1Team5.App_Code.BLL;
-using System.IO;
 
-namespace Web2Ass1_Team5.admin
+namespace Web2Ass1Team5.Admin
 {
-    public partial class ManagaeContent : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

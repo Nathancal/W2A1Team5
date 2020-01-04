@@ -1,11 +1,7 @@
-﻿.wrapper{
-    background-color: grey;
-    height: 15rem;
-    display: block;
-
+﻿body {
 }
 
-.testRow{
-
-    border: solid 4px red;
+.container-fluid{
+    display: flex;
+    flex-direction:column;
 }

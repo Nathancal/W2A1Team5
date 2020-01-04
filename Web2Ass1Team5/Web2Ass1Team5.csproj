@@ -69,12 +69,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\ErrorManager.aspx" />
     <Content Include="Admin\ManageContent.aspx" />
     <Content Include="Admin\ManageDiscountCodes.aspx" />
     <Content Include="Admin\ProductRatings.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Users.aspx" />
+    <Content Include="Admin\WebForm1.aspx" />
     <Content Include="BootStrap4\css\bootstrap-grid.css" />
     <Content Include="BootStrap4\css\bootstrap-grid.min.css" />
     <Content Include="BootStrap4\css\bootstrap-reboot.css" />
@@ -95,6 +97,13 @@
     <Content Include="Images\logintop.png" />
     <Content Include="Images\loginuser.png" />
     <Content Include="Images\Nasty-Banner-Yummy.png" />
+    <Content Include="Images\ProductImages\header.png" />
+    <Content Include="Images\ProductImages\mensnecklaces1.jpg" />
+    <Content Include="Images\ProductImages\mensnecklaces2.jpg" />
+    <Content Include="Images\ProductImages\mensnecklaces4.jpg" />
+    <Content Include="Images\ProductImages\mensnecklaces5.jpg" />
+    <Content Include="Images\ProductImages\mensring2.jpg" />
+    <Content Include="Images\ProductImages\mensring3.jpg" />
     <Content Include="Images\vapekits.jfif" />
     <Content Include="Kits.aspx" />
     <Content Include="Login.aspx" />
@@ -117,12 +126,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminHome.aspx.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminHome.aspx.designer.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageDiscountCodes.aspx.cs">
       <DependentUpon>ManageDiscountCodes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ManageDiscountCodes.aspx.designer.cs">
       <DependentUpon>ManageDiscountCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="ELiquids.aspx.cs">
       <DependentUpon>ELiquids.aspx</DependentUpon>
@@ -341,6 +371,7 @@
     <Content Include="BootStrap4\js\bootstrap.bundle.min.js.map" />
     <Content Include="BootStrap4\js\bootstrap.js.map" />
     <Content Include="BootStrap4\js\bootstrap.min.js.map" />
+    <Content Include="Admin\Admin.Master" />
     <None Include="packages.config" />
     <Content Include="VapeShop.Master" />
     <Content Include="VapeMaster.Master" />
