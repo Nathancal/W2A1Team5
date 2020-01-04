@@ -14,9 +14,107 @@
       <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
       <script src="../BootStrap4/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPlaceHolder1" runat="server">
+    
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-sm-12 col-md-12">
+              <div class="alert alert-dark" role="alert">
+                <h5>Discount Code Management:</h5>
+              </div>
+           </div>
+        </div>
 
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+             <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Create new Discount Code</h3>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-sm-12">
+                            <form>
+                            <div class="form-group px-3 py-2 m-0">
+                                <label for="discountCodeId">Discount Code ID</label>
+                                <asp:TextBox ID="discountCodeId" placeholder="Enter Code Id"  CssClass="form-control" runat="server" ></asp:TextBox>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                     <div class="form-group px-3 py-2 m-0">
+                                        <label for="exampleInputPassword1">Date Active</label>
+                                        <asp:Calendar ID="calDateActive" CssClass="form-group" runat="server"></asp:Calendar>
+                                     </div>
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group px-3 py-2 m-0">
+                                        <label for="exampleInputPassword1">Date Ends</label>
+                                        <asp:Calendar ID="calDateEnds" CssClass="form-group" runat="server"></asp:Calendar>
+                                    </div>
+
+                                </div>
+                            </div>
+                                                         
+                            <div class="form-group px-3 py-2 m-0">
+                                <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
+                                <asp:TextBox ID="tbDiscountPerc" placeholder="Enter Discount Amount"  CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="form-group px-3 py-2 m-0">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-primary">Clear</button>
+                            </div>
+                            </form>                           
+                        </div>
+
+                    </div> 
+             </div>
+
+            </div>
+
+
+            <div class="col-sm-12 col-md-7">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Current Discount Codes:</h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                             <asp:GridView ID="dgvDiscountCodes" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvDiscountCodes_PageIndexChanging">
+                                <Columns>
+                                    <asp:CommandField ShowSelectButton="True" />
+                                    <asp:BoundField DataField="Code" HeaderText="Code ID" />
+                                    <asp:BoundField DataField="DateFrom" HeaderText="Date Active" />
+                                    <asp:BoundField DataField="DateTo" HeaderText="Date Expires" />
+                                    <asp:BoundField DataField="NumberUsed" HeaderText="Amount of Redemptions" />
+                                    <asp:BoundField DataField="DiscountPerc" HeaderText="% discount" />
+                                    <asp:BoundField DataField="isActive" HeaderText="Active or Not (1 Equals Active)" />
+
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+
+
+
+    </div>
 
     
 
