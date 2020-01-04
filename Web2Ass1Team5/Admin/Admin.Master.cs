@@ -20,9 +20,11 @@ namespace Web2Ass1Team5.Admin
 
             //userInfo.getUserId();
 
+            //userInfo.getFirstName();
+
             //int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
 
-            //if(accessLevel == 0)
+            //if (accessLevel == 0)
             //{
             //    Response.Redirect("../home.aspx");
 

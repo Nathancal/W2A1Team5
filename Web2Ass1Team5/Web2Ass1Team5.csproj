@@ -73,8 +73,8 @@
     <Content Include="Admin\ErrorManager.aspx" />
     <Content Include="Admin\ManageContent.aspx" />
     <Content Include="Admin\ManageDiscountCodes.aspx" />
+    <Content Include="Admin\ManageProducts.aspx" />
     <Content Include="Admin\ProductRatings.aspx" />
-    <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\WebForm1.aspx" />
     <Content Include="BootStrap4\css\bootstrap-grid.css" />
@@ -146,6 +146,13 @@
     </Compile>
     <Compile Include="Admin\ManageDiscountCodes.aspx.designer.cs">
       <DependentUpon>ManageDiscountCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageProducts.aspx.cs">
+      <DependentUpon>ManageProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageProducts.aspx.designer.cs">
+      <DependentUpon>ManageProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -343,13 +350,6 @@
     </Compile>
     <Compile Include="Admin\ProductRatings.aspx.designer.cs">
       <DependentUpon>ProductRatings.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Products.aspx.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Products.aspx.designer.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>

@@ -111,16 +111,18 @@ namespace Web2Ass1Team5.App_Code.DAL
         {
             OleDbConnection conn = openConnection();
 
+            DiscountCode createNewDiscCode = new DiscountCode(code, dateActive, dateEnd, discountPerc);
+
             string strNewCode = "INSERT INTO DiscountCodes(Code, DateFrom, DateTo, DiscountPerc)" +
                            " VALUES(@Code, @DateFrom, @DateTo, @DiscountPerc)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
 
-            cmd.Parameters.AddWithValue("@Code", code);
-            cmd.Parameters.AddWithValue("@DateFrom", dateActive);
-            cmd.Parameters.AddWithValue("@DateTo", dateEnd);
-            cmd.Parameters.AddWithValue("@DiscountPerc", discountPerc);
+            cmd.Parameters.AddWithValue("@Code", createNewDiscCode.getCode());
+            cmd.Parameters.AddWithValue("@DateFrom", createNewDiscCode.getDateActive());
+            cmd.Parameters.AddWithValue("@DateTo", createNewDiscCode.getDateEnd());
+            cmd.Parameters.AddWithValue("@DiscountPerc", createNewDiscCode.getDiscountPerc());
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
@@ -147,10 +149,13 @@ namespace Web2Ass1Team5.App_Code.DAL
             {
                 string strRedeemCode = "INSERT INTO RedeemCode(UserId, DiscountCode, UsedOn) VALUES(@UserId, @DiscountCode, @UsedOn)";
                 OleDbCommand cmdRedeemCode = new OleDbCommand(strRedeemCode, conn);
+                codeReader.Close();
 
                 cmdRedeemCode.Parameters.AddWithValue("@UserId", userId);
                 cmdRedeemCode.Parameters.AddWithValue("@DiscountCode", code);
                 cmdRedeemCode.Parameters.AddWithValue("@UsedOn", usedOn);
+
+                cmdRedeemCode.ExecuteNonQuery();
 
                 return 1;
             }

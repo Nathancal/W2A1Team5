@@ -277,21 +277,21 @@ namespace Web2Ass1Team5.App_Code.DAL
             return countMessages;
         }
 
-        public static void ViewMessages(int chatId, int userId)
-        {
-            OleDbConnection conn = openConnection();
-            int isRead = 1;
+        //public static void ViewMessages(int chatId, int userId)
+        //{
+        //    OleDbConnection conn = openConnection();
+        //    int isRead = 1;
 
-            string strMessageViewedUpdate = "UPDATE MessageRecipient SET MessageRecipient.isRead=@isRead INNER JOIN Message ON MessageRecipient.MessageId = Message.ID WHERE Message.ChatId=@chatId AND MessageRecipient.RecepientId=@userId";
+        //    string strMessageViewedUpdate = "UPDATE MessageRecipient SET MessageRecipient.isRead=@isRead INNER JOIN Message ON MessageRecipient.MessageId = Message.ID WHERE Message.ChatId=@ chatId AND MessageRecipient.RecepientId=@ userId";
 
-            OleDbCommand cmdUpdate = new OleDbCommand(strMessageViewedUpdate, conn);
-            cmdUpdate.Parameters.AddWithValue("@chatId", chatId);
-            cmdUpdate.Parameters.AddWithValue("@isRead", isRead);
-            cmdUpdate.Parameters.AddWithValue("@userId", userId);
+        //    OleDbCommand cmdUpdate = new OleDbCommand(strMessageViewedUpdate, conn);
+        //    cmdUpdate.Parameters.AddWithValue("@chatId", chatId);
+        //    cmdUpdate.Parameters.AddWithValue("@isRead", isRead);
+        //    cmdUpdate.Parameters.AddWithValue("@userId", userId);
 
-            cmdUpdate.ExecuteNonQuery(); // execute the insertion command
-            closeConnection(conn);
-        }
+        //    cmdUpdate.ExecuteNonQuery(); // execute the insertion command
+        //    closeConnection(conn);
+        //}
 
         public static void removeMessage(int msgId)
         {

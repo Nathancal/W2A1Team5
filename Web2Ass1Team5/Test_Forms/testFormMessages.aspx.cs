@@ -71,7 +71,7 @@ namespace Web2Ass1Team5
             string recepientUsername = tbUsername.Text.ToString();
             int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
 
-            getChat.viewMessages(chatId, userId);
+            //getChat.viewMessages(chatId, userId);
 
             System.Data.DataSet ds1 = Chat.getConversation(userId, recepientId);
             lvMessages.DataSource = ds1.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.

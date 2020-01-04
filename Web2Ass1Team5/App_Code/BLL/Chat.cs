@@ -41,10 +41,10 @@ namespace Web2Ass1Team5.App_Code.BLL
             return daMessage.getConversation(userId, recepientId);
         }
 
-        public void viewMessages(int chatId, int userId)
-        {
-            daMessage.ViewMessages(chatId, userId);
-        }
+        //public void viewMessages(int chatId, int userId)
+        //{
+        //    daMessage.ViewMessages(chatId, userId);
+        //}
 
         public Chat checkForExistingChat(int creatorId, string recepientUsername)
         {

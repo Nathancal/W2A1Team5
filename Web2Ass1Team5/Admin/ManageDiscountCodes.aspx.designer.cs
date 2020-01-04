@@ -15,13 +15,13 @@ namespace Web2Ass1Team5.Admin
     {
 
         /// <summary>
-        /// discountCodeId control.
+        /// tbDiscountCodeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox discountCodeId;
+        protected global::System.Web.UI.WebControls.TextBox tbDiscountCodeId;
 
         /// <summary>
         /// calDateActive control.
@@ -51,6 +51,42 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.TextBox tbDiscountPerc;
 
         /// <summary>
+        /// btnAddCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddCode;
+
+        /// <summary>
+        /// btnClearForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearForm;
+
+        /// <summary>
+        /// lblSumbitSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSumbitSuccess;
+
+        /// <summary>
+        /// scrPopupGridItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scrPopupGridItems;
+
+        /// <summary>
         /// dgvDiscountCodes control.
         /// </summary>
         /// <remarks>
@@ -60,12 +96,12 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.GridView dgvDiscountCodes;
 
         /// <summary>
-        /// GridView1 control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
     }
 }
