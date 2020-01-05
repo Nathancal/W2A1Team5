@@ -42,6 +42,69 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.TextBox tbPrice;
 
         /// <summary>
+        /// cbCheckSaleItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbCheckSaleItem;
+
+        /// <summary>
+        /// tbSalePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSalePrice;
+
+        /// <summary>
+        /// tbProductDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbProductDescription;
+
+        /// <summary>
+        /// tbCurrentStockLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCurrentStockLevel;
+
+        /// <summary>
+        /// tbReOrderLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbReOrderLevel;
+
+        /// <summary>
+        /// FulImgUploadTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FulImgUploadTxt;
+
+        /// <summary>
+        /// lblSumbitSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSumbitSuccess;
+
+        /// <summary>
         /// dgvProducts control.
         /// </summary>
         /// <remarks>

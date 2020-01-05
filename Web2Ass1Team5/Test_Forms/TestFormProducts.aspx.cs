@@ -49,8 +49,8 @@ namespace Web2Ass1Team5
                 try
                 {
                     string filename = FulImgUploadTxt.FileName;
-                    FulImgUploadTxt.SaveAs(Server.MapPath("~/Images/ProductImages/" + filename));
-                    pathName = Path.Combine("~/Images/ProductImages/" + filename);
+                    FulImgUploadTxt.SaveAs(Server.MapPath("../Images/ProductImages/" + filename));
+                    pathName = Path.Combine("../Images/ProductImages/" + filename);
                     if(pathName != null){
                         lblOutput.Text = "Item Successfully uploaded.";
                         Product newProduct = new Product(tbProductName.Text,

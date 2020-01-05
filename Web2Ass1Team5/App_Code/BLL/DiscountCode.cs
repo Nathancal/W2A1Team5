@@ -11,11 +11,12 @@ namespace Web2Ass1Team5.App_Code.BLL
     public class DiscountCode
     {
         private DateTime dateActive, dateEnd;
-        private int discountPerc, isActive;
+        private int discountPerc;
         private string code;
+        private Boolean isActive;
 
 
-        public DiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc, int isActive)
+        public DiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc, Boolean isActive)
         {
             this.code = code;
             this.dateActive = dateActive;
@@ -49,7 +50,7 @@ namespace Web2Ass1Team5.App_Code.BLL
             return discountPerc;
         }
 
-        public int checkIsActive()
+        public Boolean checkIsActive()
         {
             return isActive;
 
@@ -82,9 +83,9 @@ namespace Web2Ass1Team5.App_Code.BLL
 
 
 
-        public void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discPerc)
+        public void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discPerc, Boolean isActive)
         {
-            daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discPerc);
+            daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discPerc, isActive);
         }
 
         public String redeemDiscountCode(string code, int userId, DateTime current)
@@ -114,15 +115,9 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-        public DiscountCode updateDiscountCode(string pCode, DateTime pDateEnd, int pDiscountPerc)
+        public void updateDiscountCode(string discCode, DateTime dateStart, DateTime dateEnd, int discountPerc, Boolean isActive)
         {
-            DiscountCode dc1 = daDiscountCode.updateDiscountCode(pCode, pDateEnd, pDiscountPerc);
-            this.code = dc1.getCode();
-            this.dateActive = dc1.getDateActive();
-            this.dateEnd = dc1.getDateEnd();
-            this.discountPerc = dc1.getDiscountPerc();
-            this.isActive = dc1.checkIsActive();
-            return dc1;
+            daDiscountCode.updateDiscountCode(discCode, dateStart, dateEnd, discountPerc, isActive);
         }
 
     }
