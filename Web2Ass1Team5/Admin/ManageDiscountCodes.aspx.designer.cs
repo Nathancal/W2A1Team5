@@ -51,6 +51,15 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.TextBox tbDiscountPerc;
 
         /// <summary>
+        /// cbSetActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbSetActive;
+
+        /// <summary>
         /// btnAddCode control.
         /// </summary>
         /// <remarks>
@@ -78,30 +87,84 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.Label lblSumbitSuccess;
 
         /// <summary>
-        /// scrPopupGridItems control.
+        /// gridDiscountCodes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scrPopupGridItems;
+        protected global::System.Web.UI.WebControls.GridView gridDiscountCodes;
 
         /// <summary>
-        /// dgvDiscountCodes control.
+        /// tbDiscCodeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvDiscountCodes;
+        protected global::System.Web.UI.WebControls.TextBox tbDiscCodeId;
 
         /// <summary>
-        /// Panel1 control.
+        /// tbDateActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.TextBox tbDateActive;
+
+        /// <summary>
+        /// tbDateEnds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDateEnds;
+
+        /// <summary>
+        /// tbUpdateDiscPerc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbUpdateDiscPerc;
+
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+
+        /// <summary>
+        /// cbUpdateSetActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbUpdateSetActive;
+
+        /// <summary>
+        /// btnUpdateCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateCode;
+
+        /// <summary>
+        /// lblUpdateSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUpdateSuccess;
     }
 }

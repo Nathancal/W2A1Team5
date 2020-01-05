@@ -29,7 +29,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 col-md-5">
+            <div class="col-sm-12 col-md-4">
              <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Create new Product</h3>
@@ -42,7 +42,7 @@
                                 <asp:TextBox ID="productName" placeholder="Product name..."  CssClass="form-control" runat="server" ></asp:TextBox>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6">
                                      <div class="form-group px-3 py-2 m-0">
                                         <label for="ddlProductType">Product Type:</label>
                                          <asp:DropDownList id="ddlProductType" cssClass="dropdown" runat="server">
@@ -57,23 +57,62 @@
 
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6">
                                     <div class="form-group px-3 py-2 m-0">
-                                        <label for="exampleInputPassword1">Product Price:</label>
+                                        <label for="tbPrice">Product Price:</label>
                                         <asp:TextBox ID="tbPrice" placeholder="Price in £..."  CssClass="form-control" runat="server" ></asp:TextBox>
-
                                     </div>
-
                                 </div>
                             </div>
-                                                         
-                            <div class="form-group px-3 py-2 m-0">
-                                <label for="checkSale">Check For Sale Item:</label>
-                                <asp:CheckBox cssClass="form-check" runat="server"></asp:CheckBox>
+                            
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                     <div class="form-group px-3 py-2 m-0">
+                                            <label for="checkSale">Check For Sale Item:</label>
+                                            <asp:CheckBox ID="cbCheckSaleItem" cssClass="form-check" runat="server"></asp:CheckBox>
+                                     </div>
+                                </div>
+                                
+                                <div class="col-sm-12 col-md-6">                                               
+                                     <div class="form-group px-3 py-2 m-0">
+                                            <label for="checkSale">Sale Price</label>
+                                            <asp:TextBox ID="tbSalePrice" placeholder="Price WHEN ON SALE £..."  CssClass="form-control" runat="server" ></asp:TextBox>
+                                     </div>
+                                </div>
                             </div>
+                            
                             <div class="form-group px-3 py-2 m-0">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-primary">Clear</button>
+                                 <label for="checkSale">Product Description:</label>
+                                 <asp:TextBox ID="tbProductDescription" placeholder="Please provide a brief summary of each product"  CssClass="form-control" runat="server" ></asp:TextBox>
+                            </div>
+
+                                  
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                     <div class="form-group px-3 py-2 m-0">
+                                            <label for="checkSale">Current Stock Level:</label>
+                                            <asp:TextBox ID="tbCurrentStockLevel" placeholder="Total number in stock"  CssClass="form-control" runat="server" ></asp:TextBox>
+
+                                     </div>
+                                </div>
+                                
+                                <div class="col-sm-12 col-md-6">                                               
+                                     <div class="form-group px-3 py-2 m-0">
+                                            <label for="checkSale">Re-Order Level</label>
+                                            <asp:TextBox ID="tbReOrderLevel" placeholder="Minimum reachable amount before reorder"  CssClass="form-control" runat="server" ></asp:TextBox>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group px-3 py-2 m-0">
+                                 <label for="checkSale">Upload Product Image:</label>
+                                 <asp:FileUpload ID="FulImgUploadTxt" CssClass="form-control-file" runat="server" />
+
+                            </div>
+                     
+
+                            <div class="form-group px-3 py-2 m-0">
+                                <asp:Label runat="server" ID="lblSumbitSuccess" CssClass="alert-success">---</asp:Label>
                             </div>
                             </form>                           
                         </div>
@@ -84,20 +123,26 @@
             </div>
 
 
-            <div class="col-sm-12 col-md-7">
+            <div class="col-sm-12 col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Current Discount Codes:</h3>
+                        <h3 class="card-title">Current Products:</h3>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
+                            <asp:GridView ID="dgvProducts" runat="server"  CssClass="table table-striped table-dark table-hover"  AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
                              <Columns>
                             <asp:CommandField ShowSelectButton="True" />
-                            <asp:BoundField DataField="ProductID" HeaderText="ProductId" />
                             <asp:BoundField DataField="ProductName" HeaderText="ProductName" />
                             <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price" />
+                            <asp:BoundField DataField="Sale" HeaderText="Sale" />
+
+                            <asp:BoundField DataField="SalePrice" DataFormatString="{0:c}" HeaderText="Price on Sale" />
+                            <asp:BoundField DataField="Description" HeaderText="Description" />
+                            <asp:BoundField DataField="CurrentStock" HeaderText="Current Stock Level" />
+                            <asp:BoundField DataField="ReOrderLevel" HeaderText="Re-Order Level" />
+
                             <asp:BoundField DataField="ImageFile" HeaderText="ImageFile" Visible="False" />
                             <asp:ImageField DataImageUrlField="ImageFile" HeaderText="Product Image">
                             <ControlStyle Height="50px" Width="50px" />

@@ -107,14 +107,14 @@ namespace Web2Ass1Team5.App_Code.DAL
             return discCode;
         }
 
-        public static void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc)
+        public static void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discountPerc, Boolean isActive)
         {
             OleDbConnection conn = openConnection();
 
-            DiscountCode createNewDiscCode = new DiscountCode(code, dateActive, dateEnd, discountPerc);
+            DiscountCode createNewDiscCode = new DiscountCode(code, dateActive, dateEnd, discountPerc, isActive);
 
-            string strNewCode = "INSERT INTO DiscountCodes(Code, DateFrom, DateTo, DiscountPerc)" +
-                           " VALUES(@Code, @DateFrom, @DateTo, @DiscountPerc)";
+            string strNewCode = "INSERT INTO DiscountCodes(Code, DateFrom, DateTo, DiscountPerc, isActive)" +
+                           " VALUES(@Code, @DateFrom, @DateTo, @DiscountPerc, @isActive)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewCode, conn);
@@ -123,6 +123,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             cmd.Parameters.AddWithValue("@DateFrom", createNewDiscCode.getDateActive());
             cmd.Parameters.AddWithValue("@DateTo", createNewDiscCode.getDateEnd());
             cmd.Parameters.AddWithValue("@DiscountPerc", createNewDiscCode.getDiscountPerc());
+            cmd.Parameters.AddWithValue("@isActive", Convert.ToInt32(createNewDiscCode.checkIsActive()));
 
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
@@ -177,17 +178,29 @@ namespace Web2Ass1Team5.App_Code.DAL
             cmd.ExecuteNonQuery(); // execute the insertion command
         }
 
-        public static DiscountCode updateDiscountCode(string discCode, DateTime dateEnd, int discountPerc)
+        public static void updateDiscountCode(string discCode, DateTime dateStart, DateTime dateEnd, int discountPerc, Boolean isActive)
         {
             OleDbConnection conn = openConnection();
 
 
-            string strUpdateDiscount = "UPDATE DisocuntCodes SET DateTo= @DateTo, DiscountPerc= @DiscountPerc WHERE Code=@Code";
+            string strUpdateDiscount = "UPDATE DisocuntCodes SET  Code=@Code, DateFrom= @DateFrom, DateTo= @DateTo, DiscountPerc= @DiscountPerc, isActive= @isActive WHERE Code=@Code";
             OleDbCommand cmdUpdate = new OleDbCommand(strUpdateDiscount, conn);
+            cmdUpdate.Parameters.AddWithValue("@Code", discCode);
+            cmdUpdate.Parameters.AddWithValue("@DateFrom", dateStart);
             cmdUpdate.Parameters.AddWithValue("@DateTo", dateEnd);
             cmdUpdate.Parameters.AddWithValue("@DiscountPerc", discountPerc);
-            cmdUpdate.Parameters.AddWithValue("@Code", discCode);
+            cmdUpdate.Parameters.AddWithValue("@isActive", isActive);
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
+
+
+
+
+        }
+
+        public static DiscountCode selectDiscountCode(string discCode)
+        {
+            OleDbConnection conn = openConnection();
+
 
             string strRetrieveUpdate = "SELECT * FROM DiscountCodes WHERE Code=@Code";
 
@@ -202,10 +215,11 @@ namespace Web2Ass1Team5.App_Code.DAL
                 string code = disocuntReader["Code"].ToString();
                 DateTime dateActive = Convert.ToDateTime(disocuntReader["DateFrom"]);
                 DateTime dateTo = Convert.ToDateTime(disocuntReader["DateTo"]);
-                int discPerc = Convert.ToInt32(disocuntReader["UserId"]);
+                int discPerc = Convert.ToInt32(disocuntReader["DiscountPerc"]);
+                Boolean isActive = Convert.ToBoolean(disocuntReader["isActive"]);
 
 
-                disCodeObject = new DiscountCode(code, dateActive, dateTo, discPerc);
+                disCodeObject = new DiscountCode(code, dateActive, dateTo, discPerc, isActive);
             }
 
             return disCodeObject;
