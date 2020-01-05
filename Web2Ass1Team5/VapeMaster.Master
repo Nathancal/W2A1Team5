@@ -2,62 +2,90 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head runat="server">
     
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="styles/styles.css" rel="stylesheet" />
-    <link href="/BootStrap4/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/BootStrap4/css/bootstrap-grid.min.css" rel="stylesheet" />
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="../BootStrap4/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="../BootStrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="styles/BootstrapStyles.css" rel="stylesheet" />
+  
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class ="wrapper">
-            <div class ="header">
-                <div class="title">
+        <div>
 
-                    <asp:Image ID="logo" runat="server" ImageUrl="~/images/Cloud9Logo.png" />
+            <asp:Image class="logo" runat="server" ImageUrl="~/Images/Cloud9Logo.png" />
 
-                </div>
-            </div>
-            <ul class ="nav">
-                
-               <li><a href="Home.aspx">Home</a></li>
-               <li><a href ="Kit.aspx">Kits</a></li>
-               <li><a href ="EVapes.aspx">E-Vapes</a></li>
-               <li><a href ="Eliquid.aspx">E-Liquids</a></li>
-               <li> <a href ="Help.aspx">Help</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
-               <li></li>
-                <asp:ImageButton ID="loginicon" runat="server" ImageUrl="~/images/logintop.png" PostBackUrl="~/Login.aspx" />
-            </ul>
+        </div>
+   <div class="container-fluid ">
+    
+
+           
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="Home.aspx">CLOUD 9 VAPOUR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="Home.aspx">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ELiquids.aspx">E-Liquids</a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link" href="EVapes.aspx">Kits</a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link" href="Help.aspx">Help</a>
+      </li>
+         <li class="nav-item">
+            <a class="nav-link" href="Login.aspx">
+
+             <asp:Image class="imgLogin" runat="server" ImageUrl="~/Images/loginuser.png" />
+                Login
+            </a>
+           
+      </li>
+    </ul>
+
+  </div>
+</nav>
+           </div>
+
+         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+            </div>
+    </form>   
+   
+        <div id="wrap">
+  <div id="main" class="container-fluid clear-top">
+    <div class="container-fluid py-3">
+        <div class="row">
+            <div class ="col-sm-12">
+                <p class="fpara">© Cloud 9 Vapour</p>
+                <p class="fpara">Latest Update: January 2020</p>
+                <p class="fpara">Email: info@cloud9vapour.com</p>
+            </div>
+            
         </div>
-        <footer>
-
-            <div id="footerleft">
-                <p class ="helpheader">About Us</p>
-                <p class ="helppara">Set up in 2016, we try give our customers the best kits and liquids available on the market</p>
-            </div>
-            <div id="footermiddle">
-                <p class ="helpheader">Find Us Here</p>
-                <a href="https://en-gb.facebook.com/" class="fa fa-facebook"></a>
-                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-                <a href="https://twitter.com/?lang=en-gb" class="fa fa-twitter"></a>
-                <a href="https://www.google.co.uk/" class="fa fa-google"></a>
-                
-            </div>
-            <div id="footerright">
-                <p class="helpheader">Contact Details</p>
-                <p class="helppara"><strong>In Shop: Mon-Sat 9am-6pm</strong></p>
-                <p class="helppara"><strong>E-mail: info@cloud9vapour.com</strong></p>
-                <p class="helppara"><strong>Telephone: +447465465364</strong></p>
-            </div>
-        </footer>
-    </form>
+    </div>
+  </div>
+</div>
+<footer class="footer"></footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="BootStrap4/js/bootstrap.min.js"></script>
+  
 </body>
 </html>
 
