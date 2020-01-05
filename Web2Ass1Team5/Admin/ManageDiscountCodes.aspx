@@ -10,13 +10,10 @@
         <!--CSS-->
       <link rel="stylesheet" href="~/styles/AdminStyle.css">
     
-      <!-- jQuery first, then Tether, then Bootstrap JS. -->
       <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
       <script src="../BootStrap4/js/bootstrap.min.js"></script>
-    <!-- Bootstrap Date-Picker Plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPlaceHolder1" runat="server">
     

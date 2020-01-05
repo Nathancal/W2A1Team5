@@ -13,12 +13,6 @@ namespace Web2Ass1Team5.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            tbDiscountCodeId.Text = "";
-            calDateActive.SelectedDates.Clear();
-            calDateEnds.SelectedDates.Clear();
-            tbDiscountPerc.Text = "";
-            lblSumbitSuccess.Text = "";
-
             //Use the dataset returned from the code to be the
             //data source of the grid view
             System.Data.DataSet ds = DiscountCode.getDiscountCodes();
@@ -30,6 +24,14 @@ namespace Web2Ass1Team5.Admin
 
             dgvDiscountCodes.DataBind();//Links dataset to the control
 
+        }
+
+        private void clearTextBoxes() {
+            tbDiscountCodeId.Text = "";
+            calDateActive.SelectedDates.Clear();
+            calDateEnds.SelectedDates.Clear();
+            tbDiscountPerc.Text = "";
+            lblSumbitSuccess.Text = "";
         }
 
         protected void dgvDiscountCodes_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -47,13 +49,15 @@ namespace Web2Ass1Team5.Admin
         {
             try {
                 DiscountCode newCode = new DiscountCode(tbDiscountCodeId.Text, calDateActive.SelectedDate, calDateEnds.SelectedDate, Convert.ToInt32(tbDiscountPerc.Text));
-                newCode.createNewDiscountCode();
+                newCode.createNewDiscountCode(tbDiscountCodeId.Text, calDateActive.SelectedDate, calDateEnds.SelectedDate, Convert.ToInt32(tbDiscountPerc.Text));
                 lblSumbitSuccess.Text = "Discount code" + tbDiscountCodeId.Text + " has been successfully created";
+                clearTextBoxes();
+                Response.Redirect(Request.RawUrl);
 
             }
             catch (Exception ex)
             {
-                lblSumbitSuccess.Text = "Failed";
+                lblSumbitSuccess.Text = ex.Message;
             }
 
 

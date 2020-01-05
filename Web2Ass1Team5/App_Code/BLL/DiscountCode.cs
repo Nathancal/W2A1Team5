@@ -82,9 +82,9 @@ namespace Web2Ass1Team5.App_Code.BLL
 
 
 
-        public void createNewDiscountCode()
+        public void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discPerc)
         {
-            daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discountPerc);
+            daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discPerc);
         }
 
         public String redeemDiscountCode(string code, int userId, DateTime current)
