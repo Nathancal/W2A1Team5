@@ -110,6 +110,7 @@
     <Content Include="ProductsDetails.aspx" />
     <Content Include="RateProducts.aspx" />
     <Content Include="RegisterAccount.aspx" />
+    <Content Include="RegisterSuccessful.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="Secure\Checkout.aspx" />
     <Content Include="Secure\Invoices.aspx" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="RegisterAccount.aspx.designer.cs">
       <DependentUpon>RegisterAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterSuccessful.aspx.cs">
+      <DependentUpon>RegisterSuccessful.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterSuccessful.aspx.designer.cs">
+      <DependentUpon>RegisterSuccessful.aspx</DependentUpon>
     </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>

@@ -155,10 +155,9 @@ namespace Web2Ass1Team5.App_Code.DAL
 
             Users newUser = new Users(username, userFirstName, userSurname, dob, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userEmail, userPword);
 
-            string userIp = getUserIp();
 
-            string strNewUser = "INSERT INTO Users(Username, Email, FirstName, Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, PWord, UserIp)" +
-                            "VALUES(@Username,@Email,@FirstName,@Surname,@DateOfBirth,@Address,@City,@County,@Country,@PostCode,@AccessLevel,@PWord,@UserIp)";
+            string strNewUser = "INSERT INTO Users(Username, Email, FirstName, Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, PWord)" +
+                            "VALUES(@Username,@Email,@FirstName,@Surname,@DateOfBirth,@Address,@City,@County,@Country,@PostCode,@AccessLevel,@PWord)";
 
 
             OleDbCommand cmd = new OleDbCommand(strNewUser, conn);
@@ -175,7 +174,39 @@ namespace Web2Ass1Team5.App_Code.DAL
             cmd.Parameters.AddWithValue("@PostCode", newUser.getPostCode());
             cmd.Parameters.AddWithValue("@AccessLevel", newUser.getUserAccessLevel());
             cmd.Parameters.AddWithValue("@Pword", newUser.getPassword());
-            cmd.Parameters.AddWithValue("@UserIp", userIp);
+
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+            closeConnection(conn); // close connection
+
+        }
+
+        public static void createNewUserNoAccess(string username, string userFirstName, string userSurname, string dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode, string userEmail, string userPword)
+        {
+            OleDbConnection conn = openConnection();
+
+            Users newUser = new Users(username, userFirstName, userSurname, dob, userAddress, userCity, userCounty, userCountry, userPostCode, userEmail, userPword);
+
+
+            string strNewUser = "INSERT INTO Users(Username, Email, FirstName, Surname, DateOfBirth, Address, City, County, Country, PostCode, AccessLevel, PWord)" +
+                            "VALUES(@Username,@Email,@FirstName,@Surname,@DateOfBirth,@Address,@City,@County,@Country,@PostCode, @AccessLevel, @PWord)";
+
+
+            OleDbCommand cmd = new OleDbCommand(strNewUser, conn);
+
+            cmd.Parameters.AddWithValue("@Username", newUser.getUsername());
+            cmd.Parameters.AddWithValue("@Email", newUser.getEmail());
+            cmd.Parameters.AddWithValue("@FirstName", newUser.getFirstName());
+            cmd.Parameters.AddWithValue("@Surname", newUser.getSurname());
+            cmd.Parameters.AddWithValue("@DateOfBirth", newUser.getDob());
+            cmd.Parameters.AddWithValue("@Address", newUser.getAddress());
+            cmd.Parameters.AddWithValue("@City", newUser.getCity());
+            cmd.Parameters.AddWithValue("@County", newUser.getCounty());
+            cmd.Parameters.AddWithValue("@Country", newUser.getCountry());
+            cmd.Parameters.AddWithValue("@PostCode", newUser.getPostCode());
+            cmd.Parameters.AddWithValue("@AccessLevel", 0);
+            cmd.Parameters.AddWithValue("@Pword", newUser.getPassword());
 
 
             cmd.ExecuteNonQuery(); // execute the insertion command

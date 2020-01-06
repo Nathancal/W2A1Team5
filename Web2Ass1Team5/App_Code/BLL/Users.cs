@@ -53,10 +53,33 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }//SEND
 
+        public Users(string username, string userFirstName, string userSurname, string dob, string userAddress, string userCity, string userCounty, string userCountry, string userPostCode,string email, string pWord)
+        {
+            this.userFirstName = userFirstName;
+            this.userSurname = userSurname;
+            this.UserDob = dob;
+            this.userAddress = userAddress;
+            this.userCity = userCity;
+            this.userCounty = userCounty;
+            this.userCountry = userCountry;
+            this.userPostCode = userPostCode;
+            this.username = username;
+            this.userEmail = email;
+            this.pWord = pWord;
+
+        }//SEND
+
         public void createNewUser()
         {
 
             daUsers.createNewUser(username, userFirstName, userSurname, UserDob, userAddress, userCity, userCounty, userCountry, userPostCode, userAccessLevel, userEmail, pWord);
+
+        }
+
+        public void createNewUserNoAccess()
+        {
+
+            daUsers.createNewUserNoAccess(username, userFirstName, userSurname, UserDob, userAddress, userCity, userCounty, userCountry, userPostCode, userEmail, pWord);
 
         }
 

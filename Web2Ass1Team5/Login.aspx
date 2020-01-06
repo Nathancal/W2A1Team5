@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card border-dark">
-                            <div class="card-header card-header-pills">
+                            <div class="card-header">
                                 <h3 class="card-title align-content-center">User Login</h3>
                             </div>
                                 <form class="border border-dark">
