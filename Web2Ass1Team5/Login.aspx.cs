@@ -15,7 +15,7 @@ namespace Web2Ass1Team5
 
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -41,6 +41,12 @@ namespace Web2Ass1Team5
                 lblSumbitSuccess.Text = ex.Message;
 
             }
+
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegisterAccount.aspx");
         }
     }
 }

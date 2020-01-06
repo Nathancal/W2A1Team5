@@ -109,7 +109,7 @@
     <Content Include="Login.aspx" />
     <Content Include="ProductsDetails.aspx" />
     <Content Include="RateProducts.aspx" />
-    <Content Include="RegisteredAccount.aspx" />
+    <Content Include="RegisterAccount.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="Secure\Checkout.aspx" />
     <Content Include="Secure\Invoices.aspx" />
@@ -217,12 +217,12 @@
     <Compile Include="RateProducts.aspx.designer.cs">
       <DependentUpon>RateProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RegisteredAccount.aspx.cs">
-      <DependentUpon>RegisteredAccount.aspx</DependentUpon>
+    <Compile Include="RegisterAccount.aspx.cs">
+      <DependentUpon>RegisterAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RegisteredAccount.aspx.designer.cs">
-      <DependentUpon>RegisteredAccount.aspx</DependentUpon>
+    <Compile Include="RegisterAccount.aspx.designer.cs">
+      <DependentUpon>RegisterAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>

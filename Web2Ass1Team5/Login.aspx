@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/VapeMaster.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Web2Ass1Team5.Login" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     
@@ -19,7 +20,11 @@
             <div class="col-sm-12 col-md-4">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form class="border border-dark">
+                        <div class="card border-dark">
+                            <div class="card-header card-header-pills">
+                                <h3 class="card-title align-content-center">User Login</h3>
+                            </div>
+                                <form class="border border-dark">
                             <div class="form-group px-3 py-2 m-0 border-info">
                                 <label for="tbUsername">Email or Username</label>
                                 <asp:TextBox ID="tbUsername" CssClass="form-control" runat="server"></asp:TextBox>
@@ -36,11 +41,12 @@
                                     <div class="col-sm-0 col-md-4">
                                     </div>
                                     <div class="col-sm-12 col-md-4 align-content-sm-center">
-
+                                        <asp:Button ID="btnSubmit" runat="server" Text="Login" OnClick="btnSubmit_Click" cssClass="btn btn-success"/>
                                         <asp:Label runat="server" ID="lblSumbitSuccess" CssClass="alert-success">---</asp:Label>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <h4 class="alert-heading">remember me?:</h4>
+                                                <label for="chkPersist" class="col-form-label">remember me?:</label>
+                                 
                                                 <asp:CheckBox ID="chkPersist" runat="server" cssClass="custom-checkbox"/>
                                             </div>
                                         </div>
@@ -57,7 +63,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-10 ">
                                         <label for="tbPassword" class="alert-secondary">If you are not yet registered please sign up here!</label>
-                                        <asp:Button ID="btnSignUp" runat="server" CssClass="btn btn-secondary" Text="Register" />
+                                        <asp:Button ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn btn-outline-secondary" runat="server" Text="Sign up" />
                                     </div>
                                     <div class="col-sm-0 col-md1">
                                     </div>
@@ -66,6 +72,11 @@
                                 </div>
 
                             </div>
+
+
+                            
+                        </div>
+                    
 
 
                         </form>
