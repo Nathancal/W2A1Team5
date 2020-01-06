@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -26,10 +27,9 @@ namespace Web2Ass1Team5.Admin
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
             System.Data.DataSet ds = DiscountCode.getDiscountCodes();
             gridDiscountCodes.DataSource = ds.Tables["DiscountCodes"];//Links datasource of gridview to dataset with the appropriate table.
-
 
             gridDiscountCodes.AllowPaging = true;
             gridDiscountCodes.PageSize = 10;

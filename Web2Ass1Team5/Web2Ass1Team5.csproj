@@ -245,6 +245,13 @@
     <Compile Include="Secure\Invoices.aspx.designer.cs">
       <DependentUpon>Invoices.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secure\LoggedOn.Master.cs">
+      <DependentUpon>LoggedOn.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\LoggedOn.Master.designer.cs">
+      <DependentUpon>LoggedOn.Master</DependentUpon>
+    </Compile>
     <Compile Include="Secure\Message.aspx.cs">
       <DependentUpon>Message.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -375,6 +382,7 @@
     <None Include="packages.config" />
     <Content Include="VapeShop.Master" />
     <Content Include="VapeMaster.Master" />
+    <Content Include="Secure\LoggedOn.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

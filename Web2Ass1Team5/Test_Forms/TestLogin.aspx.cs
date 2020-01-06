@@ -37,9 +37,9 @@ namespace Web2Ass1Team5
 
                 }//TODO needs fixed not reaching else statement if login details incorrect. the page refreshes and nothing happens
             }
-            catch
+            catch(Exception ex)
             {
-
+                
 
             }
 
