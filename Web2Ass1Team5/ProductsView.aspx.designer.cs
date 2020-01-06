@@ -11,52 +11,70 @@ namespace Web2Ass1Team5
 {
 
 
-    public partial class ProductsDetails
+    public partial class ProductsView
     {
 
         /// <summary>
-        /// productImage control.
+        /// tbProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage productImage;
+        protected global::System.Web.UI.WebControls.TextBox tbProductName;
 
         /// <summary>
-        /// lblProductName control.
+        /// btnSearchProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
+        protected global::System.Web.UI.WebControls.Button btnSearchProductName;
 
         /// <summary>
-        /// lblProductPrice control.
+        /// tbProductType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductPrice;
+        protected global::System.Web.UI.WebControls.TextBox tbProductType;
 
         /// <summary>
-        /// ddlQuantity control.
+        /// btnSearchProductType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlQuantity;
+        protected global::System.Web.UI.WebControls.Button btnSearchProductType;
 
         /// <summary>
-        /// lvShoppingBasket control.
+        /// tbProductPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvShoppingBasket;
+        protected global::System.Web.UI.WebControls.TextBox tbProductPrice;
+
+        /// <summary>
+        /// btnSearchProductPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchProductPrice;
+
+        /// <summary>
+        /// lvProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvProducts;
     }
 }

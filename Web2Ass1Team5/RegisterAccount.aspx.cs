@@ -27,8 +27,8 @@ namespace Web2Ass1Team5
         protected void btnRegisterAccount_Click(object sender, EventArgs e)
         {
 
-            try
-            {
+            //try
+            //{
                 Users newUserAccount = new Users(tbUsername.Text,
                                         tbFirstName.Text,
                                         tbSurname.Text,
@@ -43,42 +43,13 @@ namespace Web2Ass1Team5
 
                 newUserAccount.createNewUserNoAccess();
 
-                if(newUserAccount != null)
-                {
-                    try
-                    {
-                        Users UserInfo = Users.verifyLogin(tbUsername.Text, tbPassword.Text);
-
-                        if (newUserAccount != null)
-                        {
-
-                            Session["userInfo"] = newUserAccount;
-
-                        }
-                        else if (UserInfo.getFirstName() == "")
-                        {
-                            lblErrorMessages.Text = "Invalid credentials. Please try again.";
-
-
-                        }//TODO needs fixed not reaching else statement if login details incorrect. the page refreshes and nothing happens
-                    }
-                    catch (Exception ex)
-                    {
-                        lblErrorMessages.Text = ex.Message;
-
-                    }
-
-
-                }
-
-
                 Response.Redirect("RegisterSuccessful.aspx");
 
-            }
-            catch (Exception ex)
-            {
-                lblErrorMessages.Text = ex.StackTrace;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblErrorMessages.Text = ex.StackTrace;
+            //}
 
 
         }

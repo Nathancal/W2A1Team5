@@ -61,11 +61,10 @@
                                     <a class="nav-link" href="Help.aspx">Help</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Login.aspx"> Login </a>
+                                    <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />
+
                                 </li>
-                                <li class="nav-item">
-                                     <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />
-                                </li>
+
                             </ul>
                         </div>
                     </nav>

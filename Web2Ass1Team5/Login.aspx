@@ -22,18 +22,26 @@
                     <div class="col-sm-12">
                         <div class="card border-dark">
                             <div class="card-header">
-                                <h3 class="card-title align-content-center">User Login</h3>
+                                <div class="row">
+                                    <div class="col-sm col-md-4"></div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <img src="Images/loginuser.png" class="img-fluid" />
+                                    </div>
+                                    <div class="col-sm col-md-4"></div>
+
+
+                                </div>
                             </div>
                                 <form class="border border-dark">
                             <div class="form-group px-3 py-2 m-0 border-info">
                                 <label for="tbUsername">Email or Username</label>
-                                <asp:TextBox ID="tbUsername" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tbUsername" CssClass="form-control" placeholder="enter username here.." runat="server"></asp:TextBox>
                             </div>
 
 
                             <div class="form-group px-3 py-2 m-0">
                                 <label for="tbPassword">Password</label>
-                                <asp:TextBox ID="tbPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tbPassword" CssClass="form-control" placeholder="enter password here.." runat="server"></asp:TextBox>
                             </div>
 
                             <div class="form-group px-3 py-2 m-0 align-content-center">

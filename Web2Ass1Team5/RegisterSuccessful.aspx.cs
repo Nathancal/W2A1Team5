@@ -15,10 +15,24 @@ namespace Web2Ass1Team5
 
             Users userInfo = (Users)Session["userInfo"];
 
-            lblEmail.Text = userInfo.getEmail();
+            if(userInfo != null)
+            {
+                lblEmail.Text = userInfo.getEmail();
 
-            lblName.Text = userInfo.getFirstName();
+                lblName.Text = userInfo.getFirstName();
 
+            }
+            else
+            {
+                Response.Redirect("RegisterAccount.aspx");
+            }
+
+
+
+        }
+
+        protected void btnProfile_Click(object sender, EventArgs e)
+        {
 
         }
     }
