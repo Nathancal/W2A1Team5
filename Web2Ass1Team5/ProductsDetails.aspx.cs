@@ -26,6 +26,8 @@ namespace Web2Ass1Team5
                 productImage.Src = productInfo.getImageFile();
                 lblProductName.Text = productInfo.getProductName();
                 lblProductPrice.Text = productInfo.getPrice().ToString();
+                lblProductDescription.Text = productInfo.getProductDesc();
+                lblProductType.Text = productInfo.getProductType();
             }
             else
             {

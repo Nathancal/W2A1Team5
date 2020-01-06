@@ -19,30 +19,31 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 col-md-6">
 
                 <div class="card shadow p-4">
                     <div class="card-header">
                         <h3 class="card-title">Product Details</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <img src="" id="productImage" runat="server" class="card-img-top img-fluid pt-1" style="max-height: 32rem; max-width: 32rem;" alt="">
 
-                        </div>
-
-                    </div>
                     <div class="card-body">
-                        <h4 class="alert-primary text-dark">Product Name:</h4>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 mr-5">
+
+                                                            <img src="" id="productImage" runat="server" class="card-img-top img-fluid pt-1" style="max-height: 32rem; max-width: 32rem;" alt="">
+
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                                           <h4 class="alert-primary text-dark rounded-right">Product Name:</h4>
                         <h5><asp:Label ID="lblProductName" CssClass="card-text text-dark" runat="server" Text=""></asp:Label></h5>
-                        <h4 class="alert-primary text-dark">Product Name:</h4>
-                        <h5><asp:Label ID="Label1" CssClass="card-text text-dark" runat="server" Text=""></asp:Label></h5>
-                        <h4 class="alert-primary text-dark">Product Name:</h4>
-                        <h5><asp:Label ID="Label2" CssClass="card-text text-dark" runat="server" Text=""></asp:Label></h5>
-                        <h4 class="alert-primary text-dark">Price:
+                        <h4 class="alert-primary text-dark rounded-right">Product Type:</h4>
+                        <h5><asp:Label ID="lblProductType" CssClass="card-text text-dark" runat="server" Text=""></asp:Label></h5>
+                        <h4 class="alert-primary text-dark rounded-right">Product Description:</h4>
+                        <h5><asp:Label ID="lblProductDescription" CssClass="card-text text-dark" runat="server" Text=""></asp:Label></h5>
+                        <h4 class="alert-primary text-dark rounded-right">Price:
                             </h4>
                         <h5><asp:Label ID="lblProductPrice" runat="server" Text=""></asp:Label></h5>
-                        <h4 class="alert-primary text-dark">
+                        <h4 class="alert-primary text-dark rounded-right">
                             Total Quantity: </h4> 
                     <asp:DropDownList ID="ddlQuantity" CssClass="dropdown show alert-dark" runat="server">
                         <asp:ListItem>Choose Quantity</asp:ListItem>
@@ -54,14 +55,22 @@
                     </asp:DropDownList>
 
 
-                        <button class="btn btn-primary" type="submit">Add To Cart</button>
+                        <button class="btn btn-primary btn-lg mt-3" type="submit">Add To Cart</button>
+
+                            </div>
+
+                            <div class="col-sm col-md-6"></div>
+          
+
+                        </div>
+               
 
                     </div>
                 </div>
               
             </div>
 
-              <div class="col-sm-12 col-md-4">
+              <div class="col-sm-12 col-md-6">
                          <div class="card shadow p-4">
                     <div class="card-header">
                         <h3 class="card-title">Shopping Basket</h3>

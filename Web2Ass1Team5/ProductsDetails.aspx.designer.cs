@@ -33,6 +33,24 @@ namespace Web2Ass1Team5
         protected global::System.Web.UI.WebControls.Label lblProductName;
 
         /// <summary>
+        /// lblProductType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductType;
+
+        /// <summary>
+        /// lblProductDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductDescription;
+
+        /// <summary>
         /// lblProductPrice control.
         /// </summary>
         /// <remarks>
