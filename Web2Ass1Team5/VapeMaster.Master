@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../BootStrap4/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="../BootStrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="BootStrap4/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="BootStrap4/css/bootstrap.min.css">
 
 
 
@@ -31,7 +31,7 @@
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">
-                    <img src="Images/Cloud9Logo.png" class="img-fluid" alt="Cloud 9 Logo" />
+                    <img src="/Images/Cloud9Logo.png" class="img-fluid" alt="Cloud 9 Logo" />
                 </div>
                 <div class="col-sm-4">
                 </div>

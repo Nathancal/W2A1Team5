@@ -8,7 +8,9 @@ namespace Web2Ass1Team5.App_Code.BLL
 {
     public class ProductRating
     {
+#pragma warning disable CS0169 // The field 'ProductRating.ratingNum' is never used
         private int ratingNum, productId, rating, userId;
+#pragma warning restore CS0169 // The field 'ProductRating.ratingNum' is never used
         private string userIp, ratingDesc;
         private DateTime dateSubmitted;
 

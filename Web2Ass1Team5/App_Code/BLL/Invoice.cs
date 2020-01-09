@@ -9,7 +9,11 @@ namespace Web2Ass1Team5.App_Code.BLL
     public class Invoice
     {
 
+#pragma warning disable CS0169 // The field 'Invoice.productId' is never used
+#pragma warning disable CS0169 // The field 'Invoice.quantity' is never used
         private int invoiceNum, productId, quantity;
+#pragma warning restore CS0169 // The field 'Invoice.quantity' is never used
+#pragma warning restore CS0169 // The field 'Invoice.productId' is never used
         private string email, shipMethod;
         private DateTime orderDate;
         private double subTotal, shipping, totalCost;
@@ -55,10 +59,6 @@ namespace Web2Ass1Team5.App_Code.BLL
             return returnInvoice;
         }
 
-        public void findInvoice()
-        {
-
-        }
 
 
     }

@@ -109,15 +109,16 @@
     <Content Include="Login.aspx" />
     <Content Include="ProductsDetails.aspx" />
     <Content Include="ProductsView.aspx" />
+    <Content Include="Secure\Checkout.aspx" />
     <Content Include="Secure\RateProducts.aspx" />
     <Content Include="RegisterAccount.aspx" />
     <Content Include="RegisterSuccessful.aspx" />
     <Content Include="Search.aspx" />
-    <Content Include="Secure\Checkout.aspx" />
     <Content Include="Secure\Invoices.aspx" />
     <Content Include="Secure\Message.aspx" />
     <Content Include="Secure\Profile.aspx" />
     <Content Include="styles\AdminStyle.css" />
+    <Content Include="styles\feStyleElements.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Test_Forms\TestDiscountCodes.aspx" />
     <Content Include="Test_Forms\testFormMessages.aspx" />
@@ -219,6 +220,13 @@
     <Compile Include="ProductsView.aspx.designer.cs">
       <DependentUpon>ProductsView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secure\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secure\RateProducts.aspx.cs">
       <DependentUpon>RateProducts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,26 +255,12 @@
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Secure\Checkout.aspx.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secure\Checkout.aspx.designer.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Secure\Invoices.aspx.cs">
       <DependentUpon>Invoices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Secure\Invoices.aspx.designer.cs">
       <DependentUpon>Invoices.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Secure\LoggedOn.Master.cs">
-      <DependentUpon>LoggedOn.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secure\LoggedOn.Master.designer.cs">
-      <DependentUpon>LoggedOn.Master</DependentUpon>
     </Compile>
     <Compile Include="Secure\Message.aspx.cs">
       <DependentUpon>Message.aspx</DependentUpon>
@@ -398,7 +392,6 @@
     <None Include="packages.config" />
     <Content Include="VapeShop.Master" />
     <Content Include="VapeMaster.Master" />
-    <Content Include="Secure\LoggedOn.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

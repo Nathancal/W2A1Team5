@@ -15,6 +15,11 @@ namespace Web2Ass1Team5.App_Code.BLL
         private double price;
         private int productId, quantity;
 
+        public CartItem()
+        {
+
+        }
+
         public CartItem(int prodId, string prodName, string prodType, double price, int prodQuantity)
         {
             this.productId = prodId;
@@ -22,6 +27,14 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.productType = prodType;
             this.price = price;
             this.quantity = prodQuantity;
+        }
+
+        public CartItem(int prodId, string prodName, string prodType, double price)
+        {
+            this.productId = prodId;
+            this.productName = prodName;
+            this.productType = prodType;
+            this.price = price;
         }
 
         public int getProdId()
@@ -69,14 +82,17 @@ namespace Web2Ass1Team5.App_Code.BLL
             return quantity;
         }
 
-        public void setProdQuantity(int quantity)
+        public int setProdQuantity(int quantity)
         {
             this.quantity = quantity;
+
+            return quantity;
         }
 
         public void createOrderItem(int invoiceNum)
         {
             daCartItem.createOrderItem(this, invoiceNum);
         }
+
     }
 }

@@ -9,7 +9,9 @@ namespace Web2Ass1Team5.App_Code.BLL
 {
     public class Chat
     {
+#pragma warning disable CS0169 // The field 'Chat.messageId' is never used
         private int userId, chatId, messageId, recepId;
+#pragma warning restore CS0169 // The field 'Chat.messageId' is never used
         private string secondUsername;
 
 

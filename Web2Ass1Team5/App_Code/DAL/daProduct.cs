@@ -30,7 +30,9 @@ namespace Web2Ass1Team5.App_Code.DAL
                 {
                     strConn = rootWebConfig.ConnectionStrings.ConnectionStrings["c9ConnStr"].ToString();
                 }
+#pragma warning disable CS0168 // The variable 'ex' is declared but never used
                 catch (Exception ex)
+#pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
                     strConn = null;
                 }

@@ -37,7 +37,9 @@ namespace Web2Ass1Team5
 
                 }//TODO needs fixed not reaching else statement if login details incorrect. the page refreshes and nothing happens
             }
+#pragma warning disable CS0168 // The variable 'ex' is declared but never used
             catch(Exception ex)
+#pragma warning restore CS0168 // The variable 'ex' is declared but never used
             {
                 
 
