@@ -32,6 +32,12 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.dateEnd = dateEnd;
             this.discountPerc = discountPerc;
         }
+        public DiscountCode(string code)
+        {
+            this.code = code;
+
+        }
+
 
         public DiscountCode() { }
 
@@ -81,6 +87,11 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.code = code;
         }
 
+        public void setDiscountPerc(int perc)
+        {
+            this.discountPerc = perc;
+
+        }
 
 
         public void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discPerc, Boolean isActive)
@@ -88,30 +99,12 @@ namespace Web2Ass1Team5.App_Code.BLL
             daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discPerc, isActive);
         }
 
-        public String redeemDiscountCode(string code, int userId, DateTime current)
+        public int redeemDiscountCode(string code, int userId)
         {
 
-            int redeemCodeStatus = daDiscountCode.redeemDiscountCode(code, userId, current);
-            string statusInfo;
+            int redeemCodeStatus = daDiscountCode.redeemDiscountCode(code, userId);
 
-            if (redeemCodeStatus == 0)
-            {
-                statusInfo = "Im sorry but you have already used this discount code.";
-            }
-            else if (redeemCodeStatus == 1)
-            {
-                statusInfo = "discount applied";
-            }
-            else if (redeemCodeStatus == 2)
-            {
-                statusInfo = "Im sorry but this discount code does not exist, or is no longer active";
-            }
-            else
-            {
-                statusInfo = "Error";
-            }
-
-            return statusInfo;
+            return redeemCodeStatus;
 
         }
 
@@ -120,5 +113,10 @@ namespace Web2Ass1Team5.App_Code.BLL
             daDiscountCode.updateDiscountCode(discCode, dateStart, dateEnd, discountPerc, isActive);
         }
 
+        public static DiscountCode selectDiscountCode(string pFindCode)
+        {
+            return daDiscountCode.selectDiscountCode(pFindCode);
+
+        }//TODO
     }
 }

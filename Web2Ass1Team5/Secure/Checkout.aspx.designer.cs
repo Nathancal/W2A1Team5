@@ -15,15 +15,6 @@ namespace Web2Ass1Team5.Secure
     {
 
         /// <summary>
-        /// lblTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTest;
-
-        /// <summary>
         /// lvCheckout control.
         /// </summary>
         /// <remarks>
@@ -96,6 +87,24 @@ namespace Web2Ass1Team5.Secure
         protected global::System.Web.UI.WebControls.TextBox tbPostCode;
 
         /// <summary>
+        /// btnCompleteTransaction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCompleteTransaction;
+
+        /// <summary>
+        /// btnCancelTransaction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelTransaction;
+
+        /// <summary>
         /// ddlDeliverySelect control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,24 @@ namespace Web2Ass1Team5.Secure
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDeliverySelect;
+
+        /// <summary>
+        /// lblHiddenCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHiddenCost;
+
+        /// <summary>
+        /// lblTestDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTestDiscount;
 
         /// <summary>
         /// tbDiscountCodeRedeem control.
@@ -114,13 +141,13 @@ namespace Web2Ass1Team5.Secure
         protected global::System.Web.UI.WebControls.TextBox tbDiscountCodeRedeem;
 
         /// <summary>
-        /// lbtnReedemCode control.
+        /// btnRedeemCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnReedemCode;
+        protected global::System.Web.UI.WebControls.Button btnRedeemCode;
 
         /// <summary>
         /// lblDiscountCodeAmount control.

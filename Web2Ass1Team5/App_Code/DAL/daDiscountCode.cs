@@ -88,7 +88,7 @@ namespace Web2Ass1Team5.App_Code.DAL
 
             OleDbConnection conn = openConnection();
 
-            int isActive = 1;
+            Boolean isActive = true;
             string strCheckCodeExists = "SELECT * FROM DiscountCodes WHERE Code=@Code AND isActive=@isActive";
             OleDbCommand cmdCheckCode = new OleDbCommand(strCheckCodeExists, conn);
 
@@ -102,6 +102,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             if (checkExistsReader.Read())
             {
                 discCode.setCode(Convert.ToString(checkExistsReader["Code"]));
+
 
             }
 
@@ -131,32 +132,39 @@ namespace Web2Ass1Team5.App_Code.DAL
         }
 
 
-        public static int redeemDiscountCode(string code, int userId, DateTime usedOn)
+        public static int redeemDiscountCode(string code, int userId)
         {
             OleDbConnection conn = openConnection();
 
-            string strCheckForRedeemedCode = "SELECT * FROM RedeemCode WHERE UserId=@UserId AND DiscountCode=@DiscountCode";
+            DiscountCode redeemCode = new DiscountCode();
+
+            redeemCode.setCode(code);
+
+            Users redeemUser = new Users();
+
+            redeemUser.setUserId(userId);
+
+            string strCheckForRedeemedCode = "SELECT * FROM RedeemCode WHERE UserId=@UserId AND DiscountCodeId=@DiscountCodeId";
 
             OleDbCommand cmdSelect = new OleDbCommand(strCheckForRedeemedCode, conn);
 
-            cmdSelect.Parameters.AddWithValue("@UserId", userId);
-            cmdSelect.Parameters.AddWithValue("@DiscountCode", code);
+            cmdSelect.Parameters.AddWithValue("@UserId", redeemUser.getUserId());
+            cmdSelect.Parameters.AddWithValue("@DiscountCodeId", redeemCode.getCode());
             OleDbDataReader codeReader = cmdSelect.ExecuteReader();
 
             if (codeReader.Read())
             {
-                DateTime dateUsed = Convert.ToDateTime(codeReader["UsedOn"]);
                 return 0;
+
             }
             else
             {
-                string strRedeemCode = "INSERT INTO RedeemCode(UserId, DiscountCode, UsedOn) VALUES(@UserId, @DiscountCode, @UsedOn)";
-                OleDbCommand cmdRedeemCode = new OleDbCommand(strRedeemCode, conn);
                 codeReader.Close();
+                string strRedeemCode = "INSERT INTO RedeemCode(UserId, DiscountCodeId) VALUES(@UserId, @DiscountCodeId)";
+                OleDbCommand cmdRedeemCode = new OleDbCommand(strRedeemCode, conn);
 
-                cmdRedeemCode.Parameters.AddWithValue("@UserId", userId);
-                cmdRedeemCode.Parameters.AddWithValue("@DiscountCode", code);
-                cmdRedeemCode.Parameters.AddWithValue("@UsedOn", usedOn);
+                cmdRedeemCode.Parameters.AddWithValue("@UserId", redeemUser.getUserId());
+                cmdRedeemCode.Parameters.AddWithValue("@DiscountCodeId", redeemCode.getCode());
 
                 cmdRedeemCode.ExecuteNonQuery();
 
@@ -185,7 +193,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             OleDbConnection conn = openConnection();
 
 
-            string strUpdateDiscount = "UPDATE DisocuntCodes SET  Code=@Code, DateFrom= @DateFrom, DateTo= @DateTo, DiscountPerc= @DiscountPerc, isActive= @isActive WHERE Code=@Code";
+            string strUpdateDiscount = "UPDATE DiscountCodes SET  Code=@Code, DateFrom= @DateFrom, DateTo= @DateTo, DiscountPerc= @DiscountPerc, isActive= @isActive WHERE Code=@Code";
             OleDbCommand cmdUpdate = new OleDbCommand(strUpdateDiscount, conn);
             cmdUpdate.Parameters.AddWithValue("@Code", discCode);
             cmdUpdate.Parameters.AddWithValue("@DateFrom", dateStart);
@@ -201,32 +209,39 @@ namespace Web2Ass1Team5.App_Code.DAL
 
         public static DiscountCode selectDiscountCode(string discCode)
         {
+
+            DiscountCode tempDiscCode = new DiscountCode();
+
             OleDbConnection conn = openConnection();
 
+            string searchCode = discCode;
 
-            string strRetrieveUpdate = "SELECT * FROM DiscountCodes WHERE Code=@Code";
+            OleDbCommand cmd;
 
-            OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
-            cmdSelect.Parameters.AddWithValue("@Code", discCode);
+            string strSearchProduct = "SELECT * FROM DiscountCodes WHERE Code= @Code ";
 
-            OleDbDataReader disocuntReader = cmdSelect.ExecuteReader();
-            DiscountCode disCodeObject = null;
+            cmd = new OleDbCommand(strSearchProduct, conn);
 
-            while (disocuntReader.Read())
+            cmd.Parameters.AddWithValue("@Code", searchCode);
+
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
-                string code = disocuntReader["Code"].ToString();
-                DateTime dateActive = Convert.ToDateTime(disocuntReader["DateFrom"]);
-                DateTime dateTo = Convert.ToDateTime(disocuntReader["DateTo"]);
-                int discPerc = Convert.ToInt32(disocuntReader["DiscountPerc"]);
-                Boolean isActive = Convert.ToBoolean(disocuntReader["isActive"]);
 
 
-                disCodeObject = new DiscountCode(code, dateActive, dateTo, discPerc, isActive);
-            }
+                tempDiscCode.setCode(reader["Code"].ToString());
+                tempDiscCode.setDateActive(Convert.ToDateTime(reader["DateFrom"]));
+                tempDiscCode.setDateEnd(Convert.ToDateTime(reader["DateTo"]));
+                tempDiscCode.setDiscountPerc(Convert.ToInt32(reader["DiscountPerc"]));
+            }//while
 
-            return disCodeObject;
+            reader.Close();
+            closeConnection(conn);
+
+            return tempDiscCode;
+        }//getProduct
 
 
-        }
     }
 }

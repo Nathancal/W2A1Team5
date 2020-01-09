@@ -27,10 +27,6 @@ namespace Web2Ass1Team5.Secure
                 DataTable dt = displayItems(lvCheckout);
                 if (!IsPostBack)
                 {
-                    ddlDeliverySelect.Items.Add("Standard UK (1-3 days)");
-                    ddlDeliverySelect.Items.Add("Next day UK");
-                    ddlDeliverySelect.Items.Add("Standard EU (3-5 days)");
-                    ddlDeliverySelect.Items.Add("Next day EU");
 
 
                     ArrayList cartItems = (ArrayList)Session["ShoppingBasket"];
@@ -44,22 +40,34 @@ namespace Web2Ass1Team5.Secure
                     tbPostCode.Text = userInfo.getPostCode();
 
                     double subTotal = 0.0;
+                    double storedCost = 0.00;
 
 
                     foreach (CartItem item in cartItems)
                     {
 
-                            DataRow dr = dt.AsEnumerable()
-                                           .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
+                        DataRow dr = dt.AsEnumerable()
+                                       .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
 
 
-                            double currentCost = (double)dr["LineCost"];
+                        double currentCost = item.getProdPrice();
 
-                            
-                            subTotal += currentCost;
+
+
+
+                        storedCost += currentCost;
                     }
 
-                    
+
+                    subTotal = storedCost;
+
+                    double vat = (subTotal / 100) * 20;
+                    double beforeVat = subTotal / 100 * 80;
+                    lblSubTotal.Text = beforeVat.ToString("£##.00");
+                    lblVat.Text = vat.ToString("£##.00");
+                    lblHiddenCost.Text = subTotal.ToString();
+
+                    lblTotal.Text = subTotal.ToString("£##.00");
 
                 }
 
@@ -67,7 +75,7 @@ namespace Web2Ass1Team5.Secure
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("~/Login.aspx");
 
             }
         }
@@ -102,9 +110,8 @@ namespace Web2Ass1Team5.Secure
                 {
                     if (dt.Rows.Find(item.getProdId()) != null)
                     {
-
                         DataRow dr = dt.AsEnumerable()
-                                       .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
+                                              .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
 
                         int currentQuantity = (int)dr["ProductQuantity"];
                         currentQuantity += 1;
@@ -154,9 +161,6 @@ namespace Web2Ass1Team5.Secure
                 {
                     if (lvCheckout.SelectedIndex != -1)
                     {
-
-                        lblTest.Text = lvCheckout.SelectedIndex.ToString();
-
                         ArrayList basket = (ArrayList)Session["ShoppingBasket"];
 
                         basket.RemoveAt(lvCheckout.SelectedIndex);
@@ -170,7 +174,7 @@ namespace Web2Ass1Team5.Secure
                 }
                 catch (Exception ex)
                 {
-                    lblTest.Text = ex.ToString();
+                    lblTotal.Text = ex.ToString();
 
                 }
                 Response.Redirect("Checkout.aspx");
@@ -208,12 +212,78 @@ namespace Web2Ass1Team5.Secure
                 //}
             }
         }
+
         protected void ddlDeliverySelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+            double totalCost = 0;
 
+            switch (ddlDeliverySelect.SelectedIndex)
+            {
+                case 0:
+                    lblDelivery.Text = "0";
+                    break;
+                case 1:
+                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 5;
+                    lblTotal.Text = totalCost.ToString("£##.00");
+                    lblDelivery.Text = "5";
 
+                    break;
+                case 2:
+                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 8;
+                    lblTotal.Text = totalCost.ToString("£##.00");
+                    lblDelivery.Text = "8";
+                    break;
+                case 3:
+                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 15;
+                    lblTotal.Text = totalCost.ToString("£##.00");
+                    lblDelivery.Text = "15";
+                    break;
+            }//switch
 
+        }
 
+        protected void btnRedeemCode_Click(object sender, EventArgs e)
+        {
+            Users userInfo = (Users)Session["userInfo"];
+
+            string discountCodeEntered = tbDiscountCodeRedeem.Text;
+
+            DiscountCode selectCode = new DiscountCode();
+
+            selectCode = DiscountCode.selectDiscountCode(discountCodeEntered);
+
+            try
+            {
+                if (selectCode.getCode().Equals(discountCodeEntered))
+                {
+                    lblDiscountCodeAmount.Text = selectCode.getDiscountPerc().ToString();
+
+                    int redeemCodeStatus = selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId());
+
+                    lblDiscountCodeFail.Text = redeemCodeStatus.ToString();
+                    lblDiscountCodeFail.Text = userInfo.getUserId().ToString();
+
+                    if (redeemCodeStatus == 0)
+                    {
+                        lblDiscountCodeFail.Text = "Im sorry but you have already used this discount code.";
+                    }
+                    if (redeemCodeStatus == 1)
+                    {
+                        lblTestDiscount.Text = "Discount code successfully redeemed";
+
+                    }
+
+                }
+                else
+                {
+                    lblDiscountCodeFail.Text = "Discount Code does not exist";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblDiscountCodeFail.Text = ex.ToString();
+            }
         }
     }
 }
