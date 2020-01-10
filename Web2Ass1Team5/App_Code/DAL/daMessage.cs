@@ -231,7 +231,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             string strGetMessages = "SELECT Message.ID, Message.CreatorId, Message.MessageBody, Message.CreateDate, " +
                                     "MessageRecipient.RecipientId, MessageRecipient.isRead FROM Message " +
                                     "INNER JOIN MessageRecipient ON Message.ID = MessageRecipient.MessageId " +
-                                    "INNER JOIN Chats ON Message.ChatId = Chats.ChatId" +
+                                    "INNER JOIN Chats ON Message.ChatId = Chats.ChatId " +
                                     "WHERE Message.CreatorId=@UserId";
 
             //data adapter is bridge between database and dataset

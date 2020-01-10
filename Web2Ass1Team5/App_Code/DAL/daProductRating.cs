@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Web;
@@ -59,38 +60,138 @@ namespace Web2Ass1Team5.App_Code.DAL
             cn.Close();
         } //closeConnection
 
-        public static ProductRating createNewRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub)
+
+        public static DataSet getRatingsForProduct(int productId)
         {
             OleDbConnection conn = openConnection();
 
-            ProductRating newRating = new ProductRating(productId, rating, userId, userIp, ratingDesc, dateSub);
+            DataSet dsRatings = new DataSet();
 
-            string strNewRating = "INSERT INTO ProductsRatings(ProductId, " +
-                           " UserId, Rating, DateSubmitted, UserIP, RatingDesc)" +
-                           " VALUES(@ProductId,@Rating,@UserId,@UserIp,@RatingDesc,@DateSub)";
+            int storeProductId = productId;
+
+            string strGetRatingInformation = "SELECT ProductsRatings.UserId, ProductsRatings.DateSubmitted, ProductsRatings.Rating, ProductsRatings.RatingDesc, Users.FirstName, Users.Surname, Users.Country, " +
+                                            "Products.ProductName, Products.ProductType FROM (ProductsRatings " +
+                                            "INNER JOIN Products ON ProductsRatings.ProductId = Products.ProductId) " +
+                                            "INNER JOIN Users ON ProductsRatings.UserId = Users.UserId " +
+                                            "WHERE ProductsRatings.ProductId=@ProductId " +
+                                            "ORDER BY ProductsRatings.DateSubmitted DESC";
+
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daRatings = new OleDbDataAdapter(strGetRatingInformation, conn);
+
+            daRatings.SelectCommand.Parameters.AddWithValue("@ProductId", storeProductId);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daRatings.Fill(dsRatings, "ProductsRatings");
+            daRatings.Fill(dsRatings, "Users");
+            daRatings.Fill(dsRatings, "Products");
+
+
+
+            closeConnection(conn);
+
+            return dsRatings;
+
+
+        }
+
+
+        public static ProductRating createNewRating(int productId, int rating, int userId, string ratingDesc)
+        {
+            OleDbConnection conn = openConnection();
+
+            ProductRating newRating = new ProductRating(productId, rating, userId, ratingDesc);
+
+            string strNewRating = "INSERT INTO ProductsRatings(ProductId,UserId, Rating,DateSubmitted, RatingDesc) VALUES(@ProductId,@UserId, @Rating,@DateSub,@RatingDesc)";
 
             //create the command object using the SQL
             OleDbCommand cmd = new OleDbCommand(strNewRating, conn);
 
             cmd.Parameters.AddWithValue("@ProductId", newRating.getProductId());
-            cmd.Parameters.AddWithValue("@Rating", newRating.getRating());
             cmd.Parameters.AddWithValue("@UserId", newRating.getUserId());
-            cmd.Parameters.AddWithValue("@UserIp", newRating.getUserIp());
+            cmd.Parameters.AddWithValue("@Rating", newRating.getRating());
+            cmd.Parameters.AddWithValue("@DateSub", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@RatingDesc", newRating.getRatingDesc());
-            cmd.Parameters.AddWithValue("@DateSub", newRating.getDateSubmitted());
             cmd.ExecuteNonQuery(); // execute the insertion command
-
-            //change the SQL to return the new product rating
-            cmd.CommandText = "Select @@Identity";
-            //TODO
-
-            int ratingNum = Convert.ToInt32(cmd.ExecuteScalar());
-
 
             closeConnection(conn); // close connection
 
             return newRating;
         }
+
+        public static void removeRatingById(int ratingId)
+        {
+            OleDbConnection conn = openConnection();
+
+            int ratingToRemove = ratingId;
+
+            string removeRating = "DELETE FROM ProductsRatings WHERE ID=@RatingId";
+
+            //create the command object using the SQL
+            OleDbCommand cmd = new OleDbCommand(removeRating, conn);
+
+            cmd.Parameters.AddWithValue("@RatingId", ratingToRemove);
+            cmd.ExecuteNonQuery();
+            closeConnection(conn);
+
+        }
+
+        public static void removeRatingByUserAndProduct(int productId, int passUserId)
+        {
+            OleDbConnection conn = openConnection();
+
+            int prodId = productId;
+            int userId = passUserId;
+
+            string removeRating = "DELETE FROM ProductsRatings WHERE ProductId=@ProductId AND UserId= @UserId";
+
+            OleDbCommand cmd = new OleDbCommand(removeRating, conn);
+
+            cmd.Parameters.AddWithValue("@ProductId", prodId);
+            cmd.Parameters.AddWithValue("@UserId", userId);
+
+            cmd.ExecuteNonQuery();
+            closeConnection(conn);
+        }
+
+
+        public static ProductRating returnRating(int productId, int userId)
+        {
+            OleDbConnection conn = openConnection();
+
+            int storeProductId = productId;
+            int storeUserId = userId;
+
+            string strRetrieveUpdate = "SELECT * FROM ProductsRatings WHERE ProductId=@ProductId AND UserId=@UserId";
+
+            OleDbCommand cmdCheckRating = new OleDbCommand(strRetrieveUpdate, conn);
+
+            cmdCheckRating.Parameters.AddWithValue("@ProductId", storeProductId);
+            cmdCheckRating.Parameters.AddWithValue("@UserId", storeUserId);
+
+            OleDbDataReader ratingReader = cmdCheckRating.ExecuteReader();
+
+            ProductRating checkIfProductRated = null;
+
+            while (ratingReader.Read())
+            {
+                checkIfProductRated = new ProductRating();
+
+                checkIfProductRated.setRatingId(Convert.ToInt32(ratingReader["ID"]));
+                checkIfProductRated.setProductId(Convert.ToInt32(ratingReader["ProductId"]));
+                checkIfProductRated.setUserId(Convert.ToInt32(ratingReader["UserId"]));
+                checkIfProductRated.setRating(Convert.ToInt32(ratingReader["Rating"]));
+                checkIfProductRated.setDateSubmitted(Convert.ToDateTime(ratingReader["DateSubmitted"]));
+                checkIfProductRated.setRatingDescription(ratingReader["RatingDesc"].ToString());
+
+            }
+
+            return checkIfProductRated;
+
+        }
+
 
         public static ProductRating updateRating(int ratingId, int rating, string ratingDesc)
         {
@@ -105,7 +206,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             cmdUpdate.Parameters.AddWithValue("@RatingId", ratingId);
             cmdUpdate.ExecuteNonQuery(); // execute the insertion command
 
-            string strRetrieveUpdate = "SELECT * FROM ProductsRating WHERE ID=@RatingId";
+            string strRetrieveUpdate = "SELECT * FROM ProductsRatings WHERE ID=@RatingId";
 
             OleDbCommand cmdSelect = new OleDbCommand(strRetrieveUpdate, conn);
             cmdSelect.Parameters.AddWithValue("@RatingId", ratingId);
@@ -123,7 +224,7 @@ namespace Web2Ass1Team5.App_Code.DAL
                 string userIp = ratingReader["UserIP"].ToString();
                 string rDesc = ratingReader["RatingDesc"].ToString();
 
-                ratingObject = new ProductRating(productId, userId, rating, userIp, rDesc, dateSub);
+                ratingObject = new ProductRating(productId, userId, rating, rDesc, dateSub);
             }
             return ratingObject;
         }

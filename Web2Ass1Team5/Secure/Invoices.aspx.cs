@@ -15,8 +15,7 @@ namespace Web2Ass1_Team5.secure
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList invoiceItems = (ArrayList)Session["InvoiceItems"];
-
-
+          
             Users userInfo = (Users)Session["userInfo"];
 
             if (userInfo != null)

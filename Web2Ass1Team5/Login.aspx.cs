@@ -13,6 +13,15 @@ namespace Web2Ass1Team5
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            Users userInfo = (Users)Session["userInfo"];
+
+            if(userInfo != null)
+            {
+                Response.Redirect("ProductsView.aspx");
+
+            }
+
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

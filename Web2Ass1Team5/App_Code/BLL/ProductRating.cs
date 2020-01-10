@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using Web2Ass1Team5.App_Code.DAL;
@@ -8,18 +9,35 @@ namespace Web2Ass1Team5.App_Code.BLL
 {
     public class ProductRating
     {
-#pragma warning disable CS0169 // The field 'ProductRating.ratingNum' is never used
-        private int ratingNum, productId, rating, userId;
-#pragma warning restore CS0169 // The field 'ProductRating.ratingNum' is never used
-        private string userIp, ratingDesc;
+        private int ratingId, productId, rating, userId;
+        private string ratingDesc;
         private DateTime dateSubmitted;
 
-        public ProductRating(int productId, int rating, int userId, string userIp, string ratingDesc, DateTime dateSub)
+        public ProductRating(int productId, int rating, int userId, string ratingDesc)
         {
             this.productId = productId;
             this.rating = rating;
             this.userId = userId;
-            this.userIp = userIp;
+            this.ratingDesc = ratingDesc;
+
+        }
+
+        public ProductRating(int productId, int rating, int userId, string ratingDesc, DateTime dateSub)
+        {
+            this.productId = productId;
+            this.rating = rating;
+            this.userId = userId;
+            this.ratingDesc = ratingDesc;
+
+        }
+
+
+        public ProductRating(int ratingId, int productId, int rating, int userId, string ratingDesc, DateTime dateSub)
+        {
+            this.ratingId = ratingId;
+            this.productId = productId;
+            this.rating = rating;
+            this.userId = userId;
             this.ratingDesc = ratingDesc;
             this.dateSubmitted = dateSub;
 
@@ -27,9 +45,15 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         public ProductRating() { }
 
-        public ProductRating createRating()
+        public static DataSet getRatingsForProduct(int productId)
         {
-            ProductRating returnRating = daProductRating.createNewRating(productId, rating, userId, userIp, ratingDesc, dateSubmitted);
+            return daProductRating.getRatingsForProduct(productId);
+        }
+
+
+        public ProductRating createRating(int productId, int rating, int userId, string ratingDesc)
+        {
+            ProductRating returnRating = daProductRating.createNewRating(productId, rating, userId, ratingDesc);
             return returnRating;
         }
 
@@ -38,6 +62,13 @@ namespace Web2Ass1Team5.App_Code.BLL
             ProductRating updateRating = daProductRating.updateRating(ratingId, rating, ratingDesc);
 
             return updateRating;
+        }
+
+        public ProductRating returnRating(int productId, int userId)
+        {
+            ProductRating returnRating = daProductRating.returnRating(productId, userId);
+
+            return returnRating;
         }
 
         public int getRating()
@@ -60,14 +91,46 @@ namespace Web2Ass1Team5.App_Code.BLL
             return dateSubmitted;
         }
 
-        public string getUserIp()
-        {
-            return userIp;
-        }
+
 
         public int getUserId()
         {
             return userId;
+        }
+
+        public void setRating(int rating)
+        {
+            this.rating = rating;
+
+        }
+
+        public void setProductId(int productId)
+        {
+            this.productId = productId;
+
+        }
+
+        public void setUserId(int userId)
+        {
+            this.userId = userId;
+        }
+
+        public void setDateSubmitted(DateTime dateSub)
+        {
+            this.dateSubmitted = dateSub;
+
+        }
+
+        public void setRatingDescription(string ratingDesc)
+        {
+            this.ratingDesc = ratingDesc;
+
+        }
+
+        public void setRatingId(int ratingId)
+        {
+            this.ratingId = ratingId;
+
         }
     }
 }

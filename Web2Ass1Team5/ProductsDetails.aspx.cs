@@ -16,45 +16,90 @@ namespace Web2Ass1Team5
         {
 
 
-            //Users userInfo = (Users)Session["userInfo"];
+            Users userInfo = (Users)Session["userInfo"];
+            ArrayList invoiceItemsReview = (ArrayList)Session["InvoiceItems"];
 
 
-
-            //if (userInfo != null)
-            //{
-
-            Product productInfo = (Product)Session["ProductDetailView"];
-
-
-            if (!IsPostBack)
+            if (userInfo != null)
             {
-                Session["CheckoutListViewData"] = displayItems(lvCheckout);
-            }
+
+                Product productInfo = (Product)Session["ProductDetailView"];
+
+                if (productInfo != null)
+                {
+                    productImage.Src = productInfo.getImageFile();
+                    lblProductName.Text = productInfo.getProductName();
+                    lblProductPrice.Text = productInfo.getPrice().ToString();
+                    lblProductDescription.Text = productInfo.getProductDesc();
+                    lblProductType.Text = productInfo.getProductType();
+
+
+                    ProductRating getRating = new ProductRating();
+                    
+
+                    lvProductReviewsDisplay.DataSource = ProductRating.getRatingsForProduct(productInfo.getProductId());
+                    lvProductReviewsDisplay.DataBind();
+                }
+                else
+                {
+                    Response.Redirect("ProductsView.aspx");
+                }
 
 
 
-            if (productInfo != null)
-            {
-                productImage.Src = productInfo.getImageFile();
-                lblProductName.Text = productInfo.getProductName();
-                lblProductPrice.Text = productInfo.getPrice().ToString();
-                lblProductDescription.Text = productInfo.getProductDesc();
-                lblProductType.Text = productInfo.getProductType();
+
+                if (invoiceItemsReview != null)
+                {
+                    foreach (CartItem item in invoiceItemsReview)
+                    {
+                        if (item.getProdId() == productInfo.getProductId())
+                        {
+                            ProductRating rateProduct = new ProductRating();
+                            ProductRating checkDB = new ProductRating();
+
+                            checkDB.setProductId(productInfo.getProductId());
+                            checkDB.setUserId(userInfo.getUserId());
+
+                            if (rateProduct.returnRating(checkDB.getProductId(), checkDB.getUserId()) == null)
+                            {
+
+                                RateProductRow.Visible = true;
+                                break;
+                            }
+                            else
+                            {
+                                RateProductRow.Visible = false;
+
+                            }
+
+                        }
+                        else
+                        {
+                            RateProductRow.Visible = false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    RateProductRow.Visible = false;
+
+                }
+
+                if (!IsPostBack)
+                {
+                    Session["CheckoutListViewData"] = displayItems(lvCheckout);
+                }
+
+
+
+
             }
             else
             {
-                Response.Redirect("ProductsView.aspx");
+                Response.Redirect("Login.aspx");
+
             }
-
-
-
-
-            //}
-            //else
-            //{
-            //    Response.Redirect("Login.aspx");
-
-            //}
 
         }
 
@@ -171,21 +216,54 @@ namespace Web2Ass1Team5
 
 
 
-                //if (userInfo != null)
-                //{
-                    if(basket != null)
+                if (userInfo != null)
+                {
+                    if (basket != null)
                     {
                         Response.Redirect("Secure/Checkout.aspx");
                     }
 
-                //}
-                //else
-                //{
-                //    Response.Redirect("Login.aspx");
-                //}
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
+
+        protected void btnSubmitRating_Click(object sender, EventArgs e)
+        {
+            Product productInfo = (Product)Session["ProductDetailView"];
+            Users userInfo = (Users)Session["userInfo"];
+            ProductRating checkRating = null;
+
+            if (Session["ShoppingBasket"] == null && Session["InvoiceItems"] != null)
+            {
+                ArrayList invoiceItemsReview = (ArrayList)Session["InvoiceItems"];
+
+
+                RateProductRow.Visible = true;
+
+                int ddlSelectedValue = Convert.ToInt32(ddlProductRating.SelectedValue);
+
+                ProductRating createNewRating = new ProductRating();
+                checkRating = createNewRating.createRating(productInfo.getProductId(), ddlSelectedValue, userInfo.getUserId(), tbRatingDescription.Text);
+
+
+
+            }
+
+
+            if(checkRating != null)
+            {
+                RateProductRow.Visible = false;
+            }
+
+        }
+
+
     }
-
-
 }
+
+
+

@@ -13,9 +13,13 @@ namespace Web2Ass1Team5
         protected void Page_Load(object sender, EventArgs e)
         {
 
-       
+            Users userInfo = (Users)Session["userInfo"];
 
+            if (userInfo != null)
+            {
+                Response.Redirect("Home.aspx");
 
+            }
         }
 
 
@@ -27,8 +31,8 @@ namespace Web2Ass1Team5
         protected void btnRegisterAccount_Click(object sender, EventArgs e)
         {
 
-            //try
-            //{
+            try
+            {
                 Users newUserAccount = new Users(tbUsername.Text,
                                         tbFirstName.Text,
                                         tbSurname.Text,
@@ -45,11 +49,11 @@ namespace Web2Ass1Team5
 
                 Response.Redirect("RegisterSuccessful.aspx");
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblErrorMessages.Text = ex.StackTrace;
-            //}
+            }
+            catch (Exception ex)
+            {
+                lblErrorMessages.Text = ex.StackTrace;
+            }
 
 
         }

@@ -26,15 +26,16 @@ namespace Web2Ass1Team5
 
 
 
-            //Users userInfo = (Users)Session["userInfo"];
+            Users userInfo = (Users)Session["userInfo"];
 
-            //if (userInfo == null)
-            //{
-            //    Response.Redirect("Login.aspx");
+            if (userInfo == null)
+            {
+                Response.Redirect("Login.aspx");
 
 
-            //}
-            if (displayItems(lvCheckout) != null) {
+            }
+            if (displayItems(lvCheckout) != null)
+            {
                 displayItems(lvCheckout);
 
             }

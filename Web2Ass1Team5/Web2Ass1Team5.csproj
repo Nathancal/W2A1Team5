@@ -110,7 +110,6 @@
     <Content Include="ProductsDetails.aspx" />
     <Content Include="ProductsView.aspx" />
     <Content Include="Secure\Checkout.aspx" />
-    <Content Include="Secure\RateProducts.aspx" />
     <Content Include="RegisterAccount.aspx" />
     <Content Include="RegisterSuccessful.aspx" />
     <Content Include="Search.aspx" />
@@ -126,7 +125,6 @@
     <Content Include="Test_Forms\TestFormProducts.aspx" />
     <Content Include="Test_Forms\testFormUsers.aspx" />
     <Content Include="Test_Forms\TestLogin.aspx" />
-    <Content Include="ViewRatings.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -228,13 +226,6 @@
     <Compile Include="Secure\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Secure\RateProducts.aspx.cs">
-      <DependentUpon>RateProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secure\RateProducts.aspx.designer.cs">
-      <DependentUpon>RateProducts.aspx</DependentUpon>
-    </Compile>
     <Compile Include="RegisterAccount.aspx.cs">
       <DependentUpon>RegisterAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -325,13 +316,6 @@
     </Compile>
     <Compile Include="VapeShop.Master.designer.cs">
       <DependentUpon>VapeShop.Master</DependentUpon>
-    </Compile>
-    <Compile Include="ViewRatings.aspx.cs">
-      <DependentUpon>ViewRatings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewRatings.aspx.designer.cs">
-      <DependentUpon>ViewRatings.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\BLL\CartItem.cs" />
     <Compile Include="App_Code\BLL\Product.cs" />
