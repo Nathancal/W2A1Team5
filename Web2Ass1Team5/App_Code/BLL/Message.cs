@@ -125,5 +125,12 @@ namespace Web2Ass1Team5.App_Code.BLL
         {
             this.recepUsername = recepUsername;
         }
+
+        public static DataSet returnUserChat(int creatorId)
+        {
+            return daMessage.returnUserChats(creatorId);
+
+
+        }
     }
 }

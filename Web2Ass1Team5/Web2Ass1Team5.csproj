@@ -119,6 +119,7 @@
     <Content Include="Secure\Profile.aspx" />
     <Content Include="styles\AdminStyle.css" />
     <Content Include="styles\feStyleElements.css" />
+    <Content Include="styles\Message.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Test_Forms\TestDiscountCodes.aspx" />
     <Content Include="Test_Forms\testFormMessages.aspx" />

@@ -112,6 +112,28 @@ namespace Web2Ass1Team5.App_Code.DAL
 
         }
 
+        public static DataSet returnUserChats(int creatorId)
+        {
+            OleDbConnection conn = openConnection();
+
+            DataSet selectChat = new DataSet();
+
+            string streReturnChats = "SELECT * FROM Chats WHERE CreatorId=@CreatorId OR RecipientId=@CreatorId";
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daProds = new OleDbDataAdapter(streReturnChats, conn);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daProds.Fill(selectChat, "Chats");
+
+            conn.Close();
+
+            return selectChat;
+
+
+        }
+
         public static void createNewChat(int creatorId, int recipientId)
         {
 
