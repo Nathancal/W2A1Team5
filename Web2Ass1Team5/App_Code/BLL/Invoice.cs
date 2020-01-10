@@ -9,11 +9,7 @@ namespace Web2Ass1Team5.App_Code.BLL
     public class Invoice
     {
 
-#pragma warning disable CS0169 // The field 'Invoice.productId' is never used
-#pragma warning disable CS0169 // The field 'Invoice.quantity' is never used
-        private int invoiceNum, productId, quantity;
-#pragma warning restore CS0169 // The field 'Invoice.quantity' is never used
-#pragma warning restore CS0169 // The field 'Invoice.productId' is never used
+        private int invoiceNum, discountApplied;
         private string email, shipMethod;
         private DateTime orderDate;
         private double subTotal, shipping, totalCost;
@@ -34,30 +30,100 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-        public Invoice(int invoiceNum, string invEmail, string invShipMethod, double invSubTotal, double invShipping, DateTime invOrderDate, double invTotalCost, int productId, int quantity)
+        public Invoice(string invEmail, string invShipMethod, double invSubTotal, double invShipping, double invTotalCost, int discountApplied)
         {
 
             email = invEmail;
             shipMethod = invShipMethod;
             subTotal = invSubTotal;
             shipping = invShipping;
-            orderDate = invOrderDate;
+            orderDate = DateTime.Now;
             totalCost = invTotalCost;
+            this.discountApplied = discountApplied;
 
         }
 
-        public void createInvoice()
+        public Invoice(int invoiceNum, string invEmail, string invShipMethod, double invSubTotal, double invShipping,  double invTotalCost, int discountApplied)
         {
-            int invNum = daInvoice.createNewInvoice(email, shipMethod, orderDate, subTotal, shipping, totalCost);
-            invoiceNum = invNum;
+            this.invoiceNum = invoiceNum;
+            email = invEmail;
+            shipMethod = invShipMethod;
+            subTotal = invSubTotal;
+            shipping = invShipping;
+            orderDate = DateTime.Now;
+            totalCost = invTotalCost;
+            this.discountApplied = discountApplied;
+
         }
 
-        public Invoice returnNewInvoice()
+        public int createInvoice()
+        {
+            int invNum = daInvoice.createNewInvoice(email, shipMethod, subTotal, shipping, totalCost, discountApplied);
+            return invNum;
+        }
+
+
+        public void setInvoiceNum(int invoiceNum)
+        {
+            this.invoiceNum = invoiceNum;
+
+        }
+        public static Invoice returnNewInvoice(int invoiceNum)
         {
             Invoice returnInvoice = daInvoice.returnNewInvoice(invoiceNum);
 
             return returnInvoice;
         }
+
+        public int getInvoiceNum()
+        {
+            return invoiceNum;
+
+        }
+
+        public string getEmail()
+        {
+            return email;
+
+        }
+
+        public string getShipMethod()
+        {
+            return shipMethod;
+
+        }
+
+
+        public double getSubTotal()
+        {
+            return subTotal;
+
+        }
+
+        public double getShippingCost() {
+            return shipping;
+        }
+
+        public DateTime getOrderDate()
+        {
+
+            return orderDate;
+
+        }
+
+        public double getTotalCost()
+        {
+            return totalCost;
+
+        }
+
+        public int getDiscountAmount()
+        {
+            return discountApplied;
+
+        }
+
+
 
 
 

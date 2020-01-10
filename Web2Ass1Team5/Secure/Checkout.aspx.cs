@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Globalization;
 using Web2Ass1Team5.App_Code.BLL;
 
 namespace Web2Ass1Team5.Secure
@@ -17,7 +18,8 @@ namespace Web2Ass1Team5.Secure
 
             Users userInfo = (Users)Session["userInfo"];
 
-
+            toggleCodeApplied.Visible = false;
+            DiscountRedeemFailure.Visible = false;
 
             if (userInfo != null)
             {
@@ -220,23 +222,28 @@ namespace Web2Ass1Team5.Secure
             switch (ddlDeliverySelect.SelectedIndex)
             {
                 case 0:
+                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 0;
+                    lblTotal.Text = totalCost.ToString("£##.00");
                     lblDelivery.Text = "0";
+                    lblHiddenCost.Text = totalCost.ToString();
                     break;
                 case 1:
                     totalCost = Convert.ToDouble(lblHiddenCost.Text) + 5;
                     lblTotal.Text = totalCost.ToString("£##.00");
                     lblDelivery.Text = "5";
-
+                    lblHiddenCost.Text = totalCost.ToString();
                     break;
                 case 2:
                     totalCost = Convert.ToDouble(lblHiddenCost.Text) + 8;
                     lblTotal.Text = totalCost.ToString("£##.00");
                     lblDelivery.Text = "8";
+                    lblHiddenCost.Text = totalCost.ToString();
                     break;
                 case 3:
                     totalCost = Convert.ToDouble(lblHiddenCost.Text) + 15;
                     lblTotal.Text = totalCost.ToString("£##.00");
                     lblDelivery.Text = "15";
+                    lblHiddenCost.Text = totalCost.ToString();
                     break;
             }//switch
 
@@ -244,46 +251,157 @@ namespace Web2Ass1Team5.Secure
 
         protected void btnRedeemCode_Click(object sender, EventArgs e)
         {
-            Users userInfo = (Users)Session["userInfo"];
-
-            string discountCodeEntered = tbDiscountCodeRedeem.Text;
-
-            DiscountCode selectCode = new DiscountCode();
-
-            selectCode = DiscountCode.selectDiscountCode(discountCodeEntered);
 
             try
             {
-                if (selectCode.getCode().Equals(discountCodeEntered))
+
+                Users userInfo = (Users)Session["userInfo"];
+
+                string discountCodeEntered = tbDiscountCodeRedeem.Text;
+
+                DiscountCode selectCode = new DiscountCode();
+
+
+                selectCode = DiscountCode.selectDiscountCode(discountCodeEntered);
+
+                if (selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId()) == 1)
                 {
-                    lblDiscountCodeAmount.Text = selectCode.getDiscountPerc().ToString();
 
-                    int redeemCodeStatus = selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId());
+                    Session["RedeemedDiscountCode"] = selectCode;
 
-                    lblDiscountCodeFail.Text = redeemCodeStatus.ToString();
-                    lblDiscountCodeFail.Text = userInfo.getUserId().ToString();
+                    toggleCodeApplied.Visible = true;
+                    DiscountRedeemFailure.Visible = false;
+                    lblDiscountCodeAmount.Text = selectCode.getDiscountPerc().ToString() + "% Off with discount code " + selectCode.getCode();
+                    
+                    double subTotal = 0.0;
+                    double storedCost = 0.00;
+                    
+                    ArrayList cartItems = (ArrayList)Session["ShoppingBasket"];
 
-                    if (redeemCodeStatus == 0)
+                    DataTable dt = displayItems(lvCheckout);
+
+                    foreach (CartItem item in cartItems)
                     {
-                        lblDiscountCodeFail.Text = "Im sorry but you have already used this discount code.";
-                    }
-                    if (redeemCodeStatus == 1)
-                    {
-                        lblTestDiscount.Text = "Discount code successfully redeemed";
 
+                        DataRow dr = dt.AsEnumerable()
+                                       .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
+
+
+                        double currentCost = item.getProdPrice();
+
+                        storedCost += currentCost;
                     }
+
+
+                    subTotal = storedCost;
+
+                    int remainder = 100 - selectCode.getDiscountPerc();
+                    double total = (subTotal / 100) * remainder;
+
+                    lblDiscountTotalIndicator.Text = selectCode.getDiscountPerc().ToString() + "% Discount";
+                    lblTotal.Text = total.ToString("£##.00");
+
+
+                }
+                else if (selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId()) == 0)
+                {
+                    toggleCodeApplied.Visible = false;
+                    DiscountRedeemFailure.Visible = true;
+                    lblDiscountCodeFail.Text = "You have already used this discount code";
 
                 }
                 else
                 {
+                    toggleCodeApplied.Visible = false;
+                    DiscountRedeemFailure.Visible = true;
                     lblDiscountCodeFail.Text = "Discount Code does not exist";
 
                 }
             }
             catch (Exception ex)
             {
+                toggleCodeApplied.Visible = false;
+                DiscountRedeemFailure.Visible = true;
                 lblDiscountCodeFail.Text = ex.ToString();
             }
+        }
+
+        protected void btnCompleteTransaction_Click(object sender, EventArgs e)
+        {
+
+            Users userInfo = (Users)Session["userInfo"];
+
+            ArrayList cartItems = (ArrayList)Session["ShoppingBasket"];
+
+            DataTable dt = displayItems(lvCheckout);
+
+            DiscountCode selectCode = (DiscountCode)Session["RedeemedDiscountCode"];
+           
+            double subTotal = 0.0;
+            double storedCost = 0.00;
+
+            foreach (CartItem item in cartItems)
+            {
+
+                DataRow dr = dt.AsEnumerable()
+                               .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
+
+                double currentCost = item.getProdPrice();
+
+                storedCost += currentCost;
+            }
+
+            subTotal = storedCost;
+
+            double deliveryCost = Convert.ToDouble(lblDelivery.Text);
+      
+            int invoiceNum;
+            double total;
+
+            if (selectCode != null)
+            {
+                int remainder = 100 - selectCode.getDiscountPerc();
+                total = ((subTotal / 100) * remainder) + deliveryCost;
+                Invoice myInvoice = new Invoice(userInfo.getFirstName(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, selectCode.getDiscountPerc()); ;
+                invoiceNum = myInvoice.createInvoice();
+                myInvoice.setInvoiceNum(invoiceNum);
+                Session["invObj"] = myInvoice;
+            }
+            else
+            {
+                total = subTotal + deliveryCost;
+                Invoice myInvoice = new Invoice(userInfo.getFirstName(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, 0); ;
+                invoiceNum = myInvoice.createInvoice();
+                myInvoice.setInvoiceNum(invoiceNum);
+                Session["invObj"] = myInvoice;
+            }
+
+            ArrayList basket = null; //create an ArrayList called basket
+            if (Session["ShoppingBasket"] != null)
+            {
+                basket = (ArrayList)Session["ShoppingBasket"];
+                // go through each item in basket and add to tblOrderItems
+                foreach (CartItem item in basket)
+                {
+
+
+                    // Add item to tblOrderItems
+                    item.createOrderItem(invoiceNum);
+                }//for each
+            } // if
+
+            //updateStock method returns the number of changed records
+            int updated = Product.updateStock(basket);
+
+            Session["InvoiceItems"] = basket;
+
+            //Shopping basket is now emptied
+            Session.Remove("ShoppingBasket");
+
+            //Open the invoice details page and pass across query string
+            Response.Redirect("Invoices.aspx?recordsUpdated=" +
+                                        Server.UrlEncode(updated.ToString()));
+
         }
     }
 }

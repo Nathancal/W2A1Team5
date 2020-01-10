@@ -5,6 +5,7 @@ using System.Web;
 using Web2Ass1Team5.App_Code.BLL;
 using System.Data;
 using System.Data.OleDb;
+using System.Collections;
 
 namespace Web2Ass1Team5.App_Code.DAL
 {
@@ -30,10 +31,9 @@ namespace Web2Ass1Team5.App_Code.DAL
                 {
                     strConn = rootWebConfig.ConnectionStrings.ConnectionStrings["c9ConnStr"].ToString();
                 }
-#pragma warning disable CS0168 // The variable 'ex' is declared but never used
                 catch (Exception ex)
-#pragma warning restore CS0168 // The variable 'ex' is declared but never used
                 {
+                    ex.ToString();
                     strConn = null;
                 }
 
@@ -61,6 +61,45 @@ namespace Web2Ass1Team5.App_Code.DAL
         {
             cn.Close();
         } //closeConnection
+
+        public static int updateStock(ArrayList parBasket)
+        {
+            OleDbConnection cn = openConnection();
+            string strSQL = "SELECT CurrentStock FROM Products";
+            OleDbCommand cmd = new OleDbCommand(strSQL, cn);
+
+
+            int updated = 0;
+
+            foreach (CartItem itemLine in parBasket)
+            {
+                cmd.CommandText = "SELECT CurrentStock FROM Products WHERE ProductId=@ProductId";
+
+                cmd.Parameters.AddWithValue("@ProductId",itemLine.getProdId());
+
+                OleDbDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                //access the InStock value in the selected record
+
+                int stock = Convert.ToInt32(reader["CurrentStock"]);
+
+                //substract the quantity ordered from the current stock level
+                stock = stock - itemLine.getProdQuantity();
+
+                reader.Close();
+
+                cmd.CommandText = "UPDATE Products SET CurrentStock= @Stock WHERE ProductId= @ProductId";
+
+                cmd.Parameters.AddWithValue("@Stock", stock);
+                cmd.Parameters.AddWithValue("@ProductId", itemLine.getProdId());
+
+                int recordsUpdated = cmd.ExecuteNonQuery();
+                updated = updated + recordsUpdated;
+            }//foreach
+
+            cn.Close();
+            return updated; //return number of product records updated
+        } // updateStock
 
         public static DataSet getProducts()
         {

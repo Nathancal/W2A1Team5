@@ -61,20 +61,25 @@ namespace Web2Ass1Team5.App_Code.DAL
         } //closeConnection
 
 
-        public static int createNewInvoice(string email, string shipMethod, DateTime orderDate, double subTotal, double shipping, double totalCost)
+        public static int createNewInvoice(string invEmail, string invShipMethod, double invSubTotal, double invShipping, double invTotalCost, int discountApplied)
         {
             OleDbConnection conn = openConnection();
 
-            string strCreateInvoice = "INSERT INTO Invoices(Email, OrderDate, SubTotal, ShipMethod, Shipping, Total Cost)" +
-                              " VALUES(@Email, @OrderDate, @SubTotal, @Shipping, @TotalCost)";
+            Invoice newInvoice = new Invoice(invEmail, invShipMethod, invSubTotal, invShipping, invTotalCost, discountApplied);
+
+            string strCreateInvoice = "INSERT INTO Invoices(Email, OrderDate, SubTotal, ShipMethod, Shipping, TotalCost,DiscountApplied) " +
+                "VALUES(@Email, @OrderDate, @SubTotal, @ShipMethod, @Shipping, @TotalCost, @DiscountApplied)";
 
             OleDbCommand cmdInsert = new OleDbCommand(strCreateInvoice, conn);
 
-            cmdInsert.Parameters.AddWithValue("@Email", email);
-            cmdInsert.Parameters.AddWithValue("@OrderDate", orderDate);
-            cmdInsert.Parameters.AddWithValue("@SubTotal", subTotal);
-            cmdInsert.Parameters.AddWithValue("@Shipping", shipping);
-            cmdInsert.Parameters.AddWithValue("@TotalCost", totalCost);
+            cmdInsert.Parameters.AddWithValue("@Email", newInvoice.getEmail());
+            cmdInsert.Parameters.AddWithValue("@OrderDate", DateTime.Now.ToString());
+            cmdInsert.Parameters.AddWithValue("@SubTotal", newInvoice.getSubTotal());
+            cmdInsert.Parameters.AddWithValue("@ShipMethod", newInvoice.getShipMethod());
+            cmdInsert.Parameters.AddWithValue("@Shipping", newInvoice.getShippingCost());
+            cmdInsert.Parameters.AddWithValue("@TotalCost", newInvoice.getTotalCost());
+            cmdInsert.Parameters.AddWithValue("@DiscountApplied", newInvoice.getDiscountAmount());
+
 
             cmdInsert.ExecuteNonQuery(); // execute the insertion command
 
@@ -109,19 +114,11 @@ namespace Web2Ass1Team5.App_Code.DAL
                 DateTime orderDate = Convert.ToDateTime(invReader["OrderDate"]);
                 double subTotal = Convert.ToDouble(invReader["SubTotal"]);
                 string shipMethod = invReader["ShipMethod"].ToString();
-                double shipping = Convert.ToDouble(invReader["ParentMessageId"]);
-                double totalCost = Convert.ToDouble(invReader["Total Cost"]);
+                double shipping = Convert.ToDouble(invReader["Shipping"]);
+                double totalCost = Convert.ToDouble(invReader["TotalCost"]);
+                int discountApplied = Convert.ToInt32(invReader["DiscountApplied"]);
 
-                cmdSelect.CommandText = "SELECT ProductId, Quantity FROM Orders WHERE InvoiceNum=@InvoiceNum";
-                invReader = cmdSelect.ExecuteReader();
-
-                while (invReader.Read())
-                {
-                    int productId = Convert.ToInt32(invReader["ProductId"]);
-                    int quantity = Convert.ToInt32(invReader["Quantity"]);
-
-                    invObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, orderDate, totalCost, productId, quantity);
-                }
+                invObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, totalCost, discountApplied);
             }
 
             invReader.Close();
@@ -167,19 +164,12 @@ namespace Web2Ass1Team5.App_Code.DAL
                 DateTime orderDate = Convert.ToDateTime(FindInvReader["OrderDate"]);
                 double subTotal = Convert.ToDouble(FindInvReader["SubTotal"]);
                 string shipMethod = FindInvReader["ShipMethod"].ToString();
-                double shipping = Convert.ToDouble(FindInvReader["ParentMessageId"]);
-                double totalCost = Convert.ToDouble(FindInvReader["Total Cost"]);
+                double shipping = Convert.ToDouble(FindInvReader["Shipping"]);
+                double totalCost = Convert.ToDouble(FindInvReader["TotalCost"]);
+                int discountApplied = Convert.ToInt32(FindInvReader["DiscountApplied"]);
 
-                cmdSelect.CommandText = "SELECT ProductId, Quantity FROM Orders WHERE InvoiceNum='" + invoiceNum + "'";
-                FindInvReader = cmdSelect.ExecuteReader();
 
-                while (FindInvReader.Read())
-                {
-                    int productId = Convert.ToInt32(FindInvReader["ProductId"]);
-                    int quantity = Convert.ToInt32(FindInvReader["Quantity"]);
-
-                    findInvObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, orderDate, totalCost, productId, quantity);
-                }
+                findInvObject = new Invoice(invoiceNum, email, shipMethod, subTotal, shipping, totalCost, discountApplied);
             }
 
             FindInvReader.Close();
@@ -187,5 +177,25 @@ namespace Web2Ass1Team5.App_Code.DAL
 
             return findInvObject;
         }
+
+        public static void createOrderItem(CartItem item, int intInvoiceNum)
+        {
+            OleDbConnection conn = openConnection();
+            double lineTotal = item.getProdQuantity() * item.getProdPrice();
+
+
+            string strSQL = "INSERT INTO Orders(InvoiceNum, ProductId, Quantity, TotalItemCost)" +
+                           " VALUES(@InvoiceNum, @ProductId, @Quantity, @TotalItemCost)";
+
+            OleDbCommand cmd = new OleDbCommand(strSQL, conn);
+
+            cmd.Parameters.AddWithValue("@InvoiceNum", intInvoiceNum);
+            cmd.Parameters.AddWithValue("@ProductId", item.getProdId());
+            cmd.Parameters.AddWithValue("@Quantity", item.getProdQuantity());
+            cmd.Parameters.AddWithValue("@TotalItemCost", lineTotal);
+
+            cmd.ExecuteNonQuery();
+            closeConnection(conn);
+        } //createOrderItem
     }
 }

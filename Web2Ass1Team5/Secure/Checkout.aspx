@@ -242,7 +242,7 @@
                                     <div class="card mt-3">
                                         <div class="card-body">
 
-                                            <asp:Button ID="btnCompleteTransaction" CssClass="btn btn-outline-success" runat="server" Text="Complete Transaction" />
+                                            <asp:Button ID="btnCompleteTransaction" CssClass="btn btn-outline-success" runat="server" Text="Complete Transaction" OnClick="btnCompleteTransaction_Click" />
                                             <asp:Button ID="btnCancelTransaction" CssClass="btn btn-outline-warning" runat="server" Text="Cancel Transaction" />
 
                                         </div>
@@ -293,13 +293,13 @@
 
                                             <asp:Button ID="btnRedeemCode" runat="server" Text="Reedem" onclick="btnRedeemCode_Click" CssClass="btn btn-success offset-9 mt-3"/>
 
-                                            <div class="card card-body alert-warning mt-2" >
+                                            <div class="card card-body alert-warning mt-2" id="toggleCodeApplied" runat="server">
                                                 <h5 class="card-title text-dark my-0">Discount Code Applied:</h5>
                                                 <asp:Label ID="lblDiscountCodeAmount" runat="server" Text=""><span>% OFF</span></asp:Label>
 
                                             </div>
 
-                                            <div class="card card-body alert-danger mt-2" id="DiscountRedeemFailure">
+                                            <div class="card card-body alert-danger mt-2" id="DiscountRedeemFailure" runat="server">
                                                 <h5 class="card-title text-dark my-0">Discount Code Failed! Please Try again.</h5>
                                                 <asp:Label ID="lblDiscountCodeFail" runat="server" Text=""><span></span></asp:Label>
 
@@ -335,6 +335,7 @@
                                                         </div>
                                                         <div class="col-sm-12 col-md-6 form-group">
                                                             <asp:Label ID="lblTotal" CssClass="text-info" runat="server" Text="0.00"></asp:Label>
+                                                            <asp:Label ID="lblDiscountTotalIndicator" runat="server" CssClass="alert-success" Text=""></asp:Label>
                                                         </div>
                                                     </div>
                                                 </div>

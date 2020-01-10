@@ -150,6 +150,15 @@ namespace Web2Ass1Team5.Secure
         protected global::System.Web.UI.WebControls.Button btnRedeemCode;
 
         /// <summary>
+        /// toggleCodeApplied control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl toggleCodeApplied;
+
+        /// <summary>
         /// lblDiscountCodeAmount control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace Web2Ass1Team5.Secure
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDiscountCodeAmount;
+
+        /// <summary>
+        /// DiscountRedeemFailure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DiscountRedeemFailure;
 
         /// <summary>
         /// lblDiscountCodeFail control.
@@ -202,5 +220,14 @@ namespace Web2Ass1Team5.Secure
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal;
+
+        /// <summary>
+        /// lblDiscountTotalIndicator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDiscountTotalIndicator;
     }
 }
