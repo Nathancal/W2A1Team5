@@ -16,6 +16,7 @@
      <div class="container-fliud py-1">
         <div class="row py-5">
             <div class="col-sm-12 col-md-4">
+                <asp:ValidationSummary ID="vsLoginErrors" runat="server" Font-Size="Medium" ForeColor="#3366FF" />
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="row">
@@ -36,12 +37,14 @@
                             <div class="form-group px-3 py-2 m-0 border-info">
                                 <label for="tbUsername">Email or Username</label>
                                 <asp:TextBox ID="tbUsername" CssClass="form-control" placeholder="enter username here.." runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvLoginName" runat="server" ControlToValidate="tbUsername" ErrorMessage="Please Enter a Email/Username" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                             </div>
 
 
                             <div class="form-group px-3 py-2 m-0">
                                 <label for="tbPassword">Password</label>
                                 <asp:TextBox ID="tbPassword" CssClass="form-control" placeholder="enter password here.." runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvLoginPassword" runat="server" ControlToValidate="tbPassword" ErrorMessage="Please Enter a Password" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group px-3 py-2 m-0 align-content-center">
