@@ -7,14 +7,14 @@ using Web2Ass1Team5.App_Code.DAL;
 
 namespace Web2Ass1Team5.App_Code.BLL
 {
-    public class Message
+    public class Messages
     {
 
         private int msgId, creatorId, parentMessageId, recepId, chatId;
         private string messageBody, recepUsername;
         private DateTime createDate;
 
-        public Message(int creatorId, string messageBody, DateTime createDate, string recepUsername)
+        public Messages(int creatorId, string messageBody, DateTime createDate, string recepUsername)
         {
             this.creatorId = creatorId;
             this.messageBody = messageBody;
@@ -22,7 +22,7 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.recepUsername = recepUsername;
         }
 
-        public Message(int creatorId, string messageBody, DateTime createDate, int chatId)
+        public Messages(int creatorId, string messageBody, DateTime createDate, int chatId)
         {
             this.creatorId = creatorId;
             this.messageBody = messageBody;
@@ -31,15 +31,21 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-        public Message(int msgId, int creatorId, string messageBody, DateTime createDate, int recepId)
+        public Messages( int creatorId, string messageBody, DateTime createDate, int recepId, int chatId)
         {
             this.creatorId = creatorId;
             this.messageBody = messageBody;
             this.createDate = createDate;
             this.recepId = recepId;
+            this.chatId = chatId;
         }
 
-        public Message() { }
+        public Messages() { }
+
+        public void sendMessage(int creatorId, string messageBody, DateTime createDate, int recepId, int chatId)
+        {
+            daMessage.sendMessage(creatorId, messageBody, createDate, recepId, chatId);
+        }
 
         public string getRecepUsername()
         {
@@ -57,13 +63,9 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.creatorId = creatorId;
         }
 
-        public void sendMessage(int creatorId, string messageBody, DateTime createDate, int recepId, int chatId)
-        {
-            daMessage.sendMessage(creatorId, messageBody, createDate, recepId, chatId);
-        }
 
 
-        public int getUnreadMessageCount(int userId)
+        public static int getUnreadMessageCount(int userId)
         {
             int msgCount = daMessage.getUnreadMessageCount(userId);
             return msgCount;
@@ -73,7 +75,6 @@ namespace Web2Ass1Team5.App_Code.BLL
         {
             return chatId;
         }
-
 
 
         public DataSet getMessages(int userId)
@@ -126,11 +127,13 @@ namespace Web2Ass1Team5.App_Code.BLL
             this.recepUsername = recepUsername;
         }
 
-        public static DataSet returnUserChat(int creatorId)
-        {
-            return daMessage.returnUserChats(creatorId);
-
-
+        public static void viewMessages(int chatId, int userId) {
+            
+            
+            daMessage.ViewMessages(chatId, userId);
+        
         }
+
+
     }
 }

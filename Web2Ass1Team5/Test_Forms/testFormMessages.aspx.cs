@@ -39,25 +39,25 @@ namespace Web2Ass1Team5
             DateTime date = DateTime.Now;
 
             int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
-            Chat checkForChat = getChat.checkForExistingChat(userId, recepientUsername);
+            Chat checkForChat = getChat.checkForExistingChat(userId, recepientId);
             chatId = checkForChat.getChatId();
 
 
-            Message newMessage = new Message();
+            Messages newMessage = new Messages();
 
             if (chatId > 0){
 
                 newMessage.sendMessage(userId, tbMessageBody.Text, date, recepientId, chatId);
             }else{
                 Chat createChat = new Chat();
-                createChat.createNewChat(userId, recepientId);
+                createChat.initiateChat(userId, recepientId);
                 int newChatId = createChat.getChatId();
                 newMessage.sendMessage(userId, tbMessageBody.Text, date, recepientId, newChatId);
                 Label3.Text = newChatId.ToString();
             }
 
 
-            lblTestUnreadCount.Text = newMessage.getUnreadMessageCount(userId).ToString();
+            //lblTestUnreadCount.Text = newMessage.getUnreadMessageCount(userId).ToString();
 
 
 
@@ -66,31 +66,31 @@ namespace Web2Ass1Team5
 
         protected void btnLoadConvos_Click(object sender, EventArgs e)
         {
-            Chat getChat = new Chat();
+            //Chat getChat = new Chat();
 
-            string recepientUsername = tbUsername.Text.ToString();
-            int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
+            //string recepientUsername = tbUsername.Text.ToString();
+            //int recepientId = getChat.getRecepientIdFromUsername(recepientUsername);
 
-            //getChat.viewMessages(chatId, userId);
+            ////getChat.viewMessages(chatId, userId);
 
-            System.Data.DataSet ds1 = Chat.getConversation(userId, recepientId);
-            lvMessages.DataSource = ds1.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
-            lvMessages.DataSource = ds1.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
+            //System.Data.DataSet ds1 = Chat.getConversation(userId, recepientId);
+            //lvMessages.DataSource = ds1.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
+            //lvMessages.DataSource = ds1.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
 
-            lvMessages.DataBind();
+            //lvMessages.DataBind();
 
-            //Use the dataset returned from the code to be the
-            //data source of the grid view
-            System.Data.DataSet ds = Chat.getConversation(userId, recepientId);
-            dgvMessages.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
-            dgvMessages.DataSource = ds.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
+            ////Use the dataset returned from the code to be the
+            ////data source of the grid view
+            //System.Data.DataSet ds = Chat.getConversation(userId, recepientId);
+            //dgvMessages.DataSource = ds.Tables["Message"];//Links datasource of gridview to dataset with the appropriate table.
+            //dgvMessages.DataSource = ds.Tables["MessageRecipient"];//Links datasource of gridview to dataset with the appropriate table.
 
 
 
-            dgvMessages.AllowPaging = true;
-            dgvMessages.PageSize = 4;
+            //dgvMessages.AllowPaging = true;
+            //dgvMessages.PageSize = 4;
 
-            dgvMessages.DataBind();//Links dataset to the control
+            //dgvMessages.DataBind();//Links dataset to the control
         }
 
 

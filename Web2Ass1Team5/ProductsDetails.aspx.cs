@@ -33,7 +33,6 @@ namespace Web2Ass1Team5
                     lblProductDescription.Text = productInfo.getProductDesc();
                     lblProductType.Text = productInfo.getProductType();
 
-
                     ProductRating getRating = new ProductRating();
                     
 
@@ -147,7 +146,6 @@ namespace Web2Ass1Team5
                     }
                     else
                     {
-
                         DataRow row = dt.NewRow();
 
                         row["ProductName"] = item.getProdName();

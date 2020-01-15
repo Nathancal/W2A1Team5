@@ -17,11 +17,7 @@
          <div class="row">
                 <div class="col-sm-12">
                     <asp:Label ID="lblErrorMessages" CssClass="col-form-label" runat="server" Text=""></asp:Label>
-
-                    <asp:ValidationSummary ID="vsRegForm" runat="server" Font-Size="Medium" ForeColor="#3366FF" />
-
                 </div>
-
             </div>
         <div class="row py-5">
            
@@ -43,7 +39,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbEmail" TextMode="Email" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegEmail" runat="server" ControlToValidate="tbEmail" ErrorMessage="Please Enter Email" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -56,7 +51,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbUsername" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegUser" runat="server" ControlToValidate="tbUsername" ErrorMessage="Please Enter a Username" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -74,7 +68,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbFirstName" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegFirstName" runat="server" ControlToValidate="tbFirstName" ErrorMessage="Please Enter a Surname" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -86,7 +79,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbSurname" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegSurname" runat="server" ControlToValidate="tbSurname" ErrorMessage="Please Enter a Surname" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -109,7 +101,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbAddress" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegAddress" runat="server" ControlToValidate="tbAddress" ErrorMessage="Please Enter an Address" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -125,7 +116,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCity" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="tbCity" ErrorMessage="Please Enter a City" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -137,7 +127,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCounty" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegCounty" runat="server" ControlToValidate="tbCounty" ErrorMessage="Please Enter a County" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -153,7 +142,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCountry" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ControlToValidate="tbCountry" ErrorMessage="Please Enter a Country" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -165,7 +153,6 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbPostCode" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvRegPostCode" runat="server" ControlToValidate="tbPostCode" ErrorMessage="Please Enter a Post Code" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -181,18 +168,12 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbPassword" CssClass="form-control" runat="server"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="tbPassword" ErrorMessage="Please Enter a Password" Font-Bold="True" Font-Size="Medium" ForeColor="#3366FF">*</asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>                    
                                 </div>
-
-
-
-
-
                                 <div class="form-group px-3 py-2 m-0 align-content-center">
                                     <div class="row">
 
@@ -225,9 +206,6 @@
 
                                 </div>
                         </div>
-
-
-
                         </form>
                     </div>
 

@@ -47,13 +47,16 @@ namespace Web2Ass1Team5
 
                 newUserAccount.createNewUserNoAccess();
 
-                Response.Redirect("RegisterSuccessful.aspx");
+                Session["userInfo"] = newUserAccount;
+
+                Response.Redirect("~/RegisterSuccessful.aspx");
 
             }
             catch (Exception ex)
             {
                 lblErrorMessages.Text = ex.StackTrace;
             }
+
 
 
         }

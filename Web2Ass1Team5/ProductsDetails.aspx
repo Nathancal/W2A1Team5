@@ -248,83 +248,113 @@
 
         </div>
         <div class="row">
-            <div class="col-sm-12" id="ProductReviews" runat="server">
-                <asp:ListView ID="lvProductReviewsDisplay" runat="server">
-                    <LayoutTemplate>
+            <div class="col-sm-12 col-md-6 pt-3 pb-3 mr-3" id="ProductReviewsDisplay" groupplaceholderid="GroupPlaceHolder" itemplaceholderid="itemPlaceholder" runat="server">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
 
-                        <div id="productReviews" class="carousel slide" data-ride="carousel">      
-                            <div class="carousel-inner">
-
-                                <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                        <div class="card shadow">
+                            <h5 class="card-header">Product Review</h5>
 
 
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            <asp:ListView ID="lvProductReviewsDisplay" GroupItemCount="3" GroupPlaceholderID="GroupPlaceHolder" ItemPlaceholderID="ItemPlaceholder" runat="server">
+                                <LayoutTemplate>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div id="productReviews" class="carousel slide" data-ride="carousel">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <asp:PlaceHolder ID="GroupPlaceHolder" runat="server" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <a class="carousel-control-prev" style="filter: invert(80%);" href="#productReviews" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon alert-dark" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" style="filter: invert(80%);" href="#productReviews" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon alert-dark" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+
+
+                                </LayoutTemplate>
+                                <GroupTemplate>
+                                    <div class="carousel-inner">
+
+                                        <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+
+                                    </div>
+
+                                </GroupTemplate>
+
+
+
+                                <ItemTemplate>
+                                    <div class="carousel-item <%# (Container.DataItemIndex == 0 ? "active" : "") %> flex-grow-1">
+                                        <div class="card-body">
+                                            <div class="card">
+                                                <div class="card-header alert-primary">
+
+                                                    <h5 class="card-title"><span><%# Eval("FirstName") %> <%# Eval("Surname") %></span></h5>
+
+
+                                                </div>
+
+
+
+                                                <div class="card-body">
+
+
+                                                    <p class="card-text h5"><span>Product Name:</span></p>
+
+                                                    <p class="card-text"><span><%#Eval("ProductName") %></span></p>
+                                                    <p class="card-text h5"><span>Description of experience:</span></p>
+
+                                                    <p class="card-text"><span><%#Eval("RatingDesc") %></span></p>
+                                                    <p class="card-text h5"><span>Rating out of 10:</span></p>
+
+                                                    <p class="card-text"><span><%#Eval("Rating") %></span></p>
+                                                    <div class="card-footer">
+                                                        <p class="card-text"><small class="text-muted"><%#Eval("DateSubmitted") %></small></p>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </ItemTemplate>
+
+                                <ItemSeparatorTemplate>
+                                    <div class="mr-1"></div>
+
+                                </ItemSeparatorTemplate>
+
+                            </asp:ListView>
+
                         </div>
+                    </div>
 
-
-
-
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <div class="carousel-item active">
-
-                            <div class="card">
-                                <h5 class="card-header">Product Review</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <span><%# Eval("FirstName") %> <%# Eval("Surname") %></span></h5>
-                                        <p class="card-text"><span><%#Eval("ProductName") %></span></p>
-                                        <p class="card-text"><span><%#Eval("RatingDesc") %></span></p>
-
-
-                                    <p class="card-text"><small class="text-muted"><%#Eval("DateSubmitted") %></small></p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </ItemTemplate>
-
-                    <AlternatingItemTemplate>
-                      <div class="carousel-item">
-
-                            <div class="card">
-                                <h5 class="card-header">Product Review</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <span><%# Eval("FirstName") %> <%# Eval("Surname") %></span></h5>
-                                        <p class="card-text"><span><%#Eval("ProductName") %></span></p>
-                                        <p class="card-text"><span>
-                                            <asp:Label ID="lblRating" runat="server" Text="<%#Eval("Rating") %>"></asp:Label></span></p>
-                                        <p class="card-text"><span><%#Eval("RatingDesc") %></span></p>
-
-
-                                    <p class="card-text"><small class="text-muted"><%#Eval("DateSubmitted") %></small></p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </AlternatingItemTemplate>
-
-                    <ItemSeparatorTemplate>
-                        <div class="pt-1"></div>
-
-                    </ItemSeparatorTemplate>
-
-
-
-                </asp:ListView>
-
-
+                </div>
             </div>
 
 

@@ -15,13 +15,13 @@ namespace Web2Ass1_Team5.secure
         protected void Page_Load(object sender, EventArgs e)
         {
             ArrayList invoiceItems = (ArrayList)Session["InvoiceItems"];
-          
+
             Users userInfo = (Users)Session["userInfo"];
 
             if (userInfo != null)
             {
                 Invoice invoiceInfo = (Invoice)Session["invObj"];
-                if(invoiceInfo != null)
+                if (invoiceInfo != null)
                 {
                     DataTable dt = displayItems(lvInvoiceItemDisplay);
                     lblFullName.Text = userInfo.getFirstName() + " " + userInfo.getSurname().ToString();
@@ -54,7 +54,6 @@ namespace Web2Ass1_Team5.secure
 
             if (Session["InvoiceItems"] != null)
             {
-
 
                 DataColumn col = new DataColumn("ProductName");
                 dt.Columns.Add(col);

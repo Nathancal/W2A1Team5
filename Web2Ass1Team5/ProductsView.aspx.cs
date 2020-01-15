@@ -28,12 +28,7 @@ namespace Web2Ass1Team5
 
             Users userInfo = (Users)Session["userInfo"];
 
-            if (userInfo == null)
-            {
-                Response.Redirect("Login.aspx");
 
-
-            }
             if (displayItems(lvCheckout) != null)
             {
                 displayItems(lvCheckout);
@@ -48,9 +43,16 @@ namespace Web2Ass1Team5
             if (!IsPostBack)
             {
                 DataSet productsDisplay = Product.getProducts();
+                
+                
+                ViewState["Products"] = productsDisplay.Tables[0];
 
                 lvProducts.DataSource = productsDisplay;
                 lvProducts.DataBind();
+
+
+
+
 
             }
 
@@ -62,6 +64,14 @@ namespace Web2Ass1Team5
 
             if (String.Equals(e.CommandName, "addToCart"))
             {
+                Users userInfo = (Users)Session["userInfo"];
+
+                if (userInfo == null)
+                {
+                    Response.Redirect("Login.aspx");
+
+
+                }
 
                 ArrayList basket;
 
@@ -71,8 +81,6 @@ namespace Web2Ass1Team5
                 Product productDetailView = new Product();
 
                 productDetailView.findProduct(productId);
-                double price;
-
 
                 CartItem item = new CartItem(productDetailView.getProductId(),
                              productDetailView.getProductName(), productDetailView.getProductType(), productDetailView.getPrice(), 1);
@@ -183,6 +191,96 @@ namespace Web2Ass1Team5
 
         }
 
+        protected void btnSearchProductName_Click(object sender, EventArgs e)
+        {
+            string productNameSearch = tbProductName.Text;
 
+            DataTable productsNoSearch = (DataTable)ViewState["Products"];
+
+            DataTable dtSearchName = new DataTable();
+
+            var filtered = productsNoSearch.AsEnumerable().Where(r => r.Field<String>("ProductName").Contains(productNameSearch));
+
+            if (filtered.Any())
+            {
+                dtSearchName = filtered.CopyToDataTable();
+            }
+
+            lvProducts.DataSource = dtSearchName;
+            lvProducts.DataBind();
+
+            tbProductName.Text = "";
+            tbProductType.Text = "";
+            tbProductPrice.Text = "";
+        }
+
+        protected void btnSearchProductType_Click(object sender, EventArgs e)
+        {
+            string productTypeSearch = tbProductType.Text;
+
+            DataTable productsNoSearch = (DataTable)ViewState["Products"];
+
+            DataTable dtSearchType = new DataTable();
+
+            var filtered = productsNoSearch.AsEnumerable().Where(r => r.Field<String>("ProductType").Contains(productTypeSearch));
+
+            if (filtered.Any())
+            {
+                dtSearchType = filtered.CopyToDataTable();
+            }
+
+            lvProducts.DataSource = dtSearchType;
+            lvProducts.DataBind();
+
+            tbProductName.Text = "";
+            tbProductType.Text = "";
+            tbProductPrice.Text = "";
+        }
+
+        protected void btnSearchProductPrice_Click(object sender, EventArgs e)
+        {
+
+
+            string productPriceSearch = tbProductPrice.Text;
+
+            DataTable productsNoSearch = (DataTable)ViewState["Products"];
+
+            DataTable dtSearchPrice = new DataTable();
+
+            decimal priceDecimal = Convert.ToDecimal(productPriceSearch);
+
+            var filtered = productsNoSearch.AsEnumerable().Where(r => r.Field<decimal>("Price").Equals(priceDecimal));
+
+            if (filtered.Any())
+            {
+                dtSearchPrice = filtered.CopyToDataTable();
+            }
+
+            lvProducts.DataSource = dtSearchPrice;
+            lvProducts.DataBind();
+
+
+            tbProductName.Text = "";
+            tbProductType.Text = "";
+            tbProductPrice.Text = "";
+
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            DataSet productsDisplay = Product.getProducts();
+
+            lvProducts.DataSource = productsDisplay;
+            lvProducts.DataBind();
+
+
+
+
+        }
+
+        protected void lvCheckout_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+
+        }
     }
 }

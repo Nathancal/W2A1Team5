@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../BootStrap4/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="../BootStrap4/css/bootstrap.min.css">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
@@ -44,45 +43,50 @@
                         <div class="card-body checkoutCardStyle">
                             <h5 class="card-title">Please search for products here based on several criteria</h5>
                             <form class="border border-dark pl-2">
-                            <div class="form-group px-3 pl-2 py-2 m-0">
-                                <label for="tbUsername">Product name</label>
-                                <asp:TextBox ID="tbProductName" CssClass="form-control mb-1" placeholder="Search by product name." runat="server"></asp:TextBox>
-                                        <asp:Button ID="btnSearchProductName" runat="server" Text="Search Name" cssClass="btn btn-primary mt-1"/>                             
-                            </div>
+                                <div class="form-group px-3 pl-2 py-2 m-0">
+                                    <label for="tbUsername">Product name</label>
+                                    <asp:TextBox ID="tbProductName" CssClass="form-control mb-1" placeholder="Search by product name." runat="server"></asp:TextBox>
+                                    <asp:Button ID="btnSearchProductName" runat="server" Text="Search Name" CssClass="btn btn-primary mt-1" OnClick="btnSearchProductName_Click" />
+                                </div>
 
 
-                            <div class="form-group px-3 py-2 m-0">
-                                <label for="tbProductType">Product Type</label>
-                                <asp:TextBox ID="tbProductType" CssClass="form-control mb-1" placeholder="Search by product type." runat="server"></asp:TextBox>
-                                <asp:Button ID="btnSearchProductType" runat="server" Text="Search Type"  cssClass="btn btn-primary mt-1"/>                             
+                                <div class="form-group px-3 py-2 m-0">
+                                    <label for="tbProductType">Product Type</label>
+                                    <asp:TextBox ID="tbProductType" CssClass="form-control mb-1" placeholder="Search by product type." runat="server"></asp:TextBox>
+                                    <asp:Button ID="btnSearchProductType" runat="server" Text="Search Type" CssClass="btn btn-primary mt-1" OnClick="btnSearchProductType_Click" />
 
-                            </div>
-                                      <div class="form-group px-3 py-2 m-0">
-                                <label for="tbProductType">Maximum product price</label>
-                                <asp:TextBox ID="tbProductPrice" CssClass="form-control mb-1" placeholder="Enter maximum price." runat="server"></asp:TextBox>
-                                <asp:Button ID="btnSearchProductPrice" runat="server" Text="Search Price"  cssClass="btn btn-primary mt-1"/>                             
+                                </div>
+                                <div class="form-group px-3 py-2 m-0">
+                                    <label for="tbProductType">Maximum product price</label>
+                                    <asp:TextBox ID="tbProductPrice" CssClass="form-control mb-1" placeholder="Enter maximum price." runat="server"></asp:TextBox>
+                                    <asp:Button ID="btnSearchProductPrice" runat="server" Text="Search Price" CssClass="btn btn-primary mt-1" OnClick="btnSearchProductPrice_Click" />
 
-                            </div>                           
-                        </div>                 
+                                </div>
+
+                                <div class="form-group px-3 py-2 m-0">
+                                    <asp:Button ID="btnClear" runat="server" Text="Clear Results" CssClass="btn btn-primary mt-1" OnClick="btnClear_Click" />
+
+                                </div>
+                        </div>
                         </form>
 
-                       </div>
                     </div>
-
                 </div>
+
+            </div>
 
             <div class="row">
                 <div class="col-sm-12 pt-3 ">
-                       <div class="card shadow-sm">
+                    <div class="card shadow-sm">
                         <h5 class="card-header">Shopping Basket</h5>
                         <div class="card-body checkoutCardStyle">
-              <asp:ListView  ID="lvCheckout" DataKeyNames="ProductId" runat="server">
+                            <asp:ListView ID="lvCheckout" DataKeyNames="ProductId" OnItemCommand="lvCheckout_ItemCommand" runat="server">
                                 <LayoutTemplate>
                                     <div class="container-fluid">
                                         <div class="row">
 
                                             <div class="col-sm-3 col-md-3 border-right-0">
-                                                <asp:Label ID="lblName" runat="server" CssClass= Text="Name"></asp:Label>
+                                                <asp:Label ID="lblName" runat="server" CssClass="" Text="Name"></asp:Label>
 
                                             </div>
                                             <div class="col-sm-3 col-md-3 border-left-0 border-right-0">
@@ -104,16 +108,16 @@
                                         <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
 
                                         <div class="row">
-                                               <div class="col-sm-3 col-md-3 pt-3">
+                                            <div class="col-sm-3 col-md-3 pt-3">
                                             </div>
                                             <div class="col-sm-3 col-md-3 pt-3">
                                             </div>
-                                               <div class="col-sm-3 col-md-3 pt-3 pr-0">
-                                                                                                            <asp:Button  CommandName="goToCheckout" CssClass="btn btn-success" runat="server" Text="Checkout" />
+                                            <div class="col-sm-3 col-md-3 pt-3 pr-0">
+                                                <asp:Button CommandName="goToCheckout" CssClass="btn btn-success" runat="server" Text="Checkout" />
 
                                             </div>
-                                             <div class="col-sm-3 col-md-3 pt-3 pl-0">
-                                                                                                          <asp:Button  CommandName="goToCheckout" CssClass="btn btn-secondary" runat="server" Text="Empty" />
+                                            <div class="col-sm-3 col-md-3 pt-3 pl-0">
+                                                <asp:Button CommandName="goToCheckout" CssClass="btn btn-secondary" runat="server" Text="Empty" />
 
                                             </div>
 
@@ -128,36 +132,36 @@
                                     <div class="row">
                                         <div class="col-sm-12 list-group ">
                                             <div class="row">
-                                            <div class="col-sm-3 col-md-3 list-group pr-0 ">
-                                                        <li class="list-group-item rounded-0 rounded-left border-secondary border-right-0 flex-md-grow-1"><%# Eval("ProductName") %></li>
+                                                <div class="col-sm-3 col-md-3 list-group pr-0 ">
+                                                    <li class="list-group-item rounded-0 rounded-left border-secondary border-right-0 flex-md-grow-1"><%# Eval("ProductName") %></li>
                                                 </div>
 
                                                 <div class="col-sm-3 col-md-3 pl-0 pr-0 list-group">
-                                                 
-                                                        <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0 flex-md-grow-1"><%# Eval("ProductQuantity") %></li>
+
+                                                    <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0 flex-md-grow-1"><%# Eval("ProductQuantity") %></li>
 
                                                 </div>
 
 
                                                 <div class="col-sm-3 col-md-3 px-0 list-group">
-                                                        <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0 flex-md-grow-1"><%# Eval("ProductType") %></li>
+                                                    <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0 flex-md-grow-1"><%# Eval("ProductType") %></li>
 
                                                 </div>
 
                                                 <div class="col-sm-3 col-md-3 px-0 list-group">
-                                                        <li class="list-group-item rounded-0 border-secondary border-left-0 flex-md-grow-1"><%# Eval("LineCost") %></li>
+                                                    <li class="list-group-item rounded-0 border-secondary border-left-0 flex-md-grow-1"><%# Eval("LineCost") %></li>
                                                 </div>
 
-                                     
-                             
+
+
 
 
                                             </div>
-                                 
+
 
 
                                         </div>
-                      
+
 
                                     </div>
 
@@ -167,23 +171,23 @@
                                     <div class="pt-1"></div>
 
                                 </ItemSeparatorTemplate>
-                            </asp:ListView>                        
+                            </asp:ListView>
 
-                        </div>                 
+                        </div>
                         </form>
 
-                       </div>
+                    </div>
 
                 </div>
 
 
             </div>
 
-            </div>
+        </div>
 
-           <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
 
-        
+
 
         <div class="col-md-8">
             <div class="row ml-2 mr-0 pr-0">
@@ -237,7 +241,7 @@
 
                         <ItemTemplate>
 
-                            <div class="card card-columns shadow-lg border border-info m-3">
+                            <div class="card shadow-lg border border-info m-3">
                                 <div class="row">
                                     <div class="col-sm col-md-2">
                                     </div>
@@ -258,10 +262,10 @@
                                 </div>
                                 <div class="row pl-4 pb-2">
                                     <div class="col-sm-6">
-                                        <asp:LinkButton ID="btnProductDetails" CssClass="btn btn-primary" runat="server" Text="View Details" CommandName="Select"/>
+                                        <asp:LinkButton ID="btnProductDetails" CssClass="btn btn-primary" runat="server" Text="View Details" CommandName="Select" />
                                     </div>
                                     <div class="col-sm-6">
-                                        <asp:Button ID="btnAddToCart" CssClass="btn btn-success" runat="server" Text="Add To Cart" CommandName="addToCart"/>
+                                        <asp:Button ID="btnAddToCart" CssClass="btn btn-success" runat="server" Text="Add To Cart" CommandName="addToCart" />
                                     </div>
 
                                 </div>
@@ -269,11 +273,6 @@
 
 
                         </ItemTemplate>
-
-                        <ItemSeparatorTemplate>
-                            <div class="m-2"></div>
-
-                        </ItemSeparatorTemplate>
 
 
                     </asp:ListView>
@@ -286,10 +285,10 @@
         </div>
 
 
-        </div>
+    </div>
 
-       
-    
+
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

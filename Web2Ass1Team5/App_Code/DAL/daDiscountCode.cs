@@ -242,6 +242,74 @@ namespace Web2Ass1Team5.App_Code.DAL
             return tempDiscCode;
         }//getProduct
 
+        public static DiscountCode randomDiscountCode(int userId) {
+
+            OleDbConnection conn = openConnection();
+
+            DiscountCode generatedDiscountCode = new DiscountCode();
+
+
+            DiscountCode checkingCode = new DiscountCode();
+
+            OleDbDataReader codeReader;
+            do
+            {
+                OleDbCommand cmd;
+
+                string strRandomDiscountCode = "SELECT TOP 1 * FROM DiscountCodes ORDER BY RND(-(100000*ID))";
+
+                cmd = new OleDbCommand(strRandomDiscountCode, conn);
+
+
+                OleDbDataReader readerRandom = cmd.ExecuteReader();
+                
+                while (readerRandom.Read())
+                {
+                    generatedDiscountCode.setCode(readerRandom["Code"].ToString());
+
+                }//while
+
+                readerRandom.Close();
+
+
+                Users redeemUserCheck = new Users();
+
+                redeemUserCheck.setUserId(userId);
+
+                string strCheckForRedeemedCode = "SELECT * FROM RedeemCode WHERE UserId=@UserId AND DiscountCodeId=@DiscountCodeId";
+
+                OleDbCommand cmdSelect = new OleDbCommand(strCheckForRedeemedCode, conn);
+
+
+                cmdSelect.Parameters.AddWithValue("@UserId", redeemUserCheck.getUserId());
+                cmdSelect.Parameters.AddWithValue("@DiscountCodeId", generatedDiscountCode.getCode());
+                codeReader = cmdSelect.ExecuteReader();
+
+                if (codeReader.Read() == true) {
+
+                    while (codeReader.Read())
+                    {
+
+
+                        checkingCode.setCode(readerRandom["Code"].ToString());
+                        checkingCode.setDateActive(Convert.ToDateTime(readerRandom["DateFrom"]));
+                        checkingCode.setDateEnd(Convert.ToDateTime(readerRandom["DateTo"]));
+                        checkingCode.setDiscountPerc(Convert.ToInt32(readerRandom["DiscountPerc"]));
+                    }//while
+
+                }
+                else
+                {
+                    return generatedDiscountCode;
+
+                }
+             
+           } while(generatedDiscountCode.getCode() == checkingCode.getCode());
+
+            return generatedDiscountCode;
+
+        }
+
 
     }
 }

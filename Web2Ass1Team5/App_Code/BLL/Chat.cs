@@ -9,22 +9,18 @@ namespace Web2Ass1Team5.App_Code.BLL
 {
     public class Chat
     {
-#pragma warning disable CS0169 // The field 'Chat.messageId' is never used
-        private int userId, chatId, messageId, recepId;
-#pragma warning restore CS0169 // The field 'Chat.messageId' is never used
+        private int userId, chatId, recepId;
         private string secondUsername;
 
+        public Chat(int userId)
+        {
+            this.userId = userId;
 
-
+        }
         public Chat(int userId, string secondUsername)
         {
             this.userId = userId;
             this.secondUsername = secondUsername;
-        }
-
-        public Chat(int chatId)
-        {
-            this.chatId = chatId;
         }
 
         public Chat(int userId, int recepId)
@@ -38,9 +34,31 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-        public static DataSet getConversation(int userId, int recepientId)
+        public static int returnUserChatsRecipientById(int chatId)
         {
-            return daMessage.getConversation(userId, recepientId);
+            return daMessage.returnUserChatsRecipientById(chatId);
+        }
+
+        public static DataSet chatRecipientOnly(int userId) {
+            return daMessage.chatRecipientOnly(userId);
+        }
+
+        public static int returnOtherUserByChatRecipient(int chatId)
+        {
+           return daMessage.returnOtherUserByChatRecipient(chatId);
+
+        }
+
+        public static DataSet returnUserChatById(int userId)
+        {
+            return daMessage.returnUserChatsById(userId);
+
+        }
+
+
+        public static DataSet getConversation(int chatId)
+        {
+            return daMessage.getConversation(chatId);
         }
 
         //public void viewMessages(int chatId, int userId)
@@ -48,21 +66,17 @@ namespace Web2Ass1Team5.App_Code.BLL
         //    daMessage.ViewMessages(chatId, userId);
         //}
 
-        public Chat checkForExistingChat(int creatorId, string recepientUsername)
+        public Chat checkForExistingChat(int creatorId, int recepId)
         {
-            int recepId = getRecepientIdFromUsername(recepientUsername);
             Chat foundChat = daMessage.checkForExistingChat(creatorId, recepId);
 
             return foundChat;
         }
 
-        public void createNewChat(int creatorId, int recepientId)
+        public void initiateChat(int creatorId, int recepientId)
         {
-            this.userId = creatorId;
-            this.recepId = recepientId;
-            daMessage.createNewChat(creatorId, recepientId);
+            daMessage.initiateChat(creatorId, recepientId);
         }
-
 
         public int getRecepientIdFromUsername(string username)
         {

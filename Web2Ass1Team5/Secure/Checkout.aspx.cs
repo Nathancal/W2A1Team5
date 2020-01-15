@@ -191,28 +191,6 @@ namespace Web2Ass1Team5.Secure
                 Response.Redirect("Checkout.aspx");
 
             }
-
-
-            if (String.Equals(e.CommandName, "goToCheckout"))
-            {
-                Users userInfo = (Users)Session["userInfo"];
-                ArrayList basket = (ArrayList)Session["ShoppingBasket"];
-
-
-
-                //if (userInfo != null)
-                //{
-                if (basket != null)
-                {
-                    Response.Redirect("Secure/Checkout.aspx");
-                }
-
-                //}
-                //else
-                //{
-                //    Response.Redirect("Login.aspx");
-                //}
-            }
         }
 
         protected void ddlDeliverySelect_SelectedIndexChanged(object sender, EventArgs e)

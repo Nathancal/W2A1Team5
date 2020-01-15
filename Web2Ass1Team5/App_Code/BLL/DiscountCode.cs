@@ -118,5 +118,10 @@ namespace Web2Ass1Team5.App_Code.BLL
             return daDiscountCode.selectDiscountCode(pFindCode);
 
         }//TODO
+
+        public static DiscountCode randomDiscountCode(int userId) {
+                     
+            return daDiscountCode.randomDiscountCode(userId);     
+        }
     }
 }

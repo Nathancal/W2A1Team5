@@ -132,13 +132,13 @@ namespace Web2Ass1Team5
         protected global::System.Web.UI.WebControls.Label lblReviewSubmitted;
 
         /// <summary>
-        /// ProductReviews control.
+        /// ProductReviewsDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProductReviews;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProductReviewsDisplay;
 
         /// <summary>
         /// lvProductReviewsDisplay control.
