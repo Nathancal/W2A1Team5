@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web2Ass1Team5", "Web2Ass1Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP2A1UnitTesting", "WP2A1UnitTesting\WP2A1UnitTesting.csproj", "{0712E67E-AB84-4840-86C5-3202E8FAA1B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week5", "D:\WP2\Week_5\Week5\Week5\Week5.csproj", "{DA4093C5-6C61-4493-B587-220EC413EFA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0712E67E-AB84-4840-86C5-3202E8FAA1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0712E67E-AB84-4840-86C5-3202E8FAA1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0712E67E-AB84-4840-86C5-3202E8FAA1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4093C5-6C61-4493-B587-220EC413EFA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

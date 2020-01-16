@@ -51,6 +51,42 @@ namespace W2A1Team5
         protected global::System.Web.UI.WebControls.LinkButton lBtnsignupLogin;
 
         /// <summary>
+        /// lnkTanksClick control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTanksClick;
+
+        /// <summary>
+        /// lnkStarterKits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkStarterKits;
+
+        /// <summary>
+        /// lnkAdvancedKits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAdvancedKits;
+
+        /// <summary>
+        /// lnkMods control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkMods;
+
+        /// <summary>
         /// imgbLogin control.
         /// </summary>
         /// <remarks>

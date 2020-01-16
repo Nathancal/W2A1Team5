@@ -33,12 +33,12 @@
                 <div class="col-sm-4">
                     <img src="/Images/Cloud9Logo.png" class="img-fluid" alt="Cloud 9 Logo" />
                 </div>
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="col-sm col-md-7">
+                <div class="col-sm-4 mt-0">
+                    <div class="row mt-0">
+                        <div class=" col-sm col-md-7">
                         </div>
-                        <div class="col-md-5 mt-0 p-0 shadow">
-                            <div class="card card-body alert-primary mt-2" id="signupLogin" runat="server">
+                        <div class="col-md-5 mt-0 p-0 mt-0">
+                            <div class="card card-body mt-2" id="signupLogin" runat="server">
                                 <asp:LinkButton ID="lBtnsignupLogin" CssClass="alert-dark" runat="server">Login:Signup</asp:LinkButton>
                             </div>
 
@@ -54,34 +54,49 @@
             <div class="row">
                 <div class="col-sm-12">
 
+
                     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow p-3">
-                        <a class="navbar-brand" href="Home.aspx">Cloud 9</a>
+                        <a class="navbar-brand" href="Home.aspx">Home</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Home.aspx">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="ELiquids.aspx">E-Liquids</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="EVapes.aspx">Starter Kits</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="EVapes.aspx">Advanced Kits</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Help.aspx">Help</a>
-                                </li>
-                                <li class="nav-item">
-                                    <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />
+                        <div class="col-sm col-md-4">
+                        </div>
+                        <div class="col-sm col-md-6">
+                            <div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
+                                <ul class="navbar-nav mr-auto">
 
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="ProductsView.aspx">Products</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkTanksClick" OnClick="lnkTanksClick_Click" runat="server" Text='Tanks'></asp:LinkButton>
+                                    </li>
+                                    <li class="nav-item">
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkStarterKits" OnClick="lnkStarterKits_Click" runat="server" Text='Starter Kits'></asp:LinkButton>
 
-                            </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkAdvancedKits" OnClick="lnkAdvancedKits_Click" runat="server" Text='Advanced Kits'></asp:LinkButton>
+
+                                    </li>
+                                         <li class="nav-item">
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkMods" onclick="lnkMods_Click" runat="server" Text='Mods'></asp:LinkButton>
+
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="Help.aspx">Help</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm col-md-2">
                         </div>
                     </nav>
 
@@ -90,24 +105,26 @@
 
             </div>
 
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+        </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
 
 
 
 
 
-            <footer class="card-footer my-3">
-                <div class="row">
-                    <class col="
-                    <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
-                        <p class="font-weight-bold">© Cloud 9 Vapour</p>
-                        <p class="font-weight-bold">Latest Update: January 2020</p>
-                        <p class="font-weight-bold">Email: info@cloud9vapour.com</p>
-                    </div>
-
+        <footer class="card-footer my-3">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
+                    <p class="font-weight-bold">© Cloud 9 Vapour</p>
+                    <p class="font-weight-bold">Latest Update: January 2020</p>
+                    <p class="font-weight-bold">Email: info@cloud9vapour.com</p>
                 </div>
-            </footer>
+
+            </div>
+        </footer>
         </div>
     </form>
 

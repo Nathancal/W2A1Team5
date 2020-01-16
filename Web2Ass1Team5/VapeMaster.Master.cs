@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web2Ass1Team5.App_Code.BLL;
 
 namespace W2A1Team5
 {
@@ -11,6 +12,43 @@ namespace W2A1Team5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Users userInfo = (Users)Session["userInfo"];
+
+        }
+
+        protected void lnkTanksClick_Click(object sender, EventArgs e)
+        {
+            string type = "Tanks";
+
+            Response.Redirect("~/ProductsView.aspx?Type=" + type);
+
+
+        }
+
+        protected void lnkStarterKits_Click(object sender, EventArgs e)
+        {
+            string type = "Starter Kits";
+
+            Response.Redirect("~/ProductsView.aspx?Type=" + type);
+
+
+        }
+
+        protected void lnkAdvancedKits_Click(object sender, EventArgs e)
+        {
+            string type = "Advanced Kits";
+
+            Response.Redirect("~/ProductsView.aspx?Type=" + type);
+
+
+        }
+
+        protected void lnkMods_Click(object sender, EventArgs e)
+        {
+            string type = "Mods";
+
+            Response.Redirect("~/ProductsView.aspx?Type=" + type);
 
         }
     }

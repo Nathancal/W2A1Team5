@@ -230,7 +230,7 @@
                                         <div class="col-sm col-md-2">
                                         </div>
                                         <div class="col-sm-12 col-md-8 flex-grow-1">
-                                            <img class="card-img-top img-fluid pt-1 flex-grow-1" style="max-height: 16rem; max-width: 16rem;" src="<%# Eval("ImageFile") %>" alt="<%#Eval("ProductName") %> Image Not Found">
+                                            <img class="card-img-top img-fluid pt-1 flex-grow-1" style="max-height: 12rem; max-width: 16rem;" src="<%# Eval("ImageFile") %>" alt="<%#Eval("ProductName") %> Image Not Found">
                                         </div>
                                         <div class="col-sm col-md-2">
                                         </div>

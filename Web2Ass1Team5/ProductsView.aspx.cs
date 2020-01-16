@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,6 @@ namespace Web2Ass1Team5
         [System.Web.UI.TemplateContainer(typeof(System.Web.UI.WebControls.ListViewItem))]
         [System.Web.UI.PersistenceMode(System.Web.UI.PersistenceMode.InnerProperty)]
         public virtual System.Web.UI.ITemplate GroupTemplate { get; set; }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,6 +53,29 @@ namespace Web2Ass1Team5
 
 
 
+
+
+            }
+
+            NameValueCollection nvc = Request.QueryString;
+
+            if (nvc.HasKeys())
+            {
+                string typeQueryFromNav = Request.QueryString["Type"];
+
+                DataTable productsNoSearch = (DataTable)ViewState["Products"];
+
+                DataTable dtSearchType = new DataTable();
+
+                var filtered = productsNoSearch.AsEnumerable().Where(r => r.Field<String>("ProductType").Contains(typeQueryFromNav));
+
+                if (filtered.Any())
+                {
+                    dtSearchType = filtered.CopyToDataTable();
+                }
+
+                lvProducts.DataSource = dtSearchType;
+                lvProducts.DataBind();
 
             }
 
