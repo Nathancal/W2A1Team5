@@ -20,8 +20,6 @@ namespace Web2Ass1Team5
             ArrayList invoiceItemsReview = (ArrayList)Session["InvoiceItems"];
 
 
-            if (userInfo != null)
-            {
 
                 Product productInfo = (Product)Session["ProductDetailView"];
 
@@ -93,12 +91,6 @@ namespace Web2Ass1Team5
 
 
 
-            }
-            else
-            {
-                Response.Redirect("Login.aspx");
-
-            }
 
         }
 
@@ -170,6 +162,8 @@ namespace Web2Ass1Team5
         {
             if (String.Equals(e.CommandName, "removeFromBasket"))
             {
+                Users userInfo = (Users)Session["userInfo"];
+
 
                 try
                 {
@@ -199,10 +193,23 @@ namespace Web2Ass1Team5
 
             if (String.Equals(e.CommandName, "emptyShoppingBasket"))
             {
-                Session.Remove("ShoppingBasket");
-                displayItems(lvCheckout);
+                Users userInfo = (Users)Session["userInfo"];
 
-                Response.Redirect("ProductsDetails.aspx");
+
+                if (userInfo != null)
+                {
+                    Session.Remove("ShoppingBasket");
+                    displayItems(lvCheckout);
+
+                    Response.Redirect("ProductsDetails.aspx");
+
+
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
 
             }
 
@@ -246,8 +253,6 @@ namespace Web2Ass1Team5
 
                 ProductRating createNewRating = new ProductRating();
                 checkRating = createNewRating.createRating(productInfo.getProductId(), ddlSelectedValue, userInfo.getUserId(), tbRatingDescription.Text);
-
-
 
             }
 

@@ -60,7 +60,6 @@
 
                             <div class="col-sm col-md-3"></div>
 
-
                         </div>
 
 
@@ -248,7 +247,7 @@
         <div class="row">
             <div class="col-sm col-md-3">
             </div>
-            <div class="col-sm-12 col-md-6 pt-3 pb-3 mr-3" id="ProductReviewsDisplay" groupplaceholderid="GroupPlaceHolder" itemplaceholderid="itemPlaceholder" runat="server">
+            <div class="col-sm-12 col-md-6 pt-3 pb-3 mr-3" id="ProductReviewsDisplay" runat="server">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
 

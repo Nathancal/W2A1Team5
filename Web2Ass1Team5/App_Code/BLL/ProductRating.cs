@@ -50,6 +50,9 @@ namespace Web2Ass1Team5.App_Code.BLL
             return daProductRating.getRatingsForProduct(productId);
         }
 
+        public static DataSet getLatestRatings() {
+            return daProductRating.getLatestRatings();
+        }
 
         public ProductRating createRating(int productId, int rating, int userId, string ratingDesc)
         {

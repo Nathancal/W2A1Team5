@@ -97,6 +97,36 @@ namespace Web2Ass1Team5.App_Code.DAL
 
         }
 
+        public static DataSet getLatestRatings()
+        {
+            OleDbConnection conn = openConnection();
+
+            DataSet dsRatings = new DataSet();
+
+            string strGetRatingInformation = "SELECT ProductsRatings.UserId, ProductsRatings.DateSubmitted, ProductsRatings.Rating, ProductsRatings.RatingDesc, Users.FirstName, Users.Surname, Users.Country, " +
+                                            "Products.ProductName, Products.ProductType FROM (ProductsRatings " +
+                                            "INNER JOIN Products ON ProductsRatings.ProductId = Products.ProductId) " +
+                                            "INNER JOIN Users ON ProductsRatings.UserId = Users.UserId " +
+                                            "ORDER BY ProductsRatings.DateSubmitted DESC";
+
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daRatings = new OleDbDataAdapter(strGetRatingInformation, conn);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daRatings.Fill(dsRatings, "ProductsRatings");
+            daRatings.Fill(dsRatings, "Users");
+            daRatings.Fill(dsRatings, "Products");
+
+            closeConnection(conn);
+
+            return dsRatings;
+
+
+
+        }
+
 
         public static ProductRating createNewRating(int productId, int rating, int userId, string ratingDesc)
         {

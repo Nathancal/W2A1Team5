@@ -87,8 +87,7 @@
     <Content Include="BootStrap4\js\bootstrap.bundle.min.js" />
     <Content Include="BootStrap4\js\bootstrap.js" />
     <Content Include="BootStrap4\js\bootstrap.min.js" />
-    <Content Include="ELiquids.aspx" />
-    <Content Include="EVapes.aspx" />
+    <Content Include="BootStrap4\js\scripts.js" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\Cloud9Logo.png" />
@@ -105,7 +104,6 @@
     <Content Include="Images\ProductImages\mensring2.jpg" />
     <Content Include="Images\ProductImages\mensring3.jpg" />
     <Content Include="Images\vapekits.jfif" />
-    <Content Include="Kits.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ProductsDetails.aspx" />
     <Content Include="ProductsView.aspx" />
@@ -119,6 +117,7 @@
     <Content Include="styles\AdminStyle.css" />
     <Content Include="styles\feStyleElements.css" />
     <Content Include="styles\Message.css" />
+    <Content Include="styles\style.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Test_Forms\TestDiscountCodes.aspx" />
     <Content Include="Test_Forms\testFormMessages.aspx" />
@@ -163,20 +162,6 @@
     <Compile Include="Admin\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ELiquids.aspx.cs">
-      <DependentUpon>ELiquids.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ELiquids.aspx.designer.cs">
-      <DependentUpon>ELiquids.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EVapes.aspx.cs">
-      <DependentUpon>EVapes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EVapes.aspx.designer.cs">
-      <DependentUpon>EVapes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Help.aspx.cs">
       <DependentUpon>Help.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,13 +175,6 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Kits.aspx.cs">
-      <DependentUpon>Kits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Kits.aspx.designer.cs">
-      <DependentUpon>Kits.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
