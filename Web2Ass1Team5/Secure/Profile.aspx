@@ -149,8 +149,22 @@
                                                         </div>
 
                                                     </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group px-3 py-2 m-0 border-info">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <asp:Button ID="btnUpdate" CssClass="btn btn-success" runat="server" Text="Update" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                         </div>
+
+
+
                                         </form>
 
 

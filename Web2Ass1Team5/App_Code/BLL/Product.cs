@@ -62,7 +62,7 @@ namespace Web2Ass1Team5.App_Code.BLL
             return loadProduct;
         }//TODO
 
-        public void createNewProduct()
+        public void createNewProduct(string productName, string productType, double price, Boolean sale, double salePrice, string productDesc, int stock, int reOrderLevel, string imageFile)
         {
             daProduct.createNewProduct(productName, productType, price, sale, salePrice, productDesc, stock, reOrderLevel, imageFile);
         }

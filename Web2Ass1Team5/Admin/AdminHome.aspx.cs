@@ -14,17 +14,18 @@ namespace Web2Ass1Team5.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //Users userInfo = (Users)Session["userInfo"];
+            Users userInfo = (Users)Session["userInfo"];
 
             //userInfo.getUserId();
 
             //int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
 
-            //if(accessLevel == 0)
+            //if (accessLevel == 0)
             //{
             //    Response.Redirect("../home.aspx");
 
             //}
+
 
         }
     }

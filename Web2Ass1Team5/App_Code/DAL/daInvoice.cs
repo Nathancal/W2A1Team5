@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Web;
@@ -90,6 +91,28 @@ namespace Web2Ass1Team5.App_Code.DAL
 
 
             return retInvNum;
+        }
+
+        public static DataSet returnUserInvoices(int userId) {
+           
+            OleDbConnection conn = openConnection();
+
+            DataSet dsInvoices = new DataSet();
+
+
+            string strCreateInvoice = "SELECT * FROM Invoices WHERE Email=@Email";
+
+            //data adapter is bridge between database and dataset
+            OleDbDataAdapter daInvoices = new OleDbDataAdapter(strCreateInvoice, conn);
+
+            //populate the data table in the dataset 
+            //with records from the database table
+            daInvoices.Fill(dsInvoices, "Invoices");
+
+            conn.Close();
+
+            return dsInvoices;
+        
         }
 
 

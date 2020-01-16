@@ -117,7 +117,7 @@
 
                                             </div>
                                             <div class="col-sm-3 col-md-3 pt-3 pl-0">
-                                                <asp:Button CommandName="goToCheckout" CssClass="btn btn-secondary" runat="server" Text="Empty" />
+                                                <asp:Button CommandName="Empty" CssClass="btn btn-secondary" runat="server" Text="Empty" />
 
                                             </div>
 
@@ -192,84 +192,71 @@
         <div class="col-md-8">
             <div class="row ml-2 mr-0 pr-0">
                 <div class="col-sm-12">
-                    <asp:ListView ID="lvProducts" runat="server" OnItemCommand="lvProducts_ItemCommand" DataKeyNames="ProductId" GroupItemCount="12" GroupPlaceholderID="GroupPlaceHolder" ItemPlaceholderID="ProductPlaceholder">
+                    <asp:ListView ID="lvProducts" runat="server" OnItemCommand="lvProducts_ItemCommand" OnPagePropertiesChanging="lvProducts_PagePropertiesChanging" OnPagePropertiesChanged="lvProducts_PagePropertiesChanged" GroupItemCount="3" DataKeyNames="ProductId" GroupPlaceholderID="GroupPlaceHolder" ItemPlaceholderID="ProductPlaceholder">
                         <LayoutTemplate>
                             <div class="container-fluid pt-4">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-12"></div>
-
-                                    <div class="col-md-4 col-sm-12"></div>
-                                    <div class="col-md-4 col-sm-12"></div>
 
                                     <asp:PlaceHolder ID="GroupPlaceHolder" runat="server" />
 
                                 </div>
                                 <div class="row m-4">
-                                    <div class="col-sm-4"></div>
-                                    <div class="col-sm-4">
-                                        <asp:DataPager runat="server" PageSize="10">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6">
+                                        <asp:DataPager ID="lvProductsDataPager1" runat="server" PagedControlID="lvProducts" PageSize="9">
                                             <Fields>
-                                                <asp:NextPreviousPagerField
-                                                    ButtonType="Link"
-                                                    ButtonCssClass="btn btn-outline-primary text-primary"
-                                                    ShowFirstPageButton="true"
-                                                    ShowLastPageButton="true" />
-                                                <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="alert-primary" NumericButtonCssClass="btn btn-outline-primary text-primary" />
+                                                <asp:NumericPagerField ButtonType="Link" NumericButtonCssClass="btn-success" />
                                             </Fields>
                                         </asp:DataPager>
 
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-3"></div>
 
                                 </div>
                             </div>
                         </LayoutTemplate>
-                        <ItemSeparatorTemplate>
-                            <div class="m-3"></div>
 
-                        </ItemSeparatorTemplate>
                         <GroupTemplate>
                             <asp:PlaceHolder ID="ProductPlaceholder" runat="server"></asp:PlaceHolder>
-
-
-
-
 
 
 
                         </GroupTemplate>
 
                         <ItemTemplate>
+                            <div class="col-sm-4 flex-grow-1">
+                                <div class="card shadow-lg border border-info m-3 align-items-stretch flex-grow-1">
+                                    <div class="row">
+                                        <div class="col-sm col-md-2">
+                                        </div>
+                                        <div class="col-sm-12 col-md-8 flex-grow-1">
+                                            <img class="card-img-top img-fluid pt-1 flex-grow-1" style="max-height: 16rem; max-width: 16rem;" src="<%# Eval("ImageFile") %>" alt="<%#Eval("ProductName") %> Image Not Found">
+                                        </div>
+                                        <div class="col-sm col-md-2">
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary"><%#Eval("ProductName") %></h5>
 
-                            <div class="card shadow-lg border border-info m-3">
-                                <div class="row">
-                                    <div class="col-sm col-md-2">
+                                        <p class="alert-primary mb-0">Price</p>
+                                        <p class="card-text">£<%# Eval("Price") %></p>
+                                        <p class="card-text"><small class="text-muted"><%#Eval("ProductType") %></small></p>
                                     </div>
-                                    <div class="col-sm-12 col-md-8">
-                                        <img class="card-img-top img-fluid pt-1" style="max-height: 16rem; max-width: 16rem;" src="<%# Eval("ImageFile") %>" alt="<%#Eval("ProductName") %> Image Not Found">
-                                    </div>
-                                    <div class="col-sm col-md-2">
+                                    <div class="row pl-4 pb-2">
+                                        <div class="col-sm-6">
+                                            <asp:LinkButton ID="btnProductDetails" CssClass="btn btn-primary" runat="server" Text="View Details" CommandName="Select" />
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <asp:Button ID="btnAddToCart" CssClass="btn btn-success" runat="server" Text="Add To Cart" CommandName="addToCart" />
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary"><%#Eval("ProductName") %></h5>
 
-                                    <p class="alert-primary mb-0">Description</p>
-                                    <p class=""><%# Eval("Description") %></p>
-                                    <p class="alert-primary mb-0">Price</p>
-                                    <p class="card-text">£<%# Eval("Price") %></p>
-                                    <p class="card-text"><small class="text-muted"><%#Eval("ProductType") %></small></p>
-                                </div>
-                                <div class="row pl-4 pb-2">
-                                    <div class="col-sm-6">
-                                        <asp:LinkButton ID="btnProductDetails" CssClass="btn btn-primary" runat="server" Text="View Details" CommandName="Select" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <asp:Button ID="btnAddToCart" CssClass="btn btn-success" runat="server" Text="Add To Cart" CommandName="addToCart" />
-                                    </div>
 
-                                </div>
+
                             </div>
+
 
 
                         </ItemTemplate>

@@ -54,6 +54,12 @@ namespace Web2Ass1Team5.Admin
 
         protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+
             string pathName;
 
             if (FulImgUploadTxt.HasFile)
@@ -76,10 +82,7 @@ namespace Web2Ass1Team5.Admin
                         Convert.ToInt32(tbReOrderLevel.Text),
                         pathName.ToString());
 
-                        newProduct.createNewProduct();
-
-
-
+                        newProduct.createNewProduct(productName.Text, ddlProductType.SelectedValue.ToString(), Convert.ToDouble(tbPrice.Text), cbCheckSaleItem.Checked, Convert.ToDouble(tbSalePrice.Text), tbProductDescription.Text, Convert.ToInt32(tbCurrentStockLevel.Text), Convert.ToInt32(tbReOrderLevel.Text), pathName.ToString());
                     }
                     else
                     {
@@ -99,6 +102,7 @@ namespace Web2Ass1Team5.Admin
                 lblSumbitSuccess.Text = "Upload status: please select a file to upload";
             }
             clearTextBoxes();
+
         }
     }
 }

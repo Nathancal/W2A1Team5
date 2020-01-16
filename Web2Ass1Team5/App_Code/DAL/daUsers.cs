@@ -256,5 +256,25 @@ namespace Web2Ass1Team5.App_Code.DAL
             closeConnection(conn);
             return userObject;
         }
+
+        public static void updateUserInfo(string uName, string email, string firstName, string surname, string address, string city, string county, string country, string postCode) {
+
+            OleDbConnection conn = openConnection();
+
+            string strSql = "UPDATE Users SET Username=@Username, Email=@Email, FirstName=@FirstName, Surname=@Surname, Address=@Address, City=@City, County=@County, Country=@Country, PostCode=@PostCode";
+            OleDbCommand cmd = new OleDbCommand(strSql, conn);
+            cmd.Parameters.AddWithValue("@Username", uName);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@FirstName", firstName);
+            cmd.Parameters.AddWithValue("@Surname", surname);
+            cmd.Parameters.AddWithValue("@Address", address);
+            cmd.Parameters.AddWithValue("@City", city);
+            cmd.Parameters.AddWithValue("@County", county);
+            cmd.Parameters.AddWithValue("@Country", country);
+            cmd.Parameters.AddWithValue("@PostCode", postCode);
+
+            cmd.ExecuteNonQuery(); // execute the insertion command
+
+        }
     }
 }

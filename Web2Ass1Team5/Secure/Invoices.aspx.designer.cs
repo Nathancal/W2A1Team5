@@ -132,6 +132,15 @@ namespace Web2Ass1_Team5.secure
         protected global::System.Web.UI.WebControls.Label lblSubTotal;
 
         /// <summary>
+        /// lblDeliveryCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDeliveryCost;
+
+        /// <summary>
         /// btnPrint control.
         /// </summary>
         /// <remarks>

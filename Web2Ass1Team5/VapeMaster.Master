@@ -34,6 +34,19 @@
                     <img src="/Images/Cloud9Logo.png" class="img-fluid" alt="Cloud 9 Logo" />
                 </div>
                 <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm col-md-7">
+                        </div>
+                        <div class="col-md-5 mt-0 p-0 shadow">
+                            <div class="card card-body alert-primary mt-2" id="signupLogin" runat="server">
+                                <asp:LinkButton ID="lBtnsignupLogin" CssClass="alert-dark" runat="server">Login:Signup</asp:LinkButton>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -48,14 +61,17 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav mr-auto">
-                      <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="Home.aspx">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="ELiquids.aspx">E-Liquids</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="EVapes.aspx">Kits</a>
+                                    <a class="nav-link" href="EVapes.aspx">Starter Kits</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="EVapes.aspx">Advanced Kits</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="Help.aspx">Help</a>
@@ -79,25 +95,24 @@
 
 
 
-          
+
 
             <footer class="card-footer my-3">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
-                            <p class="font-weight-bold">© Cloud 9 Vapour</p>
-                            <p class="font-weight-bold">Latest Update: January 2020</p>
-                            <p class="font-weight-bold">Email: info@cloud9vapour.com</p>
-                        </div>                     
-
+                <div class="row">
+                    <class col="
+                    <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
+                        <p class="font-weight-bold">© Cloud 9 Vapour</p>
+                        <p class="font-weight-bold">Latest Update: January 2020</p>
+                        <p class="font-weight-bold">Email: info@cloud9vapour.com</p>
                     </div>
 
-
+                </div>
             </footer>
         </div>
- </form>
+    </form>
 
 
-  
+
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"> </script>

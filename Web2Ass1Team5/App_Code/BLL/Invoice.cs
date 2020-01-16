@@ -62,6 +62,10 @@ namespace Web2Ass1Team5.App_Code.BLL
             return invNum;
         }
 
+        public double getShipping() {
+            return shipping;
+        }
+
 
         public void setInvoiceNum(int invoiceNum)
         {

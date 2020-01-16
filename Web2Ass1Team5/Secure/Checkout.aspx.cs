@@ -324,7 +324,7 @@ namespace Web2Ass1Team5.Secure
                 DataRow dr = dt.AsEnumerable()
                                .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
 
-                double currentCost = item.getProdPrice();
+                double currentCost = item.getProdPrice() * item.getProdQuantity();
 
                 storedCost += currentCost;
             }

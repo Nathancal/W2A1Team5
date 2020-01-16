@@ -114,6 +114,12 @@
                             <div class="form-group px-3 py-2 m-0">
                                 <asp:Label runat="server" ID="lblSumbitSuccess" CssClass="alert-success">---</asp:Label>
                             </div>
+
+                                
+                            <div class="form-group px-3 py-2 m-0">
+                                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-primary" Text="Add Product" OnClick="btnAdd_Click" />                            
+
+                            </div>
                             </form>                           
                         </div>
 

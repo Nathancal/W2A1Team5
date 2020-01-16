@@ -281,6 +281,54 @@ namespace Web2Ass1Team5
         protected void lvCheckout_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
 
+            if (String.Equals(e.CommandName, "Empty"))
+            {
+                Session.Remove("ShoppingBasket");
+                displayItems(lvCheckout);
+
+                Response.Redirect("ProductsDetails.aspx");
+
+            }
+
+            if (String.Equals(e.CommandName, "goToCheckout"))
+            {
+                Users userInfo = (Users)Session["userInfo"];
+                ArrayList basket = (ArrayList)Session["ShoppingBasket"];
+
+
+
+                if (userInfo != null)
+                {
+                    if (basket != null)
+                    {
+                        Response.Redirect("Secure/Checkout.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("ProductsView.aspx");
+                    }
+
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+
+        }
+
+        protected void lvProducts_PagePropertiesChanged(object sender, EventArgs e)
+        {
+        }
+
+        protected void lvProducts_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager dp = (DataPager)lvProducts.FindControl("lvProductsDataPager1");
+            dp.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+
+
+            lvProducts.DataSource = Product.getProducts();
+            lvProducts.DataBind();
         }
     }
 }

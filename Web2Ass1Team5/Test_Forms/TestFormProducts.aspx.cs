@@ -63,7 +63,7 @@ namespace Web2Ass1Team5
                         Convert.ToInt32(tbReOrderLevel.Text),
                         pathName.ToString());
 
-                        newProduct.createNewProduct();
+                        //newProduct.createNewProduct();
 
 
 

@@ -21,7 +21,7 @@
                                             <div class="card-body p-0">
                                                 <div class="row p-5">
                                                     <div class="col-md-6">
-                                                        <img src="http://via.placeholder.com/400x90?text=logo">
+                                                        <img src="../Images/Cloud9Logo.png" class="img-thumbnail"/>
                                                     </div>
 
                                                     <div class="col-md-6 text-right">
@@ -136,6 +136,11 @@
                                                                         <div class="py-3 px-5 text-right">
                                                                             <div class="mb-2">Sub - Total amount</div>
                                                                             <div class="h2 font-weight-light"><span><asp:Label ID="lblSubTotal" runat="server" Text="--"></asp:Label></span></div>
+                                                                        </div>
+
+                                                                         <div class="py-3 px-5 text-right">
+                                                                            <div class="mb-2">Delivery Cost</div>
+                                                                            <div class="h2 font-weight-light"><span><asp:Label ID="lblDeliveryCost" runat="server" Text="--"></asp:Label></span></div>
                                                                         </div>
                                                                     </div>
 

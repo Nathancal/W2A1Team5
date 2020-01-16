@@ -259,7 +259,53 @@ namespace Web2Ass1Team5
 
         }
 
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            Users userInfo = (Users)Session["userInfo"];
 
+            if (userInfo == null)
+            {
+                Response.Redirect("Login.aspx");
+
+
+            }
+
+            ArrayList basket;
+
+            Product productInfo = (Product)Session["ProductDetailView"];
+
+            string productId = productInfo.getProductId().ToString();
+
+            Product productDetailView = new Product();
+
+            productDetailView.findProduct(productId);
+
+            CartItem item = new CartItem(productDetailView.getProductId(),
+                         productDetailView.getProductName(), productDetailView.getProductType(), productDetailView.getPrice(), Convert.ToInt32(ddlQuantity.SelectedValue));
+
+
+            if (Session["ShoppingBasket"] != null)//If a shopping basket doesnt already exist one is created.
+            {
+                basket = (ArrayList)Session["ShoppingBasket"];
+            }
+            else
+            {
+                basket = new ArrayList();
+            }
+
+
+
+            basket.Add(item);
+
+
+            //create ShoppingBasket session variable
+            Session["ShoppingBasket"] = basket;
+
+            Response.Redirect("ProductsView.aspx");
+
+
+
+        }
     }
 }
 

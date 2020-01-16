@@ -55,10 +55,7 @@
                                     <asp:ListItem>4</asp:ListItem>
                                     <asp:ListItem>5</asp:ListItem>
                                 </asp:DropDownList>
-
-
-                                <button class="btn btn-primary btn-lg mt-3" type="submit">Add To Cart</button>
-
+                                <asp:Button ID="btnAddToCart" CssClass="btn btn-primary btn-lg mt-3" runat="server"  Text="Add to Cart" OnClick="btnAddToCart_Click" />
                             </div>
 
                             <div class="col-sm col-md-3"></div>
@@ -134,29 +131,29 @@
                                     <div class="row">
                                         <div class="col-sm-12 list-group">
                                             <div class="row">
-                                                <div class="col-sm-3 col-md-3 list-group pr-0">
-                                                    <li class="list-group-item rounded-0 rounded-left border-secondary border-right-0"><%# Eval("ProductName") %></li>
+                                                <div class="col-sm-3 col-md-3 list-group pr-0 flex-grow-1">
+                                                    <li class="list-group-item rounded-0 rounded-left border-secondary border-right-0 flex-grow-1"><%# Eval("ProductName") %></li>
                                                 </div>
 
-                                                <div class="col-sm-2 col-md-2 pl-0 pr-0 list-group">
+                                                <div class="col-sm-2 col-md-2 pl-0 pr-0 list-group flex-grow-1">
 
-                                                    <li class="list-group-item rounded-0 border-secondary  border-left-0 border-right-0"><%# Eval("ProductQuantity") %></li>
-
-                                                </div>
-
-
-                                                <div class="col-sm-3 col-md-3 px-0 list-group">
-                                                    <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0"><%# Eval("ProductType") %></li>
+                                                    <li class="list-group-item rounded-0 border-secondary  border-left-0 border-right-0 flex-grow-1"><%# Eval("ProductQuantity") %></li>
 
                                                 </div>
 
-                                                <div class="col-sm-2 col-md-2 px-0 list-group">
-                                                    <li class="list-group-item rounded-0 rounded-right border-secondary border-left-0 border-right-0"><%# Eval("LineCost") %></li>
+
+                                                <div class="col-sm-3 col-md-3 px-0 list-group flex-grow-1">
+                                                    <li class="list-group-item rounded-0 border-secondary border-left-0 border-right-0 flex-grow-1"><%# Eval("ProductType") %></li>
+
+                                                </div>
+
+                                                <div class="col-sm-2 col-md-2 px-0 list-group flex-grow-1">
+                                                    <li class="list-group-item rounded-0 rounded-right border-secondary border-left-0 border-right-0 flex-grow-1"><%# Eval("LineCost") %></li>
                                                 </div>
 
 
-                                                <div class="col-sm-2 col-md-2 px-0 list-group border-left-0 ">
-                                                    <asp:Button CommandName="removeFromBasket" CssClass="list-group-item rounded-0 border-secondary border-left-0" runat="server" Text="X" />
+                                                <div class="col-sm-2 col-md-2 px-0 list-group border-left-0 flex-grow-1">
+                                                    <asp:Button CommandName="removeFromBasket" CssClass="list-group-item rounded-0 border-secondary border-left-0 flex-grow-1" runat="server" Text="X" />
                                                 </div>
 
 
@@ -190,7 +187,8 @@
 
         </div>
         <div class="row" id="RateProductRow" runat="server">
-            <div class="col-sm-12">
+
+            <div class="col-sm-8">
                 <div class="jumbotron jumbotron-fluid bg-primary mt-4">
                     <div class="container">
                         <h1 class="display-4">Recently made a purchase? Leave a Review!</h1>
@@ -248,6 +246,8 @@
 
         </div>
         <div class="row">
+            <div class="col-sm col-md-3">
+            </div>
             <div class="col-sm-12 col-md-6 pt-3 pb-3 mr-3" id="ProductReviewsDisplay" groupplaceholderid="GroupPlaceHolder" itemplaceholderid="itemPlaceholder" runat="server">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -291,9 +291,6 @@
                                     </div>
 
                                 </GroupTemplate>
-
-
-
                                 <ItemTemplate>
                                     <div class="carousel-item <%# (Container.DataItemIndex == 0 ? "active" : "") %> flex-grow-1">
                                         <div class="card-body">
@@ -301,15 +298,9 @@
                                                 <div class="card-header alert-primary">
 
                                                     <h5 class="card-title"><span><%# Eval("FirstName") %> <%# Eval("Surname") %></span></h5>
-
-
                                                 </div>
 
-
-
                                                 <div class="card-body">
-
-
                                                     <p class="card-text h5"><span>Product Name:</span></p>
 
                                                     <p class="card-text"><span><%#Eval("ProductName") %></span></p>
@@ -321,27 +312,11 @@
                                                     <p class="card-text"><span><%#Eval("Rating") %></span></p>
                                                     <div class="card-footer">
                                                         <p class="card-text"><small class="text-muted"><%#Eval("DateSubmitted") %></small></p>
-
-
                                                     </div>
-
-
-
-
                                                 </div>
-
-
                                             </div>
-
-
-
                                         </div>
                                     </div>
-
-
-
-
-
                                 </ItemTemplate>
 
                                 <ItemSeparatorTemplate>
@@ -353,8 +328,9 @@
 
                         </div>
                     </div>
-
                 </div>
+            </div>
+            <div class="col-sm col-md-3">
             </div>
 
 

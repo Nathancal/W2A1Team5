@@ -38,6 +38,7 @@ namespace Web2Ass1_Team5.secure
                     lblTotalFinal.Text = invoiceInfo.getTotalCost().ToString();
                     lblSubTotal.Text = invoiceInfo.getSubTotal().ToString();
                     lblDiscountApplied.Text = invoiceInfo.getDiscountAmount().ToString();
+                    lblDeliveryCost.Text = invoiceInfo.getShipping().ToString();
                 }
                 else
                 {
