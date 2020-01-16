@@ -3,98 +3,90 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head runat="server">
-        
-        
-
-         <!-- Required meta tags -->
-         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
-         <link rel="stylesheet" href="../BootStrap4/css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="../BootStrap4/css/bootstrap.min.css">
-        <!--CSS-->
-         <link rel="stylesheet" href="../styles/AdminStyle.css">
+<head runat="server">
 
 
-        <title></title>
-        <asp:ContentPlaceHolder ID="head" runat="server">
-        
 
-        </asp:ContentPlaceHolder>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    </head>
-    <body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../BootStrap4/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../BootStrap4/css/bootstrap.min.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="../styles/AdminStyle.css">
+
+
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
     <form id="adminMaster" runat="server">
 
-    <div class="container-fluid py-4">
-        <div class="row">
-        <div class="col-sm-12">         
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow p-3 justify-content-center align-content-center">
-            <a class="navbar-brand" href="#">Admin Area</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow p-3 justify-content-center align-content-center">
+                        <a class="navbar-brand" href="#">Admin Area</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <asp:LinkButton CssClass="nav-link" ID="lbHomeAdmin" OnClick="lbHomeAdmin_Click" runat="server" Text="HomePage"></asp:LinkButton>
+                                </li>
+                                <li class="nav-item">
+                                    <asp:LinkButton ID="lbDiscountCodes" runat="server" OnClick="lbDiscountCodes_Click" CssClass="nav-link" Text="Discount Codes"></asp:LinkButton>
+                                </li>
+                                <li class="nav-item">
+                                    <asp:LinkButton ID="lbProducts" OnClick="lbProducts_Click" CssClass="nav-link" Text="Manage Products" runat="server"></asp:LinkButton>
+                                </li>
+                                   <li class="nav-item">
+                                    <asp:LinkButton ID="lbProductRatings" OnClick="lbProductRatings_Click" CssClass="nav-link" Text="Manage Product Ratings" runat="server"></asp:LinkButton>
+                                </li>
+                                   <li class="nav-item">
+                                    <asp:LinkButton ID="lbUsers" OnClick="lbUsers_Click" CssClass="nav-link" Text="Manage Users" runat="server"></asp:LinkButton>
+                                </li>
+                
+                            </ul>
                         </div>
-                    </li>
-                </ul>
+                    </nav>
+                </div>
             </div>
-        </nav>
-        </div>              
-        </div>
 
-        <div class="row py-4">
-            <div class="col-sm-12">
-      
-                <div class="jumbotron jumbotron-fluid shadow p-3 mb-1 bg-primacy rounded">
-                    <div class="container-fluid">
-                         <h1 class="display-4">Welcome $AdminName</h1>
-                        <p class="lead">This area contains controls for managing users, products, discount codes messages, product ratings and discount codes
-                        </p>
+            <div class="row py-4">
+                <div class="col-sm-12">
+
+                    <div class="jumbotron jumbotron-fluid shadow p-3 mb-1 bg-primacy rounded">
+                        <div class="container-fluid">
+                            <h1 class="display-4">Welcome <span>
+                                <asp:Label ID="lblAdminName" runat="server" Text="--"></asp:Label></span></h1>
+                            <p class="lead">
+                                This area contains controls for managing users, products, discount codes messages, product ratings and discount codes
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        
-    </div>
-    <asp:ContentPlaceHolder ID="contentPlaceHolder1" runat="server">
+        <asp:ContentPlaceHolder ID="contentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
 
 
-
-    </asp:ContentPlaceHolder>
-
-
-    <footer>
-
-
-    </footer>
+        <footer>
+        </footer>
 
 
     </form>
 
-  <!-- jQuery first, then Tether, then Bootstrap JS. -->
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-  <script src="../BootStrap4/js/bootstrap.min.js"></script>
-    </body>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="../BootStrap4/js/bootstrap.min.js"></script>
+</body>
 </html>

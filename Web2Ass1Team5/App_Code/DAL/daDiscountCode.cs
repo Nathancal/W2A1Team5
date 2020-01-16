@@ -193,7 +193,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             OleDbConnection conn = openConnection();
 
 
-            string strUpdateDiscount = "UPDATE DiscountCodes SET  Code=@Code, DateFrom= @DateFrom, DateTo= @DateTo, DiscountPerc= @DiscountPerc, isActive= @isActive WHERE Code=@Code";
+            string strUpdateDiscount = "UPDATE DiscountCodes SET  Code=@Code, DateFrom=@DateFrom, DateTo=@DateTo, DiscountPerc= @DiscountPerc, isActive= @isActive WHERE Code=@Code";
             OleDbCommand cmdUpdate = new OleDbCommand(strUpdateDiscount, conn);
             cmdUpdate.Parameters.AddWithValue("@Code", discCode);
             cmdUpdate.Parameters.AddWithValue("@DateFrom", dateStart);

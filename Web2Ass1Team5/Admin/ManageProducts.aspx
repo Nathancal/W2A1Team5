@@ -19,7 +19,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="contentPlaceHolder1" runat="server">
     
 
-        <div class="container-fluid">
+        <div class="container-fluid mb-3">
         <div class="row">
            <div class="col-sm-12 col-md-12">
               <div class="alert alert-dark" role="alert">
@@ -118,6 +118,8 @@
                                 
                             <div class="form-group px-3 py-2 m-0">
                                 <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-primary" Text="Add Product" OnClick="btnAdd_Click" />                            
+                                <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary" Text="Update Product" />                            
+                                <asp:Button ID="btnClear" runat="server" CssClass="btn btn-primary" Text="Clear" />                            
 
                             </div>
                             </form>                           

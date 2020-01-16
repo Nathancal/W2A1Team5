@@ -12,8 +12,21 @@ namespace W2A1Team5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            showAdminArea.Visible = false;
+
 
             Users userInfo = (Users)Session["userInfo"];
+
+            if(userInfo != null)
+            {
+                if (Convert.ToInt32(userInfo.getUserAccessLevel()) > 0)
+                {
+                    showAdminArea.Visible = true;
+
+                }
+
+
+            }
 
         }
 
@@ -55,6 +68,31 @@ namespace W2A1Team5
         protected void lnkProducts_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/ProductsView.aspx");
+        }
+
+        protected void imgbLogin_Click(object sender, ImageClickEventArgs e)
+        {
+            Users userInfo = (Users)Session["userInfo"];
+
+            if (userInfo != null)
+            {
+                Response.Redirect("~/secure/Profile.aspx");
+
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
+
+            }
+
+
+
+        }
+
+        protected void lbAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/AdminHome.aspx");
+
         }
     }
 }

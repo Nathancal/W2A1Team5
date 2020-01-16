@@ -74,9 +74,8 @@
     <Content Include="Admin\ManageContent.aspx" />
     <Content Include="Admin\ManageDiscountCodes.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
+    <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\ProductRatings.aspx" />
-    <Content Include="Admin\Users.aspx" />
-    <Content Include="Admin\WebForm1.aspx" />
     <Content Include="BootStrap4\css\bootstrap-grid.css" />
     <Content Include="BootStrap4\css\bootstrap-grid.min.css" />
     <Content Include="BootStrap4\css\bootstrap-reboot.css" />
@@ -110,7 +109,6 @@
     <Content Include="secure\Checkout.aspx" />
     <Content Include="RegisterAccount.aspx" />
     <Content Include="RegisterSuccessful.aspx" />
-    <Content Include="Search.aspx" />
     <Content Include="secure\Invoices.aspx" />
     <Content Include="secure\Message.aspx" />
     <Content Include="secure\Profile.aspx" />
@@ -155,12 +153,12 @@
     <Compile Include="Admin\ManageProducts.aspx.designer.cs">
       <DependentUpon>ManageProducts.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Admin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Help.aspx.cs">
       <DependentUpon>Help.aspx</DependentUpon>
@@ -217,13 +215,6 @@
     </Compile>
     <Compile Include="RegisterSuccessful.aspx.designer.cs">
       <DependentUpon>RegisterSuccessful.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Search.aspx.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Search.aspx.designer.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="secure\Invoices.aspx.cs">
       <DependentUpon>Invoices.aspx</DependentUpon>
@@ -330,13 +321,6 @@
     </Compile>
     <Compile Include="Admin\ProductRatings.aspx.designer.cs">
       <DependentUpon>ProductRatings.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Users.aspx.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Users.aspx.designer.cs">
-      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

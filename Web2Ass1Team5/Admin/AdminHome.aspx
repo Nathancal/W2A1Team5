@@ -52,7 +52,7 @@
             <div class="card-header">
             <h3 class="card-title">Latest Product Reviews:</h3>
             </div>
-            <asp:ListView ID="ListView1" runat="server">
+            <asp:ListView ID="lvProductReviews" runat="server">
 
             </asp:ListView>
         </div>
@@ -64,7 +64,7 @@
             <div class="card-header">
             <h3 class="card-title">Live Chat</h3>
             </div>
-            <asp:ListView ID="ListView2" runat="server">
+            <asp:ListView ID="lvMessages" runat="server">
 
             </asp:ListView>
         </div>

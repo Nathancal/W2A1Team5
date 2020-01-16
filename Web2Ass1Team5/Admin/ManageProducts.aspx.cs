@@ -49,6 +49,8 @@ namespace Web2Ass1Team5.Admin
 
         protected void dgvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            dgvProducts.PageIndex = e.NewPageIndex;//Checks to see which page your on
+            dgvProducts.DataBind();//Binds that page to the control
 
         }
 

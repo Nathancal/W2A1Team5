@@ -34,7 +34,6 @@
                     <img src="/Images/Cloud9Logo.png" class="img-fluid" alt="Cloud 9 Logo" />
                 </div>
                 <div class="col-sm-4 mt-0">
-
                 </div>
             </div>
 
@@ -55,7 +54,7 @@
                                 <ul class="navbar-nav mr-auto">
 
                                     <li class="nav-item">
-                                                                                <asp:LinkButton CssClass="nav-link" ID="lnkProducts" OnClick="lnkProducts_Click" runat="server" Text='Products'></asp:LinkButton>
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkProducts" OnClick="lnkProducts_Click" runat="server" Text='Products'></asp:LinkButton>
                                     </li>
                                     <li class="nav-item">
                                         <asp:LinkButton CssClass="nav-link" ID="lnkTanksClick" OnClick="lnkTanksClick_Click" runat="server" Text='Tanks'></asp:LinkButton>
@@ -68,15 +67,18 @@
                                         <asp:LinkButton CssClass="nav-link" ID="lnkAdvancedKits" OnClick="lnkAdvancedKits_Click" runat="server" Text='Advanced Kits'></asp:LinkButton>
 
                                     </li>
-                                         <li class="nav-item">
-                                        <asp:LinkButton CssClass="nav-link" ID="lnkMods" onclick="lnkMods_Click" runat="server" Text='Mods'></asp:LinkButton>
+                                    <li class="nav-item">
+                                        <asp:LinkButton CssClass="nav-link" ID="lnkMods" OnClick="lnkMods_Click" runat="server" Text='Mods'></asp:LinkButton>
 
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="~/Help.aspx">Help</a>
                                     </li>
+                                    <li class="nav-item" id="showAdminArea" runat="server">
+                                        <asp:LinkButton CssClass="nav-link" ID="lbAdmin" OnClick="lbAdmin_Click" runat="server" Text='Admin Area'></asp:LinkButton>
+                                    </li>
                                     <li class="nav-item">
-                                        <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />
+                                        <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" OnClick="imgbLogin_Click" Height="30px" Width="30px" />
 
                                     </li>
 
@@ -93,9 +95,8 @@
 
             </div>
 
-                   <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
-       
-                </div>
+            <div class="col-md-6 col-sm-12 align-content-md-start align-content-sm-center">
+            </div>
         </div>
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -104,65 +105,66 @@
 
 
         <!-- Footer -->
-<footer class="page-footer pt-4 alert-primary">
+        <footer class="page-footer pt-4 alert-primary">
 
-  <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
 
-    <!-- Grid row -->
-    <div class="row">
+                <!-- Grid row -->
+                <div class="row">
 
-      <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
 
-        <!-- Content -->
-        <h4 class="text-uppercase">Info:</h4>
-                    <p class="h5">Latest Update: January 2020</p>
-                    <p class="h5">Email: info@cloud9vapour.com</p>
-      </div>
-      <!-- Grid column -->
+                        <!-- Content -->
+                        <h4 class="text-uppercase">Info:</h4>
+                        <p class="h5">Latest Update: January 2020</p>
+                        <p class="h5">Email: info@cloud9vapour.com</p>
+                    </div>
+                    <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none pb-3">
+                    <hr class="clearfix w-100 d-md-none pb-3">
 
-      <!-- Grid column -->
+                    <!-- Grid column -->
 
-      <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
 
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+                        <!-- Links -->
+                        <h5 class="text-uppercase">Links</h5>
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="~/Home.aspx">home</a>
-          </li>
-          <li>
-            <a href="~/ProductsView.aspx">products</a>
-          </li>
-          <li>
-            <a href="~/RegisterAccount.aspx">register</a>
-          </li>
-          <li>
-            <a href="~/Help.aspx">help</a>
-          </li>
-        </ul>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="~/Home.aspx">home</a>
+                            </li>
+                            <li>
+                                <a href="~/ProductsView.aspx">products</a>
+                            </li>
+                            <li>
+                                <a href="~/RegisterAccount.aspx">register</a>
+                            </li>
+                            <li>
+                                <a href="~/Help.aspx">help</a>
+                            </li>
+                        </ul>
 
-      </div>
-      <!-- Grid column -->
+                    </div>
+                    <!-- Grid column -->
 
-    </div>
-    <!-- Grid row -->
+                </div>
+                <!-- Grid row -->
 
-  </div>
-  <!-- Footer Links -->
+            </div>
+            <!-- Footer Links -->
 
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright: Cloud9 Vape</a>
-  </div>
-  <!-- Copyright -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2020 Copyright: Cloud9 Vape</a>
+            </div>
+            <!-- Copyright -->
 
-</footer>
-<!-- Footer -->
+        </footer>
+        <!-- Footer -->
     </form>
 
 

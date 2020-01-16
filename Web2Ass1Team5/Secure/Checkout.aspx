@@ -274,6 +274,7 @@
                                         <asp:ListItem>Next day EU</asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:Label ID="lblHiddenCost" runat="server" Visible="false"></asp:Label>
+                                                                        <asp:Label ID="lblHiddenDelivery" runat="server" Visible="false"></asp:Label>
 
                                 </div>
                                 <div class="card-footer text-muted">

@@ -16,20 +16,46 @@ namespace Web2Ass1Team5.Admin
         {
 
 
-            //Users userInfo = (Users)Session["userInfo"];
+            Users userInfo = (Users)Session["userInfo"];
 
             //userInfo.getUserId();
 
-            //userInfo.getFirstName();
+            //lblAdminName.Text = userInfo.getFirstName();
 
             //int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
 
             //if (accessLevel == 0)
             //{
-            //    Response.Redirect("../home.aspx");
+            //    Response.Redirect("~/home.aspx");
 
             //}
 
+        }
+
+        protected void lbHomeAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
+        }
+
+        protected void lbDiscountCodes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/ManageDiscountCodes.aspx");
+        }
+
+        protected void lbProducts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/ManageProducts.aspx");
+        }
+
+        protected void lbProductRatings_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Admin/ProductRatings.aspx");
+
+        }
+
+        protected void lbUsers_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Users.aspx");
         }
     }
 }

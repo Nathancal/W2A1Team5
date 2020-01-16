@@ -18,6 +18,7 @@ namespace Web2Ass1Team5.Secure
 
             Users userInfo = (Users)Session["userInfo"];
 
+
             toggleCodeApplied.Visible = false;
             DiscountRedeemFailure.Visible = false;
 
@@ -69,10 +70,12 @@ namespace Web2Ass1Team5.Secure
                     lblVat.Text = vat.ToString("£##.00");
                     lblHiddenCost.Text = subTotal.ToString();
 
-                    lblTotal.Text = subTotal.ToString("£##.00");
+                    double deliveryCost = Convert.ToDouble(this.lblDelivery.Text);
+                    double total = subTotal + deliveryCost;
+
+                    lblTotal.Text = total.ToString();
 
                 }
-
 
             }
             else
@@ -195,36 +198,33 @@ namespace Web2Ass1Team5.Secure
 
         protected void ddlDeliverySelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            double totalCost = 0;
-
+            double delivery = 0;
             switch (ddlDeliverySelect.SelectedIndex)
             {
                 case 0:
-                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 0;
-                    lblTotal.Text = totalCost.ToString("£##.00");
+                     delivery = 0;
                     lblDelivery.Text = "0";
-                    lblHiddenCost.Text = totalCost.ToString();
+                    lblHiddenDelivery.Text = "0";
                     break;
                 case 1:
-                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 5;
-                    lblTotal.Text = totalCost.ToString("£##.00");
+                    delivery = 5;
+
                     lblDelivery.Text = "5";
-                    lblHiddenCost.Text = totalCost.ToString();
+                    lblHiddenDelivery.Text = "5";
                     break;
                 case 2:
-                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 8;
-                    lblTotal.Text = totalCost.ToString("£##.00");
+                    delivery = 8;
+
                     lblDelivery.Text = "8";
-                    lblHiddenCost.Text = totalCost.ToString();
+                    lblHiddenDelivery.Text = "8";
                     break;
                 case 3:
-                    totalCost = Convert.ToDouble(lblHiddenCost.Text) + 15;
-                    lblTotal.Text = totalCost.ToString("£##.00");
+                    delivery = 15;
                     lblDelivery.Text = "15";
-                    lblHiddenCost.Text = totalCost.ToString();
+                    lblHiddenDelivery.Text = "15";
                     break;
             }//switch
-
+            ViewState["Delivery"] = delivery;
         }
 
         protected void btnRedeemCode_Click(object sender, EventArgs e)
@@ -273,8 +273,11 @@ namespace Web2Ass1Team5.Secure
 
                     subTotal = storedCost;
 
+
+
                     int remainder = 100 - selectCode.getDiscountPerc();
                     double total = (subTotal / 100) * remainder;
+
 
                     lblDiscountTotalIndicator.Text = selectCode.getDiscountPerc().ToString() + "% Discount";
                     lblTotal.Text = total.ToString("£##.00");
@@ -331,7 +334,7 @@ namespace Web2Ass1Team5.Secure
 
             subTotal = storedCost;
 
-            double deliveryCost = Convert.ToDouble(lblDelivery.Text);
+            double deliveryCost = Convert.ToDouble(this.lblDelivery.Text);
       
             int invoiceNum;
             double total;

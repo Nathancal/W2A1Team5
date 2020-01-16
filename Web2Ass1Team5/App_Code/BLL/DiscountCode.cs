@@ -108,11 +108,6 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-        public void updateDiscountCode(string discCode, DateTime dateStart, DateTime dateEnd, int discountPerc, Boolean isActive)
-        {
-            daDiscountCode.updateDiscountCode(discCode, dateStart, dateEnd, discountPerc, isActive);
-        }
-
         public static DiscountCode selectDiscountCode(string pFindCode)
         {
             return daDiscountCode.selectDiscountCode(pFindCode);
