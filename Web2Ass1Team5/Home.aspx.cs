@@ -14,6 +14,18 @@ namespace Web2Ass1Team5
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+            Users userInfo = (Users)Session["userInfo"];
+
+
+            if(userInfo != null)
+            {
+
+                RegisterNewUser.Visible = false;
+
+
+            }
+
             DataSet productsDisplay = Product.getProducts();
 
             DataTable productsDisplayThree = productsDisplay.Tables["Products"];
@@ -60,7 +72,11 @@ namespace Web2Ass1Team5
 
         }
 
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
 
+            Response.Redirect("RegisterAccount.aspx");
 
+        }
     }
 }

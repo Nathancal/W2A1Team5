@@ -15,6 +15,7 @@ namespace Web2Ass1_Team5.secure
 
             Users userInfo = (Users)Session["userInfo"];
 
+
             if (userInfo == null) {
 
                 Response.Redirect("~/Login.aspx");

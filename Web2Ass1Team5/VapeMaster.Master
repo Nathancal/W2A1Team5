@@ -55,7 +55,7 @@
                                 <ul class="navbar-nav mr-auto">
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="ProductsView.aspx">Products</a>
+                                                                                <asp:LinkButton CssClass="nav-link" ID="lnkProducts" OnClick="lnkProducts_Click" runat="server" Text='Products'></asp:LinkButton>
                                     </li>
                                     <li class="nav-item">
                                         <asp:LinkButton CssClass="nav-link" ID="lnkTanksClick" OnClick="lnkTanksClick_Click" runat="server" Text='Tanks'></asp:LinkButton>
@@ -73,7 +73,7 @@
 
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="Help.aspx">Help</a>
+                                        <a class="nav-link" href="~/Help.aspx">Help</a>
                                     </li>
                                     <li class="nav-item">
                                         <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" PostBackUrl="~/Login.aspx" Height="30px" Width="30px" />

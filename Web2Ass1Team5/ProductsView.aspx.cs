@@ -338,6 +338,23 @@ namespace Web2Ass1Team5
                 }
             }
 
+            if (String.Equals(e.CommandName, "Select"))
+            {
+
+                ListViewDataItem dataItemProductDetails = (ListViewDataItem)e.Item;
+                string productId = lvProducts.DataKeys[dataItemProductDetails.DisplayIndex].Value.ToString();
+
+                Product productDetailView = new Product();
+
+                productDetailView.findProduct(productId);
+
+                Session["ProductDetailView"] = productDetailView;
+
+
+                Response.Redirect("ProductsDetails.aspx");
+
+            }
+
         }
 
         protected void lvProducts_PagePropertiesChanged(object sender, EventArgs e)

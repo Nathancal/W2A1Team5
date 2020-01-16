@@ -51,5 +51,10 @@ namespace W2A1Team5
             Response.Redirect("~/ProductsView.aspx?Type=" + type);
 
         }
+
+        protected void lnkProducts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ProductsView.aspx");
+        }
     }
 }

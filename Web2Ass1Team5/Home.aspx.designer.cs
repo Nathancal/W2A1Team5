@@ -24,6 +24,24 @@ namespace Web2Ass1Team5
         protected global::System.Web.UI.WebControls.ListView lvProducts;
 
         /// <summary>
+        /// RegisterNewUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterNewUser;
+
+        /// <summary>
+        /// btnRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegister;
+
+        /// <summary>
         /// lvProductReviewsDisplay control.
         /// </summary>
         /// <remarks>

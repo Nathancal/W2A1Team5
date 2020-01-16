@@ -21,72 +21,70 @@ namespace Web2Ass1Team5
 
 
 
-                Product productInfo = (Product)Session["ProductDetailView"];
+            Product productInfo = (Product)Session["ProductDetailView"];
 
-                if (productInfo != null)
+
+            if (productInfo != null)
+            {
+                productImage.Src = productInfo.getImageFile();
+                lblProductName.Text = productInfo.getProductName();
+                lblProductPrice.Text = productInfo.getPrice().ToString();
+                lblProductDescription.Text = productInfo.getProductDesc();
+                lblProductType.Text = productInfo.getProductType();
+
+                ProductRating getRating = new ProductRating();
+
+                lvProductReviewsDisplay.DataSource = ProductRating.getRatingsForProduct(productInfo.getProductId());
+                lvProductReviewsDisplay.DataBind();
+
+            }
+
+
+
+
+
+            if (invoiceItemsReview != null)
+            {
+                foreach (CartItem item in invoiceItemsReview)
                 {
-                    productImage.Src = productInfo.getImageFile();
-                    lblProductName.Text = productInfo.getProductName();
-                    lblProductPrice.Text = productInfo.getPrice().ToString();
-                    lblProductDescription.Text = productInfo.getProductDesc();
-                    lblProductType.Text = productInfo.getProductType();
-
-                    ProductRating getRating = new ProductRating();
-                    
-
-                    lvProductReviewsDisplay.DataSource = ProductRating.getRatingsForProduct(productInfo.getProductId());
-                    lvProductReviewsDisplay.DataBind();
-                }
-                else
-                {
-                    Response.Redirect("ProductsView.aspx");
-                }
-
-
-
-
-                if (invoiceItemsReview != null)
-                {
-                    foreach (CartItem item in invoiceItemsReview)
+                    if (item.getProdId() == productInfo.getProductId())
                     {
-                        if (item.getProdId() == productInfo.getProductId())
+                        ProductRating rateProduct = new ProductRating();
+                        ProductRating checkDB = new ProductRating();
+
+                        checkDB.setProductId(productInfo.getProductId());
+                        checkDB.setUserId(userInfo.getUserId());
+
+                        if (rateProduct.returnRating(checkDB.getProductId(), checkDB.getUserId()) == null)
                         {
-                            ProductRating rateProduct = new ProductRating();
-                            ProductRating checkDB = new ProductRating();
 
-                            checkDB.setProductId(productInfo.getProductId());
-                            checkDB.setUserId(userInfo.getUserId());
-
-                            if (rateProduct.returnRating(checkDB.getProductId(), checkDB.getUserId()) == null)
-                            {
-
-                                RateProductRow.Visible = true;
-                                break;
-                            }
-                            else
-                            {
-                                RateProductRow.Visible = false;
-
-                            }
-
+                            RateProductRow.Visible = true;
+                            break;
                         }
                         else
                         {
                             RateProductRow.Visible = false;
+
                         }
 
                     }
-                }
-                else
-                {
-                    RateProductRow.Visible = false;
+                    else
+                    {
+                        RateProductRow.Visible = false;
+                    }
 
                 }
+            }
+            else
+            {
+                RateProductRow.Visible = false;
 
-                if (!IsPostBack)
-                {
-                    Session["CheckoutListViewData"] = displayItems(lvCheckout);
-                }
+            }
+
+            if (!IsPostBack)
+            {
+                Session["CheckoutListViewData"] = displayItems(lvCheckout);
+            }
 
 
 
@@ -220,7 +218,6 @@ namespace Web2Ass1Team5
                 ArrayList basket = (ArrayList)Session["ShoppingBasket"];
 
 
-
                 if (userInfo != null)
                 {
                     if (basket != null)
@@ -238,8 +235,10 @@ namespace Web2Ass1Team5
 
         protected void btnSubmitRating_Click(object sender, EventArgs e)
         {
-            Product productInfo = (Product)Session["ProductDetailView"];
+
             Users userInfo = (Users)Session["userInfo"];
+
+            Product productInfo = (Product)Session["ProductDetailView"];
             ProductRating checkRating = null;
 
             if (Session["ShoppingBasket"] == null && Session["InvoiceItems"] != null)
@@ -257,7 +256,7 @@ namespace Web2Ass1Team5
             }
 
 
-            if(checkRating != null)
+            if (checkRating != null)
             {
                 RateProductRow.Visible = false;
             }
@@ -306,7 +305,7 @@ namespace Web2Ass1Team5
             //create ShoppingBasket session variable
             Session["ShoppingBasket"] = basket;
 
-            Response.Redirect("ProductsView.aspx");
+            Response.Redirect("ProductsDetails.aspx");
 
 
 

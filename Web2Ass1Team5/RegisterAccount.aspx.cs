@@ -47,9 +47,18 @@ namespace Web2Ass1Team5
 
                 newUserAccount.createNewUserNoAccess();
 
-                Session["userInfo"] = newUserAccount;
 
-                Response.Redirect("~/RegisterSuccessful.aspx");
+                Users UserInfo = Users.verifyLogin(tbUsername.Text, tbPassword.Text);
+
+                if (UserInfo != null)
+                {
+
+                    Session["userInfo"] = UserInfo;
+                    System.Web.Security.FormsAuthentication.RedirectFromLoginPage(UserInfo.getUsername(),
+                                                            false);
+
+                }
+
 
             }
             catch (Exception ex)

@@ -186,23 +186,20 @@
 
         </div>
         <div class="row" id="RateProductRow" runat="server">
+            <div class="col-sm-2">
+
+            </div>
+
 
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid bg-primary mt-4">
+                <div class="jumbotron jumbotron-fluid alert-primary mt-4">
                     <div class="container">
                         <h1 class="display-4">Recently made a purchase? Leave a Review!</h1>
                         <div class="card shadow-sm ">
                             <div class="card-body checkoutCardStyle">
                                 <h5 class="card-title">Please tell us what you thought of this product:</h5>
                                 <form class="border border-dark pl-2">
-                                    <div class="form-group px-3 pl-2 py-2 m-0">
-                                        <label for="tbUsername">
-                                            Product name: <span class="alert-primary">
-                                                <asp:Label ID="lblProductNameProductReview" runat="server" Text="--"></asp:Label>
-                                            </span>
-                                        </label>
-                                    </div>
-
+                          
                                     <div class="form-group px-3 py-2 m-0">
                                         <label for="tbProductType">
                                             Product Rating(out of 10): <span>
@@ -253,7 +250,6 @@
 
                         <div class="card shadow">
                             <h5 class="card-header">Product Review</h5>
-
 
                             <asp:ListView ID="lvProductReviewsDisplay" GroupItemCount="3" GroupPlaceholderID="GroupPlaceHolder" ItemPlaceholderID="ItemPlaceholder" runat="server">
                                 <LayoutTemplate>

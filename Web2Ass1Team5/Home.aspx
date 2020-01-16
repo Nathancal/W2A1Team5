@@ -99,18 +99,10 @@
                                 </p>
                             </div>
 
-
-
-
                         </div>
-
-
-
                     </div>
 
-
-
-                    <div class="row">
+                    <div class="row " id="RegisterNewUser" runat="server">
                         <div class="col-sm-1">
                         </div>
 
@@ -128,6 +120,10 @@
                                             <div class="text-secondary">
                                                 <h5>Take advantage of our daily discount codes, chat with friends and shop for your favourite vaping products by signing up for your free account Here!</h5>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <asp:Button ID="btnRegister" CssClass="btn btn-success btn-block" OnClick="btnRegister_Click" runat="server" Text="Register Here!" />
+
                                         </div>
                                     </div>
                                 </div>
