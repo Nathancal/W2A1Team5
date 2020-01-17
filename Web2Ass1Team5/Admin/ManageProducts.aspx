@@ -139,7 +139,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <asp:GridView ID="dgvProducts" runat="server" DataKeyNames="ProductId" CssClass="table table-striped table-dark table-hover" OnRowCancelingEdit="dgvProducts_RowCancelingEdit" OnRowUpdating="dgvProducts_RowUpdating" OnRowEditing="dgvProducts_RowEditing" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
+                            <asp:GridView ID="dgvProducts" runat="server" DataKeyNames="ProductId" CssClass="table table-striped table-dark table-hover" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
                                 <Columns>              
                                     <asp:CommandField ShowEditButton="true" />
     

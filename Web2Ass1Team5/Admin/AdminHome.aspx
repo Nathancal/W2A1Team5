@@ -64,9 +64,7 @@
             <div class="card-header">
             <h3 class="card-title">Live Chat</h3>
             </div>
-            <asp:ListView ID="lvMessages" runat="server">
-
-            </asp:ListView>
+            <asp:Button ID="btnChat" CssClass="btn btn-warning" runat="server" Text="View Latest Messages" />
         </div>
         </div>
 

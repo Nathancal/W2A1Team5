@@ -24,13 +24,13 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.ListView lvProductReviews;
 
         /// <summary>
-        /// lvMessages control.
+        /// btnChat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvMessages;
+        protected global::System.Web.UI.WebControls.Button btnChat;
 
         /// <summary>
         /// ListView3 control.

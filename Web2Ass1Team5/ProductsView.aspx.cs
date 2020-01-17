@@ -309,7 +309,7 @@ namespace Web2Ass1Team5
                 Session.Remove("ShoppingBasket");
                 displayItems(lvCheckout);
 
-                Response.Redirect("ProductsDetails.aspx");
+                Response.Redirect("ProductsView.aspx");
 
             }
 

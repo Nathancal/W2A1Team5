@@ -106,45 +106,6 @@ namespace Web2Ass1Team5.Admin
 
         }
 
-        protected void dgvProducts_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            dgvProducts.EditIndex = e.NewEditIndex;
-            refreshTable();
-
-        }
-
-        protected void dgvProducts_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-
-            //Finding the controls from Gridview for the row which is going to update  
-            TextBox getproductName = dgvProducts.Rows[e.RowIndex].FindControl("ProductName") as TextBox;
-            TextBox getproductPrice = dgvProducts.Rows[e.RowIndex].FindControl("Price") as TextBox;
-            TextBox getproductType = dgvProducts.Rows[e.RowIndex].FindControl("ProductType") as TextBox;
-
-            CheckBox getisSale = dgvProducts.Rows[e.RowIndex].FindControl("Sale") as CheckBox;
-            TextBox getsalePrice = dgvProducts.Rows[e.RowIndex].FindControl("SalePrice") as TextBox;
-            TextBox getdescription = dgvProducts.Rows[e.RowIndex].FindControl("Description") as TextBox;
-            TextBox getcurrentStock = dgvProducts.Rows[e.RowIndex].FindControl("CurrentStock") as TextBox;
-            TextBox getReOrderLevel = dgvProducts.Rows[e.RowIndex].FindControl("ReOrderLevel") as TextBox;
-            TextBox getImageFile = dgvProducts.Rows[e.RowIndex].FindControl("ImageFile") as TextBox;
-
-            Product newProduct = new Product();
-            Product updateProduct = new Product(getproductName.Text, getproductType.Text, Convert.ToDouble(getproductPrice.Text), getisSale.Checked, Convert.ToDouble(getsalePrice.Text), getdescription.Text, Convert.ToInt32(getcurrentStock.Text), Convert.ToInt32(getReOrderLevel.Text), getImageFile.Text);
-            newProduct.updateProduct(updateProduct);
-
-            //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview  
-            dgvProducts.EditIndex = -1;
-            //Call ShowData method for displaying updated data  
-            refreshTable();
-
-
-        }
-
-        protected void dgvProducts_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview  
-            dgvProducts.EditIndex = -1;
-            refreshTable();
-        }
+ 
     }
 }

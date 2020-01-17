@@ -70,11 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
-    <Content Include="Admin\ErrorManager.aspx" />
     <Content Include="Admin\ManageDiscountCodes.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
-    <Content Include="Admin\ProductRatings.aspx" />
     <Content Include="BootStrap4\css\bootstrap-grid.css" />
     <Content Include="BootStrap4\css\bootstrap-grid.min.css" />
     <Content Include="BootStrap4\css\bootstrap-reboot.css" />
@@ -300,20 +298,6 @@
     <Compile Include="App_Code\DAL\daMessage.cs" />
     <Compile Include="App_Code\DAL\daProductRating.cs" />
     <Compile Include="App_Code\DAL\daUsers.cs" />
-    <Compile Include="Admin\ErrorManager.aspx.cs">
-      <DependentUpon>ErrorManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ErrorManager.aspx.designer.cs">
-      <DependentUpon>ErrorManager.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ProductRatings.aspx.cs">
-      <DependentUpon>ProductRatings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ProductRatings.aspx.designer.cs">
-      <DependentUpon>ProductRatings.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
