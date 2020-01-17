@@ -42,6 +42,15 @@ namespace W2A1Team5
         protected global::System.Web.UI.WebControls.LinkButton lbHome;
 
         /// <summary>
+        /// makeColumnSmaller control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl makeColumnSmaller;
+
+        /// <summary>
         /// lnkProducts control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,24 @@ namespace W2A1Team5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgbLogin;
+
+        /// <summary>
+        /// hideLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hideLogout;
+
+        /// <summary>
+        /// lbLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbLogout;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

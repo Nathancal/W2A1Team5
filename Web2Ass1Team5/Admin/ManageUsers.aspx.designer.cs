@@ -15,6 +15,15 @@ namespace Web2Ass1Team5.Admin
     {
 
         /// <summary>
+        /// gridUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridUsers;
+
+        /// <summary>
         /// tbEmail control.
         /// </summary>
         /// <remarks>
@@ -114,12 +123,21 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
 
         /// <summary>
-        /// gridUsers control.
+        /// tbAccessLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridUsers;
+        protected global::System.Web.UI.WebControls.TextBox tbAccessLevel;
+
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

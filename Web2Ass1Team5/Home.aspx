@@ -145,7 +145,7 @@
                         <div class="col-sm-12 col-md-6">
                                         <div class="card shadow mt-2">
                                             <div class="card-header alert-primary">
-                                                <h3 class="card-title">Product Reviews
+                                                <h3 class="card-title">Latest Product Reviews
                                                 </h3>
 
                                             </div>

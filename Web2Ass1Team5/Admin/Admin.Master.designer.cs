@@ -60,15 +60,6 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.LinkButton lbProducts;
 
         /// <summary>
-        /// lbProductRatings control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbProductRatings;
-
-        /// <summary>
         /// lbUsers control.
         /// </summary>
         /// <remarks>

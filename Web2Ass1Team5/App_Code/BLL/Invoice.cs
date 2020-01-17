@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using Web2Ass1Team5.App_Code.DAL;
@@ -77,6 +78,10 @@ namespace Web2Ass1Team5.App_Code.BLL
             Invoice returnInvoice = daInvoice.returnNewInvoice(invoiceNum);
 
             return returnInvoice;
+        }
+
+        public static DataSet returnInvoices(string email) {
+            return daInvoice.returnUserInvoices(email); 
         }
 
         public int getInvoiceNum()

@@ -16,17 +16,25 @@ namespace Web2Ass1Team5.Admin
 
             Users userInfo = (Users)Session["userInfo"];
 
-            //userInfo.getUserId();
+            int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
+            if (userInfo == null)
+            {
+                if (accessLevel == 0)
+                {
+                    Response.Redirect("~/home.aspx");
 
-            //int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
-
-            //if (accessLevel == 0)
-            //{
-            //    Response.Redirect("../home.aspx");
-
-            //}
+                }
 
 
+            }
+
+
+
+        }
+
+        protected void btnChat_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/secure/Message.aspx");
         }
     }
 }

@@ -39,6 +39,7 @@
                                 <div class="form-group px-3 py-2 m-0">
                                     <label for="discountCodeId">Discount Code ID</label>
                                     <asp:TextBox ID="tbDiscountCodeId" placeholder="Enter Code Id" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvDiscountCodeId"  ValidationGroup="Discount" ControlToValidate="tbDiscountCodeId"  runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -61,16 +62,19 @@
                                 <div class="form-group px-3 py-2 m-0">
                                     <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
                                     <asp:TextBox ID="tbDiscountPerc" placeholder="Enter Discount Amount" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvDiscountPerc" ControlToValidate="tbDiscountPerc"  ValidationGroup="Discount" runat="server" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group px-3 py-2 m-0">
                                     <label for="discountPerc">Set Active (check for yes)</label>
                                     <asp:CheckBox ID="cbSetActive" runat="server" />
+
                                 </div>
                                 <div class="form-group px-3 py-2 m-0">
-                                    <asp:Button ID="btnAddCode" runat="server" Text="Add Code" CssClass="btn btn-success" OnClick="btnAddCode_Click" />
+                                    <asp:Button ID="btnAddCode" runat="server" ValidationGroup="Discount" Text="Add Code" CssClass="btn btn-success" OnClick="btnAddCode_Click" />
 
-                                    <asp:Button ID="btnClearForm" runat="server" Text="Clear Form" CssClass="btn btn-danger" OnClick="btnClearForm_Click" />
+
+                                    <asp:Button ID="btnClearForm" runat="server" CausesValidation="false" Text="Clear Form" CssClass="btn btn-danger" OnClick="btnClearForm_Click" />
                                     <asp:Label runat="server" ID="lblSumbitSuccess" CssClass="alert-success">---</asp:Label>
                                 </div>
                             </form>

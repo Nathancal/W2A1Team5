@@ -319,15 +319,16 @@ namespace Web2Ass1Team5
                 ArrayList basket = (ArrayList)Session["ShoppingBasket"];
 
 
-
+                //If the user is logged in
                 if (userInfo != null)
                 {
+                    //If the users basket is not empty
                     if (basket != null)
-                    {
+                    {   //then continue to the checkout
                         Response.Redirect("Secure/Checkout.aspx");
                     }
                     else
-                    {
+                    {   //otherwise return to products view
                         Response.Redirect("ProductsView.aspx");
                     }
 

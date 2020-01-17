@@ -41,7 +41,8 @@ namespace Web2Ass1_Team5.secure
                 lblUnreadMessages.Text = "No new messages, start a chat!";
             }
 
-            
+            dgvInvoices.DataSource = Invoice.returnInvoices(userInfo.getEmail());
+            dgvInvoices.DataBind();
             
             DiscountCode randomCode = DiscountCode.randomDiscountCode(userInfo.getUserId());
 

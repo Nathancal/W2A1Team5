@@ -24,6 +24,15 @@ namespace Web2Ass1Team5.Admin
         protected global::System.Web.UI.WebControls.TextBox tbDiscountCodeId;
 
         /// <summary>
+        /// rfvDiscountCodeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDiscountCodeId;
+
+        /// <summary>
         /// calDateActive control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Web2Ass1Team5.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDiscountPerc;
+
+        /// <summary>
+        /// rfvDiscountPerc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDiscountPerc;
 
         /// <summary>
         /// cbSetActive control.

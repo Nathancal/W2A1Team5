@@ -41,6 +41,10 @@
                                                 <div class="row pb-5 p-5">
                                                     <div class="col-md-6">
                                                         <p class="font-weight-bold mb-4">Customer Information</p>
+                                                           <p>
+                                                            <span>
+                                                                <asp:Label ID="lblEmail" runat="server" Text="--"></asp:Label></span>
+                                                        </p>
                                                         <p class="mb-1">
                                                             <span>
                                                                 <asp:Label ID="lblFullName" runat="server" Text="--"></asp:Label></span>

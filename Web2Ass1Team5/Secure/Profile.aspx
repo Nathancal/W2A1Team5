@@ -149,7 +149,7 @@
                                                         </div>
 
                                                     </div>
-                                           
+
                                                 </div>
                                         </div>
 
@@ -169,7 +169,7 @@
 
 
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-6">
 
                             <div class="card shadow p-4 mt-2">
                                 <div class="card-header">
@@ -209,24 +209,27 @@
 
                                 </div>
 
-                            <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <h4 class="text-primary mr-3">Special offer use discount code: <span>
-                                            <asp:Label ID="lblDiscountCodeRandom" CssClass="alert-danger ml-3" runat="server" Text="--"></asp:Label></span></h4>
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <h4 class="text-primary mr-3">Special offer use discount code: <span>
+                                                <asp:Label ID="lblDiscountCodeRandom" CssClass="alert-danger ml-3" runat="server" Text="--"></asp:Label></span></h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer d-flex flex-column-reverse">
-                                <asp:Button ID="btnViewProducts" CssClass="btn btn-danger" OnClick="btnViewProducts_Click" runat="server" Text="View Products" />
+                                <div class="card-footer d-flex flex-column-reverse">
+                                    <asp:Button ID="btnViewProducts" CssClass="btn btn-danger" OnClick="btnViewProducts_Click" runat="server" Text="View Products" />
 
 
+                                </div>
+
                             </div>
+                        </div>
+                        <div class="col-md-2">
 
                         </div>
-    </div>
 
-                              <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 col-md-8 mt-2">
                             <div class="card shadow p-4 ">
                                 <div class="card-header">
                                     <h3 class="card-title">Order History:</h3>
@@ -235,7 +238,22 @@
                                 <div class="card-body ">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
+                                            <asp:GridView ID="dgvInvoices" runat="server" DataKeyNames="InvoiceNum" CssClass="table table-striped table-dark table-hover" AutoGenerateColumns="False" >
+                                                <Columns>
+                                                    <asp:CommandField ShowEditButton="true" />
 
+                                                    <asp:BoundField DataField="InvoiceNum" HeaderText="InvoiceNum" />
+                                                    <asp:BoundField DataField="ShipMethod" HeaderText="Ship Method" />
+                                                    <asp:BoundField DataField="Shipping" DataFormatString="{0:c}" HeaderText="Shipping" />
+                                                    <asp:BoundField DataField="SubTotal" DataFormatString="{0:c}" HeaderText="SubTotal" />
+                                                    <asp:BoundField DataField="TotalCost" DataFormatString="{0:c}" HeaderText="Price on Sale" />
+                                                    <asp:BoundField DataField="DiscountApplied" HeaderText="Discount Applied" />
+                                                    <asp:BoundField DataField="OrderDate" HeaderText="Order Date" />
+                                 
+                                                    <asp:BoundField />
+
+                                                </Columns>
+                                            </asp:GridView>
 
 
 
@@ -263,7 +281,7 @@
 
 
         </div>
-        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="../BootStrap4/js/bootstrap.min.js"></script>

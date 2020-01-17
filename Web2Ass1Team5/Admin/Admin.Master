@@ -44,10 +44,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <asp:LinkButton ID="lbProducts" OnClick="lbProducts_Click" CssClass="nav-link" Text="Manage Products" runat="server"></asp:LinkButton>
-                                </li>
-                                   <li class="nav-item">
-                                    <asp:LinkButton ID="lbProductRatings" OnClick="lbProductRatings_Click" CssClass="nav-link" Text="Manage Product Ratings" runat="server"></asp:LinkButton>
-                                </li>
+                                </li>                   
                                    <li class="nav-item">
                                     <asp:LinkButton ID="lbUsers" OnClick="lbUsers_Click" CssClass="nav-link" Text="Manage Users" runat="server"></asp:LinkButton>
                                 </li>

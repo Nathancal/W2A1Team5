@@ -58,7 +58,7 @@ namespace Web2Ass1Team5.Secure
                                        .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
 
                         //takes the value of each item and stores it
-                        double currentCost = item.getProdPrice();
+                        double currentCost = item.getProdPrice() * item.getProdQuantity();
 
 
 
@@ -359,7 +359,7 @@ namespace Web2Ass1Team5.Secure
             {
                 int remainder = 100 - selectCode.getDiscountPerc();
                 total = ((subTotal / 100) * remainder) + deliveryCost;
-                Invoice myInvoice = new Invoice(userInfo.getFirstName(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, selectCode.getDiscountPerc()); ;
+                Invoice myInvoice = new Invoice(userInfo.getEmail().ToString(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, selectCode.getDiscountPerc()); ;
                 invoiceNum = myInvoice.createInvoice();
                 myInvoice.setInvoiceNum(invoiceNum);
                 Session["invObj"] = myInvoice;
@@ -367,7 +367,7 @@ namespace Web2Ass1Team5.Secure
             else
             {
                 total = subTotal + deliveryCost;
-                Invoice myInvoice = new Invoice(userInfo.getFirstName(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, 0); ;
+                Invoice myInvoice = new Invoice(userInfo.getEmail().ToString(), ddlDeliverySelect.SelectedValue.ToString(), subTotal, deliveryCost,  total, 0); ;
                 invoiceNum = myInvoice.createInvoice();
                 myInvoice.setInvoiceNum(invoiceNum);
                 Session["invObj"] = myInvoice;

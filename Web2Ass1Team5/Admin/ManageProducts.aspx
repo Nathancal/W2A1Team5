@@ -141,7 +141,6 @@
                         <div class="col-sm-12">
                             <asp:GridView ID="dgvProducts" runat="server" DataKeyNames="ProductId" CssClass="table table-striped table-dark table-hover" AutoGenerateColumns="False" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
                                 <Columns>              
-                                    <asp:CommandField ShowEditButton="true" />
     
                                     <asp:BoundField DataField="ProductName" HeaderText="ProductName" />
                                     <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price" />

@@ -24,6 +24,7 @@ namespace Web2Ass1_Team5.secure
                 if (invoiceInfo != null)
                 {
                     DataTable dt = displayItems(lvInvoiceItemDisplay);
+                    lblEmail.Text = userInfo.getEmail();
                     lblFullName.Text = userInfo.getFirstName() + " " + userInfo.getSurname().ToString();
                     lblAddress.Text = userInfo.getAddress();
                     lblCity.Text = userInfo.getCity();

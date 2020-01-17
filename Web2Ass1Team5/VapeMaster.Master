@@ -47,7 +47,7 @@
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="col-sm col-md-4">
+                        <div class="col-sm col-md-4" id="makeColumnSmaller" runat="server">
                         </div>
                         <div class="col-sm col-md-6">
                             <div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
@@ -79,6 +79,10 @@
                                     </li>
                                     <li class="nav-item">
                                         <asp:ImageButton ID="imgbLogin" runat="server" ImageUrl="~/Images/logintop.png" OnClick="imgbLogin_Click" Height="30px" Width="30px" />
+
+                                    </li>
+                                    <li class="nav-item" id="hideLogout" runat="server">
+                                    <asp:LinkButton CssClass="nav-link" ID="lbLogout" OnClick="lbLogout_Click" runat="server" Text='logout'></asp:LinkButton>
 
                                     </li>
 

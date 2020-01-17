@@ -93,7 +93,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             return retInvNum;
         }
 
-        public static DataSet returnUserInvoices(int userId) {
+        public static DataSet returnUserInvoices(string email) {
            
             OleDbConnection conn = openConnection();
 
@@ -105,6 +105,7 @@ namespace Web2Ass1Team5.App_Code.DAL
             //data adapter is bridge between database and dataset
             OleDbDataAdapter daInvoices = new OleDbDataAdapter(strCreateInvoice, conn);
 
+            daInvoices.SelectCommand.Parameters.AddWithValue("@Email", email);
             //populate the data table in the dataset 
             //with records from the database table
             daInvoices.Fill(dsInvoices, "Invoices");

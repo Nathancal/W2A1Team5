@@ -28,6 +28,22 @@ namespace Web2Ass1Team5.Admin
 
         }
 
+        private void clearTextBoxes()
+        {
+            tbUsername.Text = "";
+            tbEmail.Text = "";
+            tbFirstName.Text = "";
+            tbSurname.Text = "";
+            tbAddress.Text = "";
+            tbCity.Text = "";
+            tbCounty.Text = "";
+            tbCountry.Text = "";
+            tbPostCode.Text = "";
+            tbPassword.Text = "";
+            tbAccessLevel.Text = "";
+
+        }
+
         protected void gridUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridUsers.PageIndex = e.NewPageIndex;//Checks to see which page your on
@@ -37,6 +53,17 @@ namespace Web2Ass1Team5.Admin
 
         protected void gridUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+            Users newUser = new Users(tbUsername.Text, tbFirstName.Text, tbSurname.Text, calDob.SelectedDate.ToString(), tbAddress.Text, tbCity.Text, tbCounty.Text, tbCountry.Text, tbPostCode.Text, tbAccessLevel.Text, tbEmail.Text, tbPassword.Text);
+
+
+            newUser.createNewUser();
+            clearTextBoxes();
 
         }
     }

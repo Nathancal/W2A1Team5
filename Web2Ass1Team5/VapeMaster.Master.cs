@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Web2Ass1Team5.App_Code.BLL;
@@ -15,14 +16,23 @@ namespace W2A1Team5
             showAdminArea.Visible = false;
 
 
+        
+
             Users userInfo = (Users)Session["userInfo"];
 
-            if(userInfo != null)
+                hideLogout.Visible = false;
+
+
+            if (userInfo != null)
             {
+                hideLogout.Visible = true;
+
+                //If user is an admin shows admin area and also restyles the navbar to keep menu options centred.
                 if (Convert.ToInt32(userInfo.getUserAccessLevel()) > 0)
                 {
                     showAdminArea.Visible = true;
-
+                    makeColumnSmaller.Attributes.Remove("class");
+                    makeColumnSmaller.Attributes.Add("class", "col-sm-12 col-md-3");
                 }
 
 
@@ -103,6 +113,20 @@ namespace W2A1Team5
         protected void lbHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home.aspx");
+        }
+
+        protected void lbLogout_Click(object sender, EventArgs e)
+        {
+            Users userInfo = (Users)Session["userInfo"];
+
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            hideLogout.Visible = false;
+            lbLogout.Visible = false;
+            makeColumnSmaller.Attributes.Remove("class");
+            makeColumnSmaller.Attributes.Add("class", "col-sm-12 col-md-4");
+
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

@@ -18,17 +18,17 @@ namespace Web2Ass1Team5.Admin
 
             Users userInfo = (Users)Session["userInfo"];
 
-            //userInfo.getUserId();
+            userInfo.getUserId();
 
-            //lblAdminName.Text = userInfo.getFirstName();
+            lblAdminName.Text = userInfo.getFirstName();
 
-            //int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
+            int accessLevel = Convert.ToInt32(userInfo.getUserAccessLevel());
 
-            //if (accessLevel == 0)
-            //{
-            //    Response.Redirect("~/home.aspx");
+            if (accessLevel == 0)
+            {
+                Response.Redirect("~/home.aspx");
 
-            //}
+            }
 
         }
 
@@ -55,7 +55,7 @@ namespace Web2Ass1Team5.Admin
 
         protected void lbUsers_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Users.aspx");
+            Response.Redirect("~/Admin/ManageUsers.aspx");
         }
     }
 }
