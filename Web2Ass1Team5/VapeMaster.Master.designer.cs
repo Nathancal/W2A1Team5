@@ -33,6 +33,15 @@ namespace W2A1Team5
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// lbHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbHome;
+
+        /// <summary>
         /// lnkProducts control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace W2A1Team5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkMods;
+
+        /// <summary>
+        /// lnkHelp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkHelp;
 
         /// <summary>
         /// showAdminArea control.

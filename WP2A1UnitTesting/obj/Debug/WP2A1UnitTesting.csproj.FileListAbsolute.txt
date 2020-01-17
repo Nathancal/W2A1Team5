@@ -1,0 +1,16 @@
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\WP2A1UnitTesting.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\WP2A1UnitTesting.pdb
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Web2Ass1Team5.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Web2Ass1Team5.pdb
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Web2Ass1Team5.dll.config
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\obj\Debug\WP2A1UnitTesting.csprojAssemblyReference.cache
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\obj\Debug\WP2A1UnitTesting.csproj.CopyComplete
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\obj\Debug\WP2A1UnitTesting.dll
+C:\Users\natha\OneDrive\Documents\GitHub\W2A1Team5\WP2A1UnitTesting\obj\Debug\WP2A1UnitTesting.pdb

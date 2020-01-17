@@ -71,7 +71,6 @@
   <ItemGroup>
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\ErrorManager.aspx" />
-    <Content Include="Admin\ManageContent.aspx" />
     <Content Include="Admin\ManageDiscountCodes.aspx" />
     <Content Include="Admin\ManageProducts.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
@@ -307,13 +306,6 @@
     </Compile>
     <Compile Include="Admin\ErrorManager.aspx.designer.cs">
       <DependentUpon>ErrorManager.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ManageContent.aspx.cs">
-      <DependentUpon>ManageContent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ManageContent.aspx.designer.cs">
-      <DependentUpon>ManageContent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProductRatings.aspx.cs">
       <DependentUpon>ProductRatings.aspx</DependentUpon>

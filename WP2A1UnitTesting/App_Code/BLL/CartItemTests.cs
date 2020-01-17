@@ -11,12 +11,7 @@ namespace Web2Ass1Team5.App_Code.BLL.Tests
     [TestClass()]
     public class CartItemTests
     {
-        [TestMethod()]
-        public void CartItemTest()
-        {
-            Assert.Fail();
-        }
-
+   
 
         [TestMethod]
         public void Test_GetProductId()

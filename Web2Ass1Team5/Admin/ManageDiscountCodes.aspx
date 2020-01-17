@@ -118,10 +118,7 @@
                                             <asp:label ID="cbIsActive" runat="server" Text='<%# Eval("isActive") %>'></asp:label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Update">
-                                        <ItemTemplate>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                 
                                 </Columns>
 
                             </asp:GridView>

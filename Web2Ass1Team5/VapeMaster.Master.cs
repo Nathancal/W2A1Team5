@@ -94,5 +94,15 @@ namespace W2A1Team5
             Response.Redirect("~/Admin/AdminHome.aspx");
 
         }
+
+        protected void lnkHelp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Help.aspx");
+        }
+
+        protected void lbHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home.aspx");
+        }
     }
 }

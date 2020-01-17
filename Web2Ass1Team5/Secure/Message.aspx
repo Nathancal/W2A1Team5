@@ -156,7 +156,7 @@
                                                             </div>
 
                                                         </ItemTemplate>
-                                                        <AlternatingItemTemplate></AlternatingItemTemplate>
+
 
                                                         <ItemSeparatorTemplate>
 

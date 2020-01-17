@@ -93,7 +93,7 @@ namespace Web2Ass1Team5.App_Code.BLL
 
         }
 
-
+        
         public void createNewDiscountCode(string code, DateTime dateActive, DateTime dateEnd, int discPerc, Boolean isActive)
         {
             daDiscountCode.createNewDiscountCode(code, dateActive, dateEnd, discPerc, isActive);

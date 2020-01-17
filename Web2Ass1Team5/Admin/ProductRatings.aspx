@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ProductRatings.aspx.cs" Inherits="Web2Ass1_Team5.admin.ProductRatings" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,7 +16,7 @@
     <script src="../BootStrap4/js/bootstrap.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="alert alert-dark" role="alert">
@@ -35,27 +36,29 @@
                             <form>
                                 <div class="row">
                                     <div class="form-group px-3 py-2 m-0">
-                                        <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
-                                        <asp:TextBox ID="TextBox1" placeholder="Enter Discount Amount" CssClass="form-control" runat="server"></asp:TextBox>
+                                        <label for="Email">Email</label>
+                                        <asp:TextBox ID="tbEmail" placeholder="Enter Email" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="form-group px-3 py-2 m-0">
-                                        <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
-                                        <asp:TextBox ID="TextBox2" placeholder="Enter Discount Amount" CssClass="form-control" runat="server"></asp:TextBox>
+                                        <label for="Username">Username</label>
+                                        <asp:TextBox ID="tbUsername" placeholder="Enter Username" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="form-group px-3 py-2 m-0">
-                                        <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
-                                        <asp:TextBox ID="TextBox3" placeholder="Enter Discount Amount" CssClass="form-control" runat="server"></asp:TextBox>
-                                    </div>
-
-
-                                    <div class="form-group px-3 py-2 m-0">
-                                        <label for="discountPerc">Discount Percentage (Whole Numbers)</label>
-                                        <asp:TextBox ID="tbDiscountPerc" placeholder="Enter Discount Amount" CssClass="form-control" runat="server"></asp:TextBox>
+                                        <label for="Surname">Surname</label>
+                                        <asp:TextBox ID="tbSurname" placeholder="Enter Surname" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
 
+
                                     <div class="form-group px-3 py-2 m-0">
-                                        <label for="discountPerc">Set Active (check for yes)</label>
-                                        <asp:CheckBox ID="cbSetActive" runat="server" />
+                                        <label for="Dob">UserDob</label>
+                                        <asp:Calendar ID="calDob" runat="server"></asp:Calendar>
+
+                                    </div>
+
+                                    <div class="form-group px-3 py-2 m-0">
+                                        <label for="address">Address</label>
+                                        <asp:TextBox ID="tbAddress" placeholder="Enter Address" CssClass="form-control" runat="server"></asp:TextBox>
+
                                     </div>
                                     <div class="form-group px-3 py-2 m-0">
                                         <asp:Button ID="btnAddUser" runat="server" Text="Add Code" CssClass="btn btn-success" OnClick="btnAddUser_Click" />
@@ -81,7 +84,7 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <asp:GridView ID="gridDiscountCodes" runat="server" CssClass="table table-striped table-dark table-hover" AllowPaging="true" AutoGenerateColumns="false" GridLines="Vertical" OnPageIndexChanging="gridDiscountCodes_PageIndexChanging">
+                            <asp:GridView ID="gridUsers" runat="server" CssClass="table table-striped table-dark table-hover" AllowPaging="true" AutoGenerateColumns="false" GridLines="Vertical">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Code Id">
                                         <ItemTemplate>

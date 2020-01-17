@@ -33,15 +33,18 @@
                                 </div>
                             </div>
                                 <form class="border border-dark">
+
                             <div class="form-group px-3 py-2 m-0 border-info">
                                 <label for="tbUsername">Email or Username</label>
                                 <asp:TextBox ID="tbUsername" CssClass="form-control" placeholder="enter username here.." runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ValidationGroup="Login" ID="rfvUSername" ControlToValidate="tbUsername" runat="server" ErrorMessage="you must enter your email or username"></asp:RequiredFieldValidator>
                             </div>
 
 
                             <div class="form-group px-3 py-2 m-0">
                                 <label for="tbPassword">Password</label>
                                 <asp:TextBox ID="tbPassword" CssClass="form-control" placeholder="enter password here.." runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ValidationGroup="Login" ID="rfvPassword" ControlToValidate="tbPassword" runat="server" ErrorMessage="You must enter your password"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group px-3 py-2 m-0 align-content-center">
@@ -49,7 +52,7 @@
                                     <div class="col-sm-0 col-md-4">
                                     </div>
                                     <div class="col-sm-12 col-md-4 align-content-sm-center">
-                                        <asp:Button ID="btnSubmit" runat="server" Text="Login" OnClick="btnSubmit_Click" cssClass="btn btn-success"/>
+                                        <asp:Button  ValidationGroup="Login" ID="btnSubmit" runat="server" Text="Login" OnClick="btnSubmit_Click" cssClass="btn btn-success"/>
                                         <asp:Label runat="server" ID="lblSumbitSuccess" CssClass="alert-success">---</asp:Label>
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -71,7 +74,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-10 ">
                                         <label for="tbPassword" class="alert-secondary">If you are not yet registered please sign up here!</label>
-                                        <asp:Button ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn btn-outline-secondary" runat="server" Text="Sign up" />
+                                        <asp:Button CausesValidation="false" ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn btn-outline-secondary" runat="server" Text="Sign up" />
                                     </div>
                                     <div class="col-sm-0 col-md1">
                                     </div>

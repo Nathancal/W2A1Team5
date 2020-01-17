@@ -32,9 +32,6 @@ namespace Web2Ass1Team5.App_Code.BLL.Tests
             int actResult = getProduct.getProductId();
             Assert.Equals(expResult, actResult);
 
-
-
-
         }
 
 
@@ -48,10 +45,6 @@ namespace Web2Ass1Team5.App_Code.BLL.Tests
 
 
             Assert.Equals(expResult, actResult);
-
-
-
-
         }
 
         [TestMethod()]
@@ -77,10 +70,6 @@ namespace Web2Ass1Team5.App_Code.BLL.Tests
             Assert.Equals(expResult, actResult);
 
         }
-
-
-
-
 
 
     }

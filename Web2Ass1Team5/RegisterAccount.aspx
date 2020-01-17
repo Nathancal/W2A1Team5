@@ -39,6 +39,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbEmail" TextMode="Email" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbEmail" ID="rfvEmail" runat="server" ErrorMessage="You must enter your email to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -51,6 +52,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbUsername" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbUsername" ID="rfvUsername" runat="server" ErrorMessage="you must enter your username to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -68,6 +70,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbFirstName" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbFirstName" ID="rfvFirstName" runat="server" ErrorMessage="you must enter you first name to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -79,6 +82,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbSurname" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbSurname" ID="rfvSurname" runat="server" ErrorMessage="you must enter your Surname to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -92,7 +96,6 @@
                                         <div class="form-group px-3 py-2 m-0 border-info">
                                             <label for="calDob">Date Of Birth</label>
                                                     <asp:Calendar ID="calDob" runat="server"></asp:Calendar>
-
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
@@ -101,6 +104,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbAddress" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator  ValidationGroup="Register" ControlToValidate="tbAddress" ID="rfvAddress" runat="server" ErrorMessage="you must enter your Address to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -116,6 +120,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCity" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbCity" ID="rfvCity" runat="server" ErrorMessage="you must enter your city to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -127,6 +132,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCounty" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbCounty"  ID="rfvCounty" runat="server" ErrorMessage="you must enter your County to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -142,6 +148,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbCountry" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbCountry" ID="rfvCountry" runat="server" ErrorMessage="you must enter your Country to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -153,6 +160,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbPostCode" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ValidationGroup="Register" ControlToValidate="tbPostCode" ID="rfvPostCode" runat="server" ErrorMessage="you must enter your PostCode to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -168,6 +176,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <asp:TextBox ID="tbPassword" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ControlToValidate="tbPassword" ValidationGroup="Register" ID="rfvPassword" runat="server" ErrorMessage="you must enter your password to register"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             </div>
@@ -181,7 +190,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-4 align-content-sm-center">
 
-                                        <asp:Button ID="btnRegisterAccount" CssClass="btn btn-outline-success" runat="server" Text="Register Account" OnClick="btnRegisterAccount_Click" />
+                                        <asp:Button ValidationGroup="Register" ID="btnRegisterAccount" CssClass="btn btn-outline-success" runat="server" Text="Register Account" OnClick="btnRegisterAccount_Click" />
 
                                         </div>
                                         <div class="col-sm-0 col-md-4"></div>
@@ -196,7 +205,7 @@
                                         <div class="col-sm-12 col-md-10 ">
                                             <label for="btnLogin" class="alert-secondary">if you already have an account login here:</label>
 
-                                            <asp:Button ID="btnReturnToLogin" CssClass="btn btn-outline-danger" runat="server" Text="Login Here" OnClick="btnReturnToLogin_Click" />
+                                            <asp:Button CausesValidation="false" ID="btnReturnToLogin" CssClass="btn btn-outline-danger" runat="server" Text="Login Here" OnClick="btnReturnToLogin_Click" />
                                         </div>
                                         <div class="col-sm-0 col-md1">
                                         </div>

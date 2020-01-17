@@ -149,17 +149,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-md-6 col-sm-12">
-                                                        <div class="form-group px-3 py-2 m-0 border-info">
-                                                            <div class="row">
-                                                                <div class="col-sm-12">
-                                                                    <asp:Button ID="btnUpdate" CssClass="btn btn-success" runat="server" Text="Update" />
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
+                                           
                                                 </div>
                                         </div>
 
@@ -244,8 +234,11 @@
 
                                 <div class="card-body ">
                                     <div class="row">
-
                                         <div class="col-sm-12 col-md-12">
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -269,6 +262,7 @@
 
 
 
+        </div>
         </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

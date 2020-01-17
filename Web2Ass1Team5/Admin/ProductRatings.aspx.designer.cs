@@ -15,49 +15,49 @@ namespace Web2Ass1_Team5.admin
     {
 
         /// <summary>
-        /// TextBox1 control.
+        /// tbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbEmail;
 
         /// <summary>
-        /// TextBox2 control.
+        /// tbUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox tbUsername;
 
         /// <summary>
-        /// TextBox3 control.
+        /// tbSurname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox tbSurname;
 
         /// <summary>
-        /// tbDiscountPerc control.
+        /// calDob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDiscountPerc;
+        protected global::System.Web.UI.WebControls.Calendar calDob;
 
         /// <summary>
-        /// cbSetActive control.
+        /// tbAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbSetActive;
+        protected global::System.Web.UI.WebControls.TextBox tbAddress;
 
         /// <summary>
         /// btnAddUser control.
@@ -87,12 +87,12 @@ namespace Web2Ass1_Team5.admin
         protected global::System.Web.UI.WebControls.Label lblSumbitSuccess;
 
         /// <summary>
-        /// gridDiscountCodes control.
+        /// gridUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridDiscountCodes;
+        protected global::System.Web.UI.WebControls.GridView gridUsers;
     }
 }

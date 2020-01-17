@@ -48,6 +48,7 @@ namespace Web2Ass1_Team5.secure
             }
         }
 
+        //Displays the items in the datatable
         private DataTable displayItems(ListView lvControl)
         {
             ArrayList invoiceItems = (ArrayList)Session["InvoiceItems"];

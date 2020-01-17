@@ -82,7 +82,6 @@ namespace Web2Ass1Team5.App_Code.DAL
             return dsProds;
         }//getProducts
 
-
         public static DiscountCode checkCodeExists(string code)
         {
 

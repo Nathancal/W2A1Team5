@@ -16,24 +16,27 @@ namespace Web2Ass1Team5.Secure
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //Creates the user session
             Users userInfo = (Users)Session["userInfo"];
 
-
+            //Initialy set in invisible
             toggleCodeApplied.Visible = false;
             DiscountRedeemFailure.Visible = false;
 
+            //If the user is logged in
             if (userInfo != null)
             {
 
 
-
+                //Creates datatable from displayitems method, with the checkout listview as a parameter
                 DataTable dt = displayItems(lvCheckout);
                 if (!IsPostBack)
                 {
 
-
+                    //Initialises the cart items array list with the session
                     ArrayList cartItems = (ArrayList)Session["ShoppingBasket"];
 
+                    //Fills out user information giving user the opportunity to change
                     tbFirstName.Text = userInfo.getFirstName();
                     tbSurname.Text = userInfo.getSurname();
                     tbAddress.Text = userInfo.getAddress();
@@ -42,28 +45,31 @@ namespace Web2Ass1Team5.Secure
                     tbCountry.Text = userInfo.getCountry();
                     tbPostCode.Text = userInfo.getPostCode();
 
+                    //Initialises variables
                     double subTotal = 0.0;
                     double storedCost = 0.00;
 
-
+                    //Loops through the arraylist
                     foreach (CartItem item in cartItems)
                     {
+
 
                         DataRow dr = dt.AsEnumerable()
                                        .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
 
-
+                        //takes the value of each item and stores it
                         double currentCost = item.getProdPrice();
 
 
 
-
+                        //Adds item cost to running total
                         storedCost += currentCost;
                     }
 
 
                     subTotal = storedCost;
-
+                    
+                    //Divides the various costs and displays in labels
                     double vat = (subTotal / 100) * 20;
                     double beforeVat = subTotal / 100 * 80;
                     lblSubTotal.Text = beforeVat.ToString("£##.00");
@@ -79,7 +85,7 @@ namespace Web2Ass1Team5.Secure
 
             }
             else
-            {
+            {   //if user not logged in redirect
                 Response.Redirect("~/Login.aspx");
 
             }
@@ -93,7 +99,7 @@ namespace Web2Ass1Team5.Secure
             if (Session["ShoppingBasket"] != null)
             {
 
-
+                //Instantiates table
                 DataColumn col = new DataColumn("ProductName");
                 dt.Columns.Add(col);
                 col = new DataColumn("ProductQuantity", typeof(Int32));
@@ -113,17 +119,21 @@ namespace Web2Ass1Team5.Secure
 
                 foreach (CartItem item in basket)
                 {
+                    //Checks to see if the item already exists in the datatable, if so
+                    //the item is not added for a second time, but the quantity is updated
                     if (dt.Rows.Find(item.getProdId()) != null)
                     {
+                        //Identifies the row with the duplicate item
                         DataRow dr = dt.AsEnumerable()
                                               .SingleOrDefault(r => r.Field<int>("ProductId") == item.getProdId());
-
+                        //Updates quantity
                         int currentQuantity = (int)dr["ProductQuantity"];
                         currentQuantity += 1;
                         dr["ProductQuantity"] = currentQuantity;
 
                         double currentCost = (double)dr["LineCost"];
 
+                        //updates line cost
                         double newCost = currentCost + item.getProdPrice();
                         dr["LineCost"] = newCost;
                     }
@@ -135,7 +145,7 @@ namespace Web2Ass1Team5.Secure
                         findProductImage.findProduct(item.getProdId().ToString());
 
 
-
+                        //If the item does not already exist in the data table a new row is created.
                         DataRow row = dt.NewRow();
 
                         row["ProductName"] = item.getProdName();
@@ -148,11 +158,12 @@ namespace Web2Ass1Team5.Secure
                     }
                 }
 
+                //Listview is rebound to the datatable
                 lvControl.DataSource = dt;
                 lvControl.DataBind();
 
             }
-
+            //Datatable returned
             return dt;
 
         }
@@ -184,8 +195,9 @@ namespace Web2Ass1Team5.Secure
                 }
                 Response.Redirect("Checkout.aspx");
 
-            }
+            }//Not working
 
+            //Allows the user to empty their shopping basket of all items
             if (String.Equals(e.CommandName, "emptyShoppingBasket"))
             {
                 Session.Remove("ShoppingBasket");
@@ -196,6 +208,7 @@ namespace Web2Ass1Team5.Secure
             }
         }
 
+        //Allows the user to select their delivery preference.
         protected void ddlDeliverySelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             double delivery = 0;
@@ -227,6 +240,7 @@ namespace Web2Ass1Team5.Secure
             ViewState["Delivery"] = delivery;
         }
 
+        //This is evoked when the user applies a discount code.
         protected void btnRedeemCode_Click(object sender, EventArgs e)
         {
 
@@ -242,6 +256,7 @@ namespace Web2Ass1Team5.Secure
 
                 selectCode = DiscountCode.selectDiscountCode(discountCodeEntered);
 
+                //If the discount code redeem is successful then the values are applied.
                 if (selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId()) == 1)
                 {
 
@@ -258,6 +273,7 @@ namespace Web2Ass1Team5.Secure
 
                     DataTable dt = displayItems(lvCheckout);
 
+                    //total cost is recalculated before the discount is applied
                     foreach (CartItem item in cartItems)
                     {
 
@@ -283,7 +299,7 @@ namespace Web2Ass1Team5.Secure
                     lblTotal.Text = total.ToString("£##.00");
 
 
-                }
+                }//If the discount code has already been used by the user error shown
                 else if (selectCode.redeemDiscountCode(selectCode.getCode(), userInfo.getUserId()) == 0)
                 {
                     toggleCodeApplied.Visible = false;
